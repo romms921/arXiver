@@ -18,12 +18,30 @@ warnings.filterwarnings('ignore')
 
 os.environ['SSL_CERT_FILE'] = certifi.where()
 
+prev_df = pd.read_csv('arxiv_papers.csv')
+
 link = 'https://arxiv.org/list/astro-ph/new'
 
 page = libreq.urlopen(link)
 html = page.read().decode('utf-8')
 
 soup = BeautifulSoup(html, 'html.parser')
+
+h3_tag = soup.find('h3', string=lambda x: x and 'Showing new listings for' in x)
+if h3_tag:
+    date_str = h3_tag.string.split('for ')[1]
+    paper_date = datetime.strptime(date_str, '%A, %d %B %Y').strftime('%Y-%m-%d')
+    print(f"Papers from date: {paper_date}")
+else:
+    print("Date tag not found")
+
+length_prev_df = len(prev_df)
+prev_date = prev_df['date'][length_prev_df - 1] if length_prev_df > 0 else None
+
+if paper_date == prev_date:
+    print('No new papers found')
+    exit()
+
 h3_tag = soup.find('h3', string=lambda x: x and 'New submissions' in x)
 if h3_tag:
     number_of_papers = int(h3_tag.string.split('(')[1].split()[1])
@@ -209,5 +227,7 @@ for i in tqdm(range(len(df)), desc="Retrieving keywords"):
     df.at[i, 'keywords'] = keywords
 
 print('Retrieved Keywords')
+
+df['date'] = paper_date
 
 df.to_csv('arxiv_papers.csv', index=False)
