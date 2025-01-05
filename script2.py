@@ -3,8 +3,6 @@ import numpy as np
 import urllib.request as libreq
 from groq import Groq
 import xml.etree.ElementTree as ET
-from IPython.display import display, Latex
-from scholarly import ProxyGenerator, scholarly, MaxTriesExceededException
 import certifi
 import os
 from datetime import datetime
@@ -15,6 +13,8 @@ from bs4 import BeautifulSoup
 import re
 import PyPDF2
 import io
+import warnings
+warnings.filterwarnings('ignore')
 
 os.environ['SSL_CERT_FILE'] = certifi.where()
 
@@ -22,7 +22,6 @@ link = 'https://arxiv.org/list/astro-ph/new'
 
 page = libreq.urlopen(link)
 html = page.read().decode('utf-8')
-print(html)
 
 soup = BeautifulSoup(html, 'html.parser')
 h3_tag = soup.find('h3', string=lambda x: x and 'New submissions' in x)
@@ -104,7 +103,7 @@ def extract_all_papers(html_content):
     # <a name='itemX'>
     items = soup.find_all('a', attrs={'name': True})
 
-    for i in range(number_of_papers - 1):
+    for i in tqdm(range(number_of_papers - 1), desc="Extracting paper metadata"):
         start = items[i]
         end = items[i + 1]
 
@@ -130,6 +129,8 @@ def metadata_to_dataframe(metadata_list):
 metadata_list = extract_all_papers(html)
 df = metadata_to_dataframe(metadata_list)
 
+print('Retrieved all Metadata')
+
 def remove_brackets(text):
     return re.sub(r'\(.*?\)', '', text).strip()
 
@@ -138,7 +139,7 @@ df['secondary_subjects'] = df['secondary_subjects'].map(lambda x: [remove_bracke
 
 df['submitted_journal'] = df['submitted_journal'].str.split(r'[,;:.]').str[0]
 
-for i in range(len(df)):
+for i in tqdm(range(len(df)), desc="Retrieving missing metadata"):
     if pd.isna(df['pages'][i]) or pd.isna(df['figures'][i]) or pd.isna(df['tables'][i]):
 
         pdf_link = df['pdf_link'][i]
@@ -171,9 +172,11 @@ for i in range(len(df)):
                     highest_table_number = max(highest_table_number, max(map(int, table_numbers)))
             df['tables'][i] = highest_table_number
 
+print('Retrieved missing Metadata')
+
 df['keywords'] = None  
 
-for i in range(len(df)):
+for i in tqdm(range(len(df)), desc="Retrieving keywords"):
     links = df['pdf_link'][i]
     pdf_response = libreq.urlopen('https://' + links)
     pdf_file = pdf_response.read()
@@ -204,5 +207,7 @@ for i in range(len(df)):
             break
 
     df.at[i, 'keywords'] = keywords
+
+print('Retrieved Keywords')
 
 df.to_csv('arxiv_papers.csv', index=False)
