@@ -230,4 +230,5 @@ print('Retrieved Keywords')
 
 df['date'] = paper_date
 
-df.to_csv('arxiv_papers.csv', index=False)
+new_df = pd.concat([prev_df, df], ignore_index=True)
+new_df.to_csv('arxiv_papers.csv', index=False)
