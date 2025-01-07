@@ -1,3 +1,4 @@
+# Imports
 import pandas as pd
 import numpy as np
 import urllib.request as libreq
@@ -18,15 +19,18 @@ warnings.filterwarnings('ignore')
 
 os.environ['SSL_CERT_FILE'] = certifi.where()
 
+# Load the previous data
 prev_df = pd.read_csv('arxiv_papers.csv')
 
+# Link to the arXiv page
 link = 'https://arxiv.org/list/astro-ph/new'
-
 page = libreq.urlopen(link)
 html = page.read().decode('utf-8')
 
+# Parse the HTML
 soup = BeautifulSoup(html, 'html.parser')
 
+# Check the data for arXiv papers
 h3_tag = soup.find('h3', string=lambda x: x and 'Showing new listings for' in x)
 if h3_tag:
     date_str = h3_tag.string.split('for ')[1]
@@ -35,6 +39,7 @@ if h3_tag:
 else:
     print("Date tag not found")
 
+# Check if the data is already present
 length_prev_df = len(prev_df)
 prev_date = prev_df['date'][length_prev_df - 1] if length_prev_df > 0 else None
 
@@ -42,6 +47,7 @@ if paper_date == prev_date:
     print('No new papers found')
     exit()
 
+# Check the number of papers
 h3_tag = soup.find('h3', string=lambda x: x and 'New submissions' in x)
 if h3_tag:
     number_of_papers = int(h3_tag.string.split('(')[1].split()[1])
@@ -49,26 +55,27 @@ if h3_tag:
 else:
     print("Tag not found")
 
+# Define the function to extract metadata
 def extract_paper_metadata(xml_part):
     soup = BeautifulSoup(xml_part, 'html.parser')
 
-    # title
+    # Title
     title_tag = soup.find('div', class_='list-title mathjax')
     title = title_tag.get_text(strip=True).replace('Title:', '').strip() if title_tag else None
 
-    # abstract
+    # Abstract
     abstract_tag = soup.find('p', class_='mathjax')
     abstract = abstract_tag.get_text(strip=True) if abstract_tag else None
 
-    # authors
+    # Authors
     authors_section = soup.find('div', class_='list-authors')
     authors = [author.get_text(strip=True) for author in authors_section.find_all('a')] if authors_section else []
 
-    # comments
+    # Comments
     comments_tag = soup.find('div', class_='list-comments mathjax')
     comments = comments_tag.get_text(strip=True).replace('Comments:', '').strip() if comments_tag else ''
     
-    # figures, pages, tables
+    # Figures, Pages, Tables
     figures_match = re.search(r'(\d+)\s+figures', comments)
     figures = int(figures_match.group(1)) if figures_match else None
     pages_match = re.search(r'(\d+)\s+pages', comments)
@@ -80,23 +87,23 @@ def extract_paper_metadata(xml_part):
     pdf_tag = soup.find('a', title='Download PDF')
     pdf_link = pdf_tag['href'] if pdf_tag else None
 
-    # primary subject
+    # Primary Subject
     primary_subject_tag = soup.find('span', class_='primary-subject')
     primary_subject = primary_subject_tag.get_text(strip=True) if primary_subject_tag else None
 
-    # secondary subjects
+    # Secondary Subjects
     secondary_subjects_section = soup.find('div', class_='list-subjects').get_text(strip=True)
     subjects_split = secondary_subjects_section.split(';')
     secondary_subjects = [subject.strip() for subject in subjects_split[1:]] if len(subjects_split) > 1 else None
 
-    # journal
+    # Journal
     submitted_journal = comments.split('Submitted to ')[-1] if 'Submitted to' in comments else None
     submitted_journal = comments.split('Accepted to ')[-1] if 'Accepted to' in comments else submitted_journal
     submitted_journal = comments.split('Accepted for publication in ')[-1] if 'Accepted for publication in' in comments else submitted_journal
     submitted_journal = comments.split('Accepted by ')[-1] if 'Accepted by' in comments else submitted_journal
     submitted_journal = comments.split('Submitted by ')[-1] if 'Submitted by' in comments else submitted_journal
 
-    # published
+    # Published
     published_tag = soup.find('div', class_='list-journal-ref')
     published_journal = published_tag.get_text(strip=True).replace('Journal-ref:', '').strip() if published_tag else None
 
@@ -114,6 +121,7 @@ def extract_paper_metadata(xml_part):
         'published_journal': published_journal
     }
 
+# Function to extract all papers
 def extract_all_papers(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
     all_metadata = []
@@ -140,23 +148,25 @@ def extract_all_papers(html_content):
 
     return all_metadata
 
-
+# Dataframe conversion function
 def metadata_to_dataframe(metadata_list):
     return pd.DataFrame(metadata_list)
 
+# Extract metadata
 metadata_list = extract_all_papers(html)
 df = metadata_to_dataframe(metadata_list)
-
 print('Retrieved all Metadata')
 
+# Remove brackets
 def remove_brackets(text):
     return re.sub(r'\(.*?\)', '', text).strip()
 
+# Data preprocessing
 df['primary_subject'] = df['primary_subject'].map(remove_brackets)
 df['secondary_subjects'] = df['secondary_subjects'].map(lambda x: [remove_brackets(subject) for subject in x], na_action='ignore') 
-
 df['submitted_journal'] = df['submitted_journal'].str.split(r'[,;:.]').str[0]
 
+# For loop to retrieve missing metadata
 for i in tqdm(range(len(df)), desc="Retrieving missing metadata"):
     if pd.isna(df['pages'][i]) or pd.isna(df['figures'][i]) or pd.isna(df['tables'][i]):
 
@@ -192,6 +202,7 @@ for i in tqdm(range(len(df)), desc="Retrieving missing metadata"):
 
 print('Retrieved missing Metadata')
 
+# For loop to retrieve keywords
 df['keywords'] = None  
 
 for i in tqdm(range(len(df)), desc="Retrieving keywords"):
@@ -228,7 +239,9 @@ for i in tqdm(range(len(df)), desc="Retrieving keywords"):
 
 print('Retrieved Keywords')
 
+# Save the date
 df['date'] = paper_date
 
+# Save the data
 new_df = pd.concat([prev_df, df], ignore_index=True)
 new_df.to_csv('arxiv_papers.csv', index=False)
