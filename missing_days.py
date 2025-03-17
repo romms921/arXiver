@@ -244,4 +244,4 @@ for day in missing_day:
 
     # Save the data
     new_df = pd.concat([prev_df, df], ignore_index=True)
-    new_df.to_csv('arxiv.csv', index=False)
+    new_df.to_csv('arxiv_papers.csv', index=False)
