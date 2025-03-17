@@ -21,7 +21,9 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 
 # Missing days to retrieve
 missing_day = open('missing_days.dat', 'r').read().split('\n')
-missing_day = [day for day in missing_day if day]
+
+# Ignore strings starting with #
+missing_day = [day for day in missing_day if not day.startswith('#')]
 print(missing_day)
 
 # Load the previous data
