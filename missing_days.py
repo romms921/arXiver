@@ -38,6 +38,7 @@ for day in missing_day:
         print(f"Day {day} not present in the data")
 
 for day in missing_day:
+    print(f"Retrieving data for {day}")
 
     # Link to the arXiv page
     link = 'https://arxiv.org/catchup/astro-ph/' + day + '?abs=True'
