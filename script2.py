@@ -173,6 +173,7 @@ for i in tqdm(range(len(df)), desc="Retrieving missing metadata"):
         pdf_link = df['pdf_link'][i]
         pdf_response = libreq.urlopen('https://' + pdf_link)
         pdf_file = pdf_response.read()
+        print(f"Processing PDF: {pdf_link}")
         pdf_reader = PyPDF2.PdfReader(io.BytesIO(pdf_file))
 
         # Number of Pages
