@@ -25,10 +25,11 @@ missing_day = open('missing_days.dat', 'r').read().split('\n')
 # Ignore strings starting with #
 missing_day = [day for day in missing_day if not day.startswith('#')]
 print(missing_day)
-
+prev_non_existent = pd.read_csv('non_existent.csv')
 # Load the previous data
 prev_df = pd.read_csv('arxiv_papers.csv')
-
+non_existent ={'date':[],
+               'title':[]}
 # Cross check the missing days
 for day in missing_day:
     if day in prev_df['date'].values:
@@ -169,75 +170,84 @@ for day in missing_day:
 
     # For loop to retrieve missing metadata
     for i in tqdm(range(len(df)), desc="Retrieving missing metadata"):
-        if pd.isna(df['pages'][i]) or pd.isna(df['figures'][i]) or pd.isna(df['tables'][i]):
+        try:
+            if pd.isna(df['pages'][i]) or pd.isna(df['figures'][i]) or pd.isna(df['tables'][i]):
 
-            pdf_link = df['pdf_link'][i]
-            pdf_response = libreq.urlopen('https://' + pdf_link)
-            pdf_file = pdf_response.read()
-            pdf_reader = PyPDF2.PdfReader(io.BytesIO(pdf_file))
+                pdf_link = df['pdf_link'][i]
+                pdf_response = libreq.urlopen('https://' + pdf_link)
+                pdf_file = pdf_response.read()
+                pdf_reader = PyPDF2.PdfReader(io.BytesIO(pdf_file))
 
-            # Number of Pages
-            if pd.isna(df['pages'][i]):
-                num_pages = len(pdf_reader.pages)
-                df['pages'][i] = num_pages
+                # Number of Pages
+                if pd.isna(df['pages'][i]):
+                    num_pages = len(pdf_reader.pages)
+                    df['pages'][i] = num_pages
 
-            # Number of Figures
-            if pd.isna(df['figures'][i]):
-                highest_figure_number = 0
-                for page in pdf_reader.pages:
-                    text = page.extract_text()
-                    figure_numbers = re.findall(r'(?i)(?:Figure|Fig.|Figure.|Fig})\s+(\d+)', text)
-                    if figure_numbers:
-                        highest_figure_number = max(highest_figure_number, max(map(int, figure_numbers)))
-                df['figures'][i] = highest_figure_number
+                # Number of Figures
+                if pd.isna(df['figures'][i]):
+                    highest_figure_number = 0
+                    for page in pdf_reader.pages:
+                        text = page.extract_text()
+                        figure_numbers = re.findall(r'(?i)(?:Figure|Fig.|Figure.|Fig})\s+(\d+)', text)
+                        if figure_numbers:
+                            highest_figure_number = max(highest_figure_number, max(map(int, figure_numbers)))
+                    df['figures'][i] = highest_figure_number
 
-            # Number of Tables
-            if pd.isna(df['tables'][i]):
-                highest_table_number = 0
-                for page in pdf_reader.pages:
-                    text = page.extract_text()
-                    table_numbers = re.findall(r'(?i)(?:Table|Table.})\s+(\d+)', text)
-                    if table_numbers:
-                        highest_table_number = max(highest_table_number, max(map(int, table_numbers)))
-                df['tables'][i] = highest_table_number
+                # Number of Tables
+                if pd.isna(df['tables'][i]):
+                    highest_table_number = 0
+                    for page in pdf_reader.pages:
+                        text = page.extract_text()
+                        table_numbers = re.findall(r'(?i)(?:Table|Table.})\s+(\d+)', text)
+                        if table_numbers:
+                            highest_table_number = max(highest_table_number, max(map(int, table_numbers)))
+                    df['tables'][i] = highest_table_number
+        except:
+            non_existent['date'].append(missing_day)
+            non_existent['title'].append(df['title'][i])
+            print(f"Metadata for Paper: {df['title'][i]}    doesn't exist")
 
+    non_existent_write = pd.concat([prev_non_existent, non_existent], ignore_index=True)
+    non_existent_write.to_csv('non_existent.csv')
     print('Retrieved missing Metadata')
 
     # For loop to retrieve keywords
     df['keywords'] = None  
 
     for i in tqdm(range(len(df)), desc="Retrieving keywords"):
-        links = df['pdf_link'][i]
-        pdf_response = libreq.urlopen('https://' + links)
-        pdf_file = pdf_response.read()
-        pdf_reader = PyPDF2.PdfReader(io.BytesIO(pdf_file))
+        try:
+            links = df['pdf_link'][i]
+            pdf_response = libreq.urlopen('https://' + links)
+            pdf_file = pdf_response.read()
+            pdf_reader = PyPDF2.PdfReader(io.BytesIO(pdf_file))
 
-        keywords = []
-        for page in pdf_reader.pages:
-            text = page.extract_text()
-            text = re.sub(r'\s+', ' ', text) 
+            keywords = []
+            for page in pdf_reader.pages:
+                text = page.extract_text()
+                text = re.sub(r'\s+', ' ', text) 
 
-            patterns = [
-                r'(?i)(?:keyword[s]?|Uniﬁed Astronomy Thesaurus concepts?|key words?|Key words?|Subject headings)[:.]?\s*(.*?)\s*(?=(?:[.;]|\n|$))'
-            ]
+                patterns = [
+                    r'(?i)(?:keyword[s]?|Uniﬁed Astronomy Thesaurus concepts?|key words?|Key words?|Subject headings)[:.]?\s*(.*?)\s*(?=(?:[.;]|\n|$))'
+                ]
 
-            for pattern in patterns:
-                matches = re.findall(pattern, text, re.DOTALL)
-                for match in matches:
+                for pattern in patterns:
+                    matches = re.findall(pattern, text, re.DOTALL)
+                    for match in matches:
 
-                    split_keywords = re.split(r'[;,\n]', match)
-                    keywords.extend([kw.strip() for kw in split_keywords if kw.strip()])
+                        split_keywords = re.split(r'[;,\n]', match)
+                        keywords.extend([kw.strip() for kw in split_keywords if kw.strip()])
 
-        keywords = list(set(keywords))
+            keywords = list(set(keywords))
 
-        stop_phrases = ['1. Introduction', '1 Introduction']
-        for stop_phrase in stop_phrases:
-            if any(stop_phrase in keyword for keyword in keywords):
-                keywords = ' '.join(keywords).split(stop_phrase)[0]
-                break
+            stop_phrases = ['1. Introduction', '1 Introduction']
+            for stop_phrase in stop_phrases:
+                if any(stop_phrase in keyword for keyword in keywords):
+                    keywords = ' '.join(keywords).split(stop_phrase)[0]
+                    break
 
-        df.at[i, 'keywords'] = keywords
-
+            df.at[i, 'keywords'] = keywords
+        except :
+            print(f"cannot retrieve keywords for paper {df['title'][i]}")
     print('Retrieved Keywords')
 
     # Save the date
