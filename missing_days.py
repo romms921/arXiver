@@ -28,8 +28,8 @@ print(missing_day)
 prev_non_existent = pd.read_csv('non_existent.csv')
 # Load the previous data
 prev_df = pd.read_csv('arxiv_papers.csv')
-non_existent ={'date':[],
-               'title':[]}
+non_existent_dates = []
+non_existent_titles = []
 # Cross check the missing days
 for day in missing_day:
     if day in prev_df['date'].values:
@@ -203,13 +203,13 @@ for day in missing_day:
                             highest_table_number = max(highest_table_number, max(map(int, table_numbers)))
                     df['tables'][i] = highest_table_number
         except:
-            non_existent['date'].append(missing_day)
-            non_existent['title'].append(df['title'][i])
+            non_existent_dates.append(missing_day)
+            non_existent_titles.append(df['title'][i])
             print(f"Metadata for Paper: {df['title'][i]}    doesn't exist")
 
+    non_existent = pd.DataFrame({'date': non_existent_dates, 'title': non_existent_titles})
     non_existent_write = pd.concat([prev_non_existent, non_existent], ignore_index=True)
     non_existent_write.to_csv('non_existent.csv')
-    print('Retrieved missing Metadata')
 
     # For loop to retrieve keywords
     df['keywords'] = None  

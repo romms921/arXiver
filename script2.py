@@ -22,8 +22,8 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 # Load the previous data
 prev_df = pd.read_csv('arxiv_papers.csv')
 prev_non_existent = pd.read_csv('non_existent.csv')
-non_existent ={'date':[],
-               'title':[]}
+non_existent_dates = []
+non_existent_titles = []
 # Link to the arXiv page
 link = 'https://arxiv.org/list/astro-ph/new'
 page = libreq.urlopen(link)
@@ -203,11 +203,12 @@ for i in tqdm(range(len(df)), desc="Retrieving missing metadata"):
                     if table_numbers:
                         highest_table_number = max(highest_table_number, max(map(int, table_numbers)))
                 df['tables'][i] = highest_table_number
-    except:        
-        non_existent['date'].append(paper_date)
-        non_existent['title'].append(df['title'][i])
+    except:
+        non_existent_dates.append(paper_date)
+        non_existent_titles.append(df['title'][i])
         print(f"Metadata for Paper: {df['title'][i]}    doesn't exist")
 
+non_existent = pd.DataFrame({'date': non_existent_dates, 'title': non_existent_titles})
 non_existent_write = pd.concat([prev_non_existent, non_existent], ignore_index=True)
 non_existent_write.to_csv('non_existent.csv')
 
