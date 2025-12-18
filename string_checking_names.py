@@ -34,7 +34,7 @@ except FileNotFoundError:
 
 missing_papers = []
 stats = []
-
+check =[ 1344 ,  1287,  1585 ,  1467 ,  1386 , 1478 , 1816 , 1304,  1860 ,  1889 , 1551,  1182 ]
 # Loop for all 12 months of 2025
 months = range(1, 13)
 base_url = "https://arxiv.org/list/astro-ph/2025-{:02d}?skip={}&show=2000"
@@ -47,7 +47,7 @@ for month in months:
     month_missing_count = 0
     skip = 0
     
-    while True:
+    for count in range(check[month-1]):
         url = base_url.format(month, skip)
         print(f"  Fetching {url}...")
         try:
@@ -102,13 +102,13 @@ for month in months:
                     missing_papers.append({'title': title_text, 'month': month_str, 'id': clean_id})
                     month_missing_count += 1
             
-            # Pagination check
-            if len(dts) >= 2000:
-                skip += 2000
-                time.sleep(1) # Polite delay
-            else:
-                break
-                
+            # # Pagination check
+            # if len(dts) >= 2000:
+            #     skip += 2000
+            #     time.sleep(1) # Polite delay
+            # else:
+            #     break
+            time.sleep(15)
         except Exception as e:
             print(f"  Error processing {month_str}: {e}")
             break
