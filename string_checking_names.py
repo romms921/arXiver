@@ -108,10 +108,10 @@ for month in months:
             #     time.sleep(1) # Polite delay
             # else:
             #     break
-            time.sleep(15)
         except Exception as e:
             print(f"  Error processing {month_str}: {e}")
             break
+        time.sleep(15) # Polite delay between requests
     
     stats.append({'month': month_str, 'Missing_Count': month_missing_count})
     print(f"  Missing papers count for {month_str}: {month_missing_count}")
