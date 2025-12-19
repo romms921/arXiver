@@ -10,17 +10,14 @@ print("Loading existing papers from arxiv_papers_copy.csv...")
 try:
     data = pd.read_csv("arxiv_papers_copy.csv")
     
-    # helper to extract ID from arxiv.org/pdf/2501.00089
+    # helper to extract ID from arxiv.org/pdf/2501.00089 strip versioning
     def extract_id_from_url(url):
         if pd.isna(url): return ""
         # Get filename part
         part = str(url).split('/')[-1]
-        # Match standard arxiv ID pattern (digits.digits) or old pattern (chem-ph/xxxx)
-        # Focus on 2025 papers which are usually YYMM.NNNNN
-        # remove version 'v1', 'v2' etc if attached
+        # Match standard arxiv ID pattern (digits.digits)
         # e.g. 2501.00089v1 -> 2501.00089
-        # e.g. 2501.00089 -> 2501.00089
-        match = re.match(r'(\d{4}\.\d{4,5})', part)
+        match = re.search(r'(\d{4}\.\d{4,5})', part)
         if match:
             return match.group(1)
         return part # fallback
@@ -34,88 +31,78 @@ except FileNotFoundError:
 
 missing_papers = []
 stats = []
-check =[ 1344 ,  1287,  1585 ,  1467 ,  1386 , 1478 , 1816 , 1304,  1860 ,  1889 , 1551,  1182 ]
-# Loop for all 12 months of 2025
+# These counts represent the number of "New" (pure astro-ph) papers per month for 2025
+check = [1344, 1287, 1585, 1467, 1386, 1478, 1816, 1304, 1860, 1889, 1551, 1182]
 months = range(1, 13)
-base_url = "https://arxiv.org/list/astro-ph/2025-{:02d}?skip={}&show=2000"
 
-print("Starting to check months using ID matching...")
+# Use dash in the URL as specified (e.g., 2025-01) and show=2000 to get all papers at once
+base_url = "https://arxiv.org/list/astro-ph/2025-{:02d}?show=2000"
+
+print("\nStarting to scan arXiv for missing astro-ph papers...")
 
 for month in months:
     month_str = f"2025-{month:02d}"
-    print(f"Processing {month_str}...")
+    papers_to_process = check[month-1]
+    url = base_url.format(month)
+    
+    print(f"[{month_str}] Fetching list (Targeting {papers_to_process} pure papers)...")
     month_missing_count = 0
-    skip = 0
     
-    for count in range(check[month-1]):
-        url = base_url.format(month, skip)
-        print(f"  Fetching {url}...")
-        try:
-            response = requests.get(url)
-            if response.status_code != 200:
-                print(f"  Failed to fetch {url}: Status {response.status_code}")
-                break
+    try:
+        response = requests.get(url, timeout=30)
+        if response.status_code != 200:
+            print(f"  Failed! Status code: {response.status_code}")
+            stats.append({'month': month_str, 'Missing_Count': 0, 'Error': f"HTTP {response.status_code}"})
+            continue
+        
+        soup = bs4.BeautifulSoup(response.content, 'html.parser')
+        
+        # arXiv list pages use <dt> for ID and <dd> for metadata/title
+        dts = soup.find_all('dt')
+        dds = soup.find_all('dd')
+        
+        if not dts:
+            print(f"  No papers found for {month_str} (structure may have changed).")
+            stats.append({'month': month_str, 'Missing_Count': 0})
+            continue
             
-            soup = bs4.BeautifulSoup(response.content, 'html.parser')
+        print(f"  Found {len(dts)} total entries. Processing top {papers_to_process} pure astro-ph papers...")
+        
+        # Iterate over the first N papers as they are the "New" (pure) submissions
+        # Any entries after this index are typically cross-lists or replacements
+        for i, (dt, dd) in enumerate(zip(dts[:papers_to_process], dds[:papers_to_process])):
+            # Extract ID from <dt>
+            anchor = dt.find('a', title='Abstract')
+            if not anchor:
+                continue
             
-            # ArXiv list pages use <dl> <dt>...</dt> <dd>...</dd> </dl>
-            # <dt> contains the identifier (arXiv:2501.XXXX)
-            # <dd> contains the title
-            dts = soup.find_all('dt')
-            dds = soup.find_all('dd')
+            id_text = anchor.get_text().strip()
+            clean_id = id_text.replace('arXiv:', '').strip()
             
-            if not dts:
-                if skip == 0:
-                    print(f"  No papers found for {month_str} (or page structure changed).")
-                break
-            
-            print(f"  Found {len(dts)} papers on this page.")
-            
-            # Iterate over pairs
-            for dt, dd in zip(dts, dds):
-                # Extract ID
-                # <a href="/abs/2501.00089" title="Abstract">arXiv:2501.00089</a>
-                anchor = dt.find('a', title='Abstract')
-                if not anchor:
-                    continue
-                
-                id_text = anchor.get_text().strip() # "arXiv:2501.00089"
-                if id_text.startswith("arXiv:"):
-                    clean_id = id_text[6:].strip()
+            # Compare with existing IDs
+            if clean_id not in existing_ids:
+                # Extract Title from <dd>
+                title_div = dd.find('div', class_='list-title mathjax')
+                if title_div:
+                    raw_title = title_div.get_text().strip()
+                    title_text = raw_title.replace("Title:", "").strip()
                 else:
-                    clean_id = id_text.strip()
-                
-                # Compare with existing
-                if clean_id not in existing_ids:
-                    # Extract Title
-                    # <div class="list-title mathjax">Title: ...</div>
-                    title_div = dd.find('div', class_='list-title mathjax')
-                    if title_div:
-                        raw_title = title_div.get_text().strip()
-                        if raw_title.startswith("Title:"):
-                            title_text = raw_title[6:].strip()
-                        else:
-                            title_text = raw_title
-                    else:
-                        title_text = "Unknown Title"
-                        
-                    missing_papers.append({'title': title_text, 'month': month_str, 'id': clean_id})
-                    month_missing_count += 1
+                    title_text = "Unknown Title"
+                    
+                missing_papers.append({'title': title_text, 'month': month_str, 'id': clean_id})
+                month_missing_count += 1
             
-            # # Pagination check
-            # if len(dts) >= 2000:
-            #     skip += 2000
-            #     time.sleep(1) # Polite delay
-            # else:
-            #     break
-        except Exception as e:
-            print(f"  Error processing {month_str}: {e}")
-            break
-        time.sleep(15) # Polite delay between requests
-    
-    stats.append({'month': month_str, 'Missing_Count': month_missing_count})
-    print(f"  Missing papers count for {month_str}: {month_missing_count}")
-    time.sleep(1) # Polite delay between months
+        stats.append({'month': month_str, 'Missing_Count': month_missing_count})
+        print(f"  Finished {month_str}: Found {month_missing_count} missing papers.")
+
+    except Exception as e:
+        print(f"  Error processing {month_str}: {e}")
+        stats.append({'month': month_str, 'Missing_Count': 0, 'Error': str(e)})
+
+    # Crawl delay of 15 seconds between different months (pages)
+    if month < 12:
+        print("  Waiting 15 seconds for crawl delay...")
+        time.sleep(15)
 
 # Save results
 missing_csv = "months_missing_papers.csv"
@@ -124,15 +111,16 @@ stats_csv = "missing_papers_stats.csv"
 if missing_papers:
     df_missing = pd.DataFrame(missing_papers)
     df_missing.to_csv(missing_csv, index=False)
-    print(f"\nSaved {len(df_missing)} missing papers to {missing_csv}")
+    print(f"\nSaved {len(df_missing)} total missing papers to {missing_csv}")
 else:
     print(f"\nNo missing papers found.")
     pd.DataFrame(columns=['title', 'month', 'id']).to_csv(missing_csv, index=False)
 
-# Save Stats
+# Save Stats Summary
 df_stats = pd.DataFrame(stats)
 df_stats.to_csv(stats_csv, index=False)
-print(f"Saved stats to {stats_csv}")
+print(f"Saved monthly stats to {stats_csv}")
 
 print("\n--- Statistics (Missing Papers per Month) ---")
 print(df_stats)
+
