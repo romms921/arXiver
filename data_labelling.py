@@ -262,12 +262,12 @@ with col1:
                     box-shadow: 0 4px 20px rgba(0,0,0,0.2);'>
             <div style='display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;'>
                 <span style='font-size: 1.2rem;'>💡</span>
-                <h5 style='margin:0; font-size: 1rem; color: #000000; font-weight: 600;'>Smart Recommendations</h5>
+                <h5 style='margin:0; font-size: 1rem; color: #ffffff; font-weight: 600;'>Smart Recommendations</h5>
             </div>
             <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
-                {" ".join([f'<span class="keyword-tag" style="background: rgba(139, 92, 246, 0.2); border: 1px solid rgba(139, 92, 246, 0.4); color: #000000; padding: 0.4rem 1rem; border-radius: 8px;">{r}</span>' for r in recommendations])}
+                {" ".join([f'<span class="keyword-tag" style="background: rgba(139, 92, 246, 0.2); border: 1px solid rgba(139, 92, 246, 0.4); color: #ffffff; padding: 0.4rem 1rem; border-radius: 8px;">{r}</span>' for r in recommendations])}
             </div>
-            <p style='font-size: 0.8rem; color: #000000; margin-top: 1rem; margin-bottom: 0;'>
+            <p style='font-size: 0.8rem; color: #ffffff; margin-top: 1rem; margin-bottom: 0;'>
                 Based on title and abstract content match with your top 200 keywords.
             </p>
         </div>
