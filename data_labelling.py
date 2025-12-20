@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import os
 import ast
+import json
+import re
 
 # Set page config for a premium, wide layout
 st.set_page_config(
@@ -143,57 +145,59 @@ def get_data():
     return pd.read_csv(CSV_PATH)
 
 @st.cache_data
-def get_keyword_bank(_df):
-    all_kws = []
-    # We will use this to track the preferred capitalization for each lowercase word
-    # Strategy: Just store all raw versions, then later find the most common capitalization for each lowercased term
-    raw_kws = []
-    
-    for val in _df['keywords'].dropna():
-        try:
-            kw_list = ast.literal_eval(val)
-            for k in kw_list:
-                # Clean popular formats: "Name (Count)" or "Cat -- Subcat" or "Cat: Subcat"
-                clean_k = k.split(' (')[0].split(' — ')[0].split(': ')[0].strip()
-                if len(clean_k) > 2: # Lowered threshold slightly to catch 'K2' etc if relevant, though usually >3 is safer
-                    raw_kws.append(clean_k)
-        except:
-            continue
+def get_keyword_bank():
+    json_path = os.path.join(os.path.dirname(__file__), 'uat.json')
+    if not os.path.exists(json_path):
+        # Fallback if not found, or warn
+        return []
 
-    # 1. Count frequency of lowercase versions
-    lower_counts = pd.Series([k.lower() for k in raw_kws]).value_counts()
+    with open(json_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    keywords = set()
+    # Keys for labels in UAT (SKOS/RDF)
+    label_keys = [
+        "http://www.w3.org/2004/02/skos/core#prefLabel",
+        "http://www.w3.org/2004/02/skos/core#altLabel",
+        "http://www.w3.org/2000/01/rdf-schema#label"
+    ]
+
+    for concept_uri, properties in data.items():
+        for key in label_keys:
+            if key in properties:
+                for item in properties[key]:
+                    # User requirement: filter "value" field where "type" : "literal"
+                    if isinstance(item, dict) and item.get("type") == "literal":
+                        val = item.get("value")
+                        if val:
+                            keywords.add(val)
     
-    # 2. Find best display version (most common capitalization)
-    best_display_map = {}
-    # Optimization: processing unique raw keywords is faster
-    unique_raw = pd.Series(raw_kws).value_counts().index.tolist()
-    
-    for k in unique_raw:
-        lower_k = k.lower()
-        # If we haven't found a display version for this lower_k, or if this version is more frequent than the current best?
-        # Actually, since 'unique_raw' is ordered by frequency (descending) from value_counts().index,
-        # the first time we encounter a 'lower_k', that is the most frequent capitalization!
-        if lower_k not in best_display_map:
-            best_display_map[lower_k] = k
-            
-    # 3. Build the bank: Top 200 lowercase concepts, mapped back to display version
-    top_concepts = lower_counts.head(200).index.tolist()
-    final_bank = [best_display_map[c] for c in top_concepts]
-    
-    return final_bank
+    return list(keywords)
 
 def recommend_keywords(title, abstract, bank):
-    text = f"{title} {abstract}".lower()
-    matches = []
-    seen_lower = set()
+    # Combine title and abstract
+    text = f"{str(title)} {str(abstract)}".lower()
     
+    # Extract unique tokens from text (bag of words)
+    # Using regex to match alphanumeric words, effectively ignoring punctuation
+    text_tokens = set(re.findall(r'\b\w+\b', text))
+    
+    matches = []
+    # Check each keyword
     for kw in bank:
-        if kw.lower() in text and kw.lower() not in seen_lower:
-            matches.append(kw)
-            seen_lower.add(kw.lower())
+        # Tokenize the keyword phrase
+        kw_tokens = re.findall(r'\b\w+\b', kw.lower())
+        
+        if not kw_tokens:
+            continue
             
-    # Return top 3 unique matches (longest first, usually more specific)
-    return sorted(list(set(matches)), key=len, reverse=True)[:3]
+        # Optimization: Fast check with sets
+        # If all tokens in the keyword phrase appear in the text tokens (regardless of order)
+        if set(kw_tokens).issubset(text_tokens):
+            matches.append(kw)
+            
+    # Return all unique matches, no limit
+    return sorted(list(set(matches)))
 
 # We use session state to track index to avoid losing place on rerun
 if 'current_idx' not in st.session_state:
@@ -249,7 +253,7 @@ with col1:
     """, unsafe_allow_html=True)
 
     # Recommendations Box
-    bank = get_keyword_bank(df)
+    bank = get_keyword_bank()
     recommendations = recommend_keywords(paper['title'], paper['abstract'], bank)
     
     if recommendations:
@@ -264,14 +268,49 @@ with col1:
                 <span style='font-size: 1.2rem;'>💡</span>
                 <h5 style='margin:0; font-size: 1rem; color: #ffffff; font-weight: 600;'>Smart Recommendations</h5>
             </div>
-            <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
-                {" ".join([f'<span class="keyword-tag" style="background: rgba(139, 92, 246, 0.2); border: 1px solid rgba(139, 92, 246, 0.4); color: #ffffff; padding: 0.4rem 1rem; border-radius: 8px;">{r}</span>' for r in recommendations])}
-            </div>
-            <p style='font-size: 0.8rem; color: #ffffff; margin-top: 1rem; margin-bottom: 0;'>
-                Based on title and abstract content match with your top 200 keywords.
+            <p style='font-size: 0.8rem; color: #ccc; margin-top: 0; margin-bottom: 0;'>
+                Click a tag to add it:
             </p>
         </div>
         """, unsafe_allow_html=True)
+        
+        # Interactive Buttons
+        # Use a grid layout for buttons
+        rec_cols = st.columns(3)
+        kw_key = f"kw_{st.session_state.current_idx}"
+        
+        for i, rec in enumerate(recommendations):
+            # Styling hack for buttons can be done via Global CSS, or just standard buttons
+            # We use columns to pack them slightly better
+            if rec_cols[i % 3].button(f"➕ {rec}", key=f"btn_rec_{i}", use_container_width=True):
+                # Logic to add keyword
+                # 1. Initialize state if missing (before text area renders)
+                if kw_key not in st.session_state:
+                    st.session_state[kw_key] = paper['keywords']
+                
+                # 2. Parse current list
+                current_str = st.session_state[kw_key]
+                try:
+                    # Handle potential non-string or nan
+                    if pd.isna(current_str):
+                        current_list = []
+                    else:
+                        current_list = ast.literal_eval(str(current_str))
+                        if not isinstance(current_list, list):
+                            current_list = []
+                except:
+                    current_list = []
+                
+                # 3. Add if new
+                if rec not in current_list:
+                    current_list.append(rec)
+                    st.session_state[kw_key] = str(current_list)
+                    # Force rerun to show updated text area immediately (optional, but safer for UI sync)
+                    st.rerun()
+                else:
+                    st.toast(f"'{rec}' is already in the list!", icon="ℹ️")
+
+
 
 with col2:
     st.markdown("### 🏷️ Keywords")
