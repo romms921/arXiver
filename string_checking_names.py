@@ -8,7 +8,7 @@ import os
 # Load existing data
 print("Loading existing papers from arxiv_papers_copy.csv...")
 try:
-    data = pd.read_csv("arxiv_papers_copy.csv")
+    data = pd.read_csv("arxiv_papers.csv")
     
     # helper to extract ID from arxiv.org/pdf/2501.00089 strip versioning
     def extract_id_from_url(url):
@@ -32,7 +32,7 @@ except FileNotFoundError:
 missing_papers = []
 stats = []
 # These counts represent the number of "New" (pure astro-ph) papers per month for 2025
-check = [1344, 1287, 1585, 1467, 1386, 1478, 1816, 1304, 1860, 1889, 1551, 1182]
+check = [1344, 1287, 1585, 1467, 1386, 1478, 1816, 1304, 1860, 1889, 1551, 1305]
 months = range(1, 13)
 
 # Use dash in the URL as specified (e.g., 2025-01) and show=2000 to get all papers at once
