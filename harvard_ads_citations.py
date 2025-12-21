@@ -11,23 +11,15 @@ import dotenv
 
 dotenv.load_dotenv()
 
-# --- CONFIGURATION ---
-# Ensure ADS_API_KEY is set in your environment or .env file
-# To get a token: https://ui.adsabs.harvard.edu/user/settings/token
 ADS_API_KEY = os.getenv("ADS_API_KEY")
 ADS_URL = "https://api.adsabs.harvard.edu/v1/search/query"
 
 CSV_PATH = "FINAL_ARXIV_2025_copy_updated.csv"
 OUTPUT_PATH = "papers_with_ads_metrics.csv"
 
-# Batching and Throttling
 BATCH_SIZE = 10
-# 1000 requests/hour is ~0.27 requests/second. 
-# To be safe, we'll aim for ~800/hour (~0.22/s)
-# Each batch takes 1 (lookup) + up to BATCH_SIZE (citations) requests.
-# If batch lookup + citations take X requests, we sleep to ensure we don't exceed rate.
 RETRY_WAIT = 60 
-MAX_CITATIONS_TO_CHECK = 1000 # ADS search rows limit (max 2000)
+MAX_CITATIONS_TO_CHECK = 1000
 
 def get_headers():
     return {"Authorization": f"Bearer {ADS_API_KEY}"}
@@ -38,7 +30,6 @@ def extract_arxiv_id(pdf_link):
     return m.group(1) if m else None
 
 def ads_request(params):
-    """Execution wrapper for ADS API calls with rate limit handling."""
     if not ADS_API_KEY:
         raise ValueError("ADS_API_KEY not found in environment.")
         
@@ -46,7 +37,6 @@ def ads_request(params):
         try:
             r = requests.get(ADS_URL, headers=get_headers(), params=params, timeout=20)
             
-            # Rate limit check (429 Too Many Requests)
             if r.status_code == 429:
                 reset = r.headers.get('X-RateLimit-Reset', '60')
                 print(f"\n[Rate Limit] Sleeping for {RETRY_WAIT}s (Reset info: {reset})")
@@ -54,11 +44,7 @@ def ads_request(params):
                 continue
                 
             r.raise_for_status()
-            
-            # Optional: Short sleep to stay under the 1000/hr limit
-            # 3600s / 1000 req = 3.6s per request. 
-            # If we want 1000/hr, we just ensure we don't go faster than 1 req / 3.6s.
-            time.sleep(4) 
+            time.sleep(4) # Sleep to abide by the rate limit
             
             return r.json()
         except requests.exceptions.HTTPError as e:
@@ -72,10 +58,8 @@ def ads_request(params):
             return None
 
 def resolve_papers_ads(batch_df):
-    """Resolves a list of papers by ArXiv ID (batch) or fallback to Title."""
     results_map = {}
     
-    # 1. Batch ArXiv Lookup
     ids = [extract_arxiv_id(row.get('pdf_link')) for _, row in batch_df.iterrows()]
     valid_ids = [aid for aid in ids if aid]
     
@@ -96,7 +80,6 @@ def resolve_papers_ads(batch_df):
     return results_map
 
 def get_non_self_citations(bibcode, target_authors):
-    """Fetches citation details and filters out self-citations."""
     params = {
         "q": f'citations("{bibcode}")',
         "fl": "author",
@@ -119,7 +102,6 @@ def get_non_self_citations(bibcode, target_authors):
     return non_self
 
 def process_paper(row, ads_batch):
-    """Processes a single row, resolving via batch results or title fallback."""
     title = row.get('title', '')
     arxiv_id = extract_arxiv_id(row.get('pdf_link'))
     
@@ -148,14 +130,12 @@ def process_paper(row, ads_batch):
     affs = doc.get("aff", [])
     
     # Format Affiliations
-    # Zip authors and affiliations if available, else just unique institutions
     aff_list = []
     if len(authors) == len(affs):
         for auth, aff in zip(authors, affs):
             if aff and aff != "-":
                 aff_list.append(f"{auth}: {aff}")
     else:
-        # Fallback to unique institutions
         aff_list = list(dict.fromkeys([a for a in affs if a and a != "-"]))
     
     aff_str = "; ".join(aff_list)
@@ -175,10 +155,8 @@ def main():
         print(f"File not found: {CSV_PATH}")
         return
 
-    # Load data
     df = pd.read_csv(CSV_PATH)
     
-    # Progress tracking
     if os.path.exists(OUTPUT_PATH):
         try:
             p_df = pd.read_csv(OUTPUT_PATH)
@@ -198,15 +176,13 @@ def main():
     current_results = []
     for i in tqdm(range(0, len(todo), BATCH_SIZE)):
         batch = todo.iloc[i : i + BATCH_SIZE]
-        
-        # Resolve batch
+
         batch_mapping = resolve_papers_ads(batch)
         
         for _, row in batch.iterrows():
             res = process_paper(row, batch_mapping)
             current_results.append(res)
             
-        # Periodic Save
         if len(current_results) >= 20: 
             save_df = pd.DataFrame(current_results)
             header = not os.path.exists(OUTPUT_PATH)
@@ -219,7 +195,7 @@ def main():
         header = not os.path.exists(OUTPUT_PATH)
         save_df.to_csv(OUTPUT_PATH, mode='a', header=header, index=False)
 
-    print("Success! Data enriched with ADS metrics.")
+    print("Success!")
 
 if __name__ == "__main__":
     main()
