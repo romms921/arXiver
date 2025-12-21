@@ -3,9 +3,13 @@ import requests
 import io
 import json
 import google.generativeai as genai
+import os
+import dotenv
+
+dotenv.load_dotenv()
 
 # --- CONFIGURATION ---
-GEMINI_API_KEY = "AIzaSyBEdaGn5rbfMnxSiqfE_xc4etf9Ukk1dPY"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
 
 def download_arxiv_pdf(url):

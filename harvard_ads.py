@@ -18,7 +18,11 @@ ADS_API_KEY = os.getenv("ADS_API_KEY")
 ADS_URL = "https://api.adsabs.harvard.edu/v1/search/query"
 
 CSV_PATH = "FINAL_ARXIV_2025_copy_updated.csv"
-OUTPUT_PATH = "papers_with_ads_metrics.csv"
+OUTPUT_PATH = "papers_with_ads_metrics_copy.csv"
+
+# Index Range (corresponds to row numbers in CSV)
+START_INDEX = 3761
+STOP_INDEX = 5000  # Set to None to process until the end
 
 # Batching and Throttling
 BATCH_SIZE = 10
@@ -178,6 +182,16 @@ def main():
     # Load data
     df = pd.read_csv(CSV_PATH)
     
+    # Slice dataframe by index range
+    if STOP_INDEX is not None:
+        df = df.iloc[START_INDEX:STOP_INDEX]
+    else:
+        df = df.iloc[START_INDEX:]
+        
+    if df.empty:
+        print(f"No papers in range {START_INDEX} to {STOP_INDEX}")
+        return
+
     # Progress tracking
     if os.path.exists(OUTPUT_PATH):
         try:
