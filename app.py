@@ -1,85 +1,123 @@
 import streamlit as st
 import pandas as pd
-from engine import download_arxiv_pdf, extract_text_from_stream, suggest_affiliations
+import ast
+import os
 
-st.set_page_config(layout="wide", page_title="ArXiv Affiliation Tool")
+# Set page config for a wider layout
+st.set_page_config(layout="wide", page_title="ArXiv Paper Affiliation Editor")
 
-# Initialize Session State keys
-if 'extracted_text' not in st.session_state: st.session_state.extracted_text = ""
-if 'current_suggestions' not in st.session_state: st.session_state.current_suggestions = {}
+CSV_PATH = "/Users/ainsleylewis/Documents/Astronomy/arXiver/test.csv"
 
-# --- LOAD DATA ---
-CSV_PATH = "FINAL_ARXIV_2025_copy.csv"
-if 'data' not in st.session_state:
-    try:
-        st.session_state.data = pd.read_csv(CSV_PATH)
-        if 'final_affiliations' not in st.session_state.data.columns:
-            st.session_state.data['final_affiliations'] = ""
-    except:
-        st.session_state.data = pd.DataFrame({
-            'title': ['Sample Paper'], 'authors': ['John Doe'], 'pdf_link': ['https://arxiv.org/pdf/1706.03762.pdf'], 'final_affiliations': [""]
-        })
+@st.cache_data
+def load_data():
+    return pd.read_csv(CSV_PATH)
 
-# --- SIDEBAR ---
-idx = st.sidebar.number_input("Row Index", min_value=0, max_value=len(st.session_state.data)-1, step=1)
+def save_data(df):
+    df.to_csv(CSV_PATH, index=False)
+    # Clear cache so the UI reflects changes on reload
+    st.cache_data.clear()
 
-# Clear AI suggestions when changing papers
-if 'last_idx' not in st.session_state or st.session_state.last_idx != idx:
-    st.session_state.current_suggestions = {}
-    st.session_state.extracted_text = ""
-    st.session_state.last_idx = idx
+# Load data
+df = load_data()
 
-row = st.session_state.data.iloc[idx]
-st.title(f"Reviewing: {row['title']}")
+# Session state for tracking the current paper index
+if 'paper_index' not in st.session_state:
+    st.session_state.paper_index = 0
 
-col1, col2 = st.columns([1, 1])
+# Sidebar Navigation
+st.sidebar.header("Navigation")
+st.session_state.paper_index = st.sidebar.number_input(
+    "Paper Index", 
+    min_value=0, 
+    max_value=len(df)-1, 
+    value=st.session_state.paper_index
+)
 
-with col1:
-    st.subheader("1. Paper Content")
-    if st.button("🚀 Fetch PDF & Extract Text"):
-        pdf_stream = download_arxiv_pdf(row['pdf_link'])
-        if pdf_stream:
-            st.session_state.extracted_text = extract_text_from_stream(pdf_stream)
-        else:
-            st.error("Download failed.")
+col_nav1, col_nav2 = st.sidebar.columns(2)
+if col_nav1.button("⬅️ Previous"):
+    if st.session_state.paper_index > 0:
+        st.session_state.paper_index -= 1
+        st.rerun()
+
+if col_nav2.button("Next ➡️"):
+    if st.session_state.paper_index < len(df) - 1:
+        st.session_state.paper_index += 1
+        st.rerun()
+
+# Get current paper data
+row = df.iloc[st.session_state.paper_index]
+
+def parse_list(val):
+    if pd.isna(val):
+        return []
+    if isinstance(val, str):
+        try:
+            return ast.literal_eval(val)
+        except:
+            return [val]
+    return val
+
+authors = parse_list(row['authors'])
+affiliations = parse_list(row['affiliations'])
+title = row['title']
+abstract = row['abstract']
+pdf_url = row['pdf_link']
+
+if not pdf_url.startswith('http'):
+    pdf_url = 'https://' + pdf_url
+
+st.title(f"Paper {st.session_state.paper_index}: {title}")
+
+# Top level summary
+st.write(f"**Authors:** {', '.join([str(a) for a in authors])}")
+
+# Layout: 2 columns for Editor and PDF
+col_editor, col_pdf = st.columns([1, 1])
+
+with col_editor:
+    st.subheader("Affiliation Editor")
     
-    st.text_area("Header Text", value=st.session_state.extracted_text, height=400)
-
-with col2:
-    st.subheader("2. Affiliation Mapping")
+    # Check if None is present
+    has_none = any(a is None or a == "None" for a in affiliations) if isinstance(affiliations, list) else (affiliations is None or affiliations == "None")
     
-    if st.button("🤖 Suggest with AI (Gemini)"):
-        if st.session_state.extracted_text:
-            with st.spinner("Gemini is analyzing..."):
-                results = suggest_affiliations(st.session_state.extracted_text, row['authors'])
-                if "error" not in results:
-                    st.session_state.current_suggestions = results
-                    st.rerun() # Force refresh to show results in text boxes
-                else:
-                    st.error(results["error"])
-        else:
-            st.warning("Extract text first!")
-
-    # Display Input Fields
-    authors = [a.strip() for a in str(row['authors']).split(',')]
-    existing_affs = str(row['final_affiliations']).split('; ')
+    if has_none:
+        st.warning("⚠️ Missing affiliations (None) detected for this paper.")
     
-    updated_values = []
-    for i, author in enumerate(authors):
-        # Determine the best value to show
-        ai_val = st.session_state.current_suggestions.get(author, "")
-        saved_val = existing_affs[i] if i < len(existing_affs) else ""
+    # Prepare current affiliations as a string for the text box
+    if isinstance(affiliations, list):
+        default_aff_str = " : ".join([str(a) if a is not None else "" for a in affiliations])
+    else:
+        default_aff_str = str(affiliations) if affiliations is not None else ""
         
-        # Priority: AI Suggestion (if just generated) > Saved Data
-        display_val = ai_val if ai_val else saved_val
-        
-        val = st.text_input(f"Affiliation: {author}", value=display_val, key=f"input_{idx}_{i}")
-        updated_values.append(val)
+    st.write(f"Number of authors: **{len(authors)}**")
+    new_affs_input = st.text_area(
+        "Enter affiliations (separated by a colon ':')", 
+        value=default_aff_str, 
+        height=150,
+        help="Example: Univ A : Univ B : Univ C"
+    )
     
-    if st.button("✅ Save & Export Row"):
-        st.session_state.data.at[idx, 'final_affiliations'] = "; ".join(updated_values)
-        st.session_state.data.to_csv(CSV_PATH, index=False)
-        st.success("Saved!")
+    if st.button("Submit and Save to CSV", type="primary"):
+        # Process the input
+        new_affs_list = [s.strip() for s in new_affs_input.split(":")]
+        
+        # Update the dataframe
+        df.at[st.session_state.paper_index, 'affiliations'] = str(new_affs_list)
+        
+        # Save to CSV
+        save_data(df)
+        st.success("✅ Affiliations saved successfully!")
+        st.rerun()
+
+    st.markdown("---")
+    st.subheader("Abstract")
+    st.write(abstract)
+
+with col_pdf:
+    st.subheader("PDF Preview")
+    st.markdown(f"[Open PDF in new tab]({pdf_url})")
+    # Iframe for embedding. Note: Some browsers/sites block this.
+    st.components.v1.iframe(pdf_url, height=900, scrolling=True)
 
 st.divider()
-st.dataframe(st.session_state.data.head(10))
+st.info(f"Currently viewing record {st.session_state.paper_index + 1} of {len(df)}.")
