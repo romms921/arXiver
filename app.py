@@ -6,7 +6,7 @@ import os
 # Set page config for a wider layout
 st.set_page_config(layout="wide", page_title="ArXiv Paper Affiliation Editor")
 
-CSV_PATH = "/Users/ainsleylewis/Documents/Astronomy/arXiver/test.csv"
+CSV_PATH = "test.csv"
 
 @st.cache_data
 def load_data():
@@ -117,7 +117,9 @@ with col_pdf:
     st.subheader("PDF Preview")
     st.markdown(f"[Open PDF in new tab]({pdf_url})")
     # Iframe for embedding. Note: Some browsers/sites block this.
-    st.components.v1.iframe(pdf_url, height=900, scrolling=True)
+    google_viewer = f"https://docs.google.com/gview?url={pdf_url}&embedded=true"
+    st.components.v1.iframe(google_viewer, height=900, scrolling=True)
+
 
 st.divider()
 st.info(f"Currently viewing record {st.session_state.paper_index + 1} of {len(df)}.")
