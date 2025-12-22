@@ -20,8 +20,8 @@ warnings.filterwarnings('ignore')
 os.environ['SSL_CERT_FILE'] = certifi.where()
 
 # Load the previous data
-prev_df = pd.read_csv('arxiv_papers.csv')
-prev_non_existent = pd.read_csv('non_existent.csv')
+prev_df = pd.read_csv('datasets/arxiv_papers.csv')
+prev_non_existent = pd.read_csv('datasets/non_existent.csv')
 non_existent_dates = []
 non_existent_titles = []
 # Link to the arXiv page
