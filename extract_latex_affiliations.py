@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # ========================
 
 CSV_PATH = "test.csv"
-OUTPUT_PATH = "latex_affiliations_output.txt"
+OUTPUT_PATH = "latex_affiliations_output_2.txt"
 SLEEP_SECONDS = 0.5  # Reduced sleep for parallel threads
 MAX_WORKERS = 5      # arXiv is strict; keep this low
 
@@ -210,6 +210,9 @@ def main():
     print(f"Reading CSV from: {CSV_PATH}")
     df = pd.read_csv(CSV_PATH)
     
+    # Only beyond a certain index for testing
+    df = df.iloc[10390:]  # Change 0 to desired starting index if needed
+
     # Identify which papers to process
     to_process_indices = df[df["affiliations"].apply(affiliations_need_fix)].index.tolist()
     total = len(to_process_indices)
