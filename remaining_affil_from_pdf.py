@@ -200,7 +200,7 @@ def main():
 
             df.at[i, "processed"] = True
 
-        print(f"Success: {success_count} | Fail: {fail_count}")
+            print(f"Success: {success_count} | Fail: {fail_count}")
 
     except KeyboardInterrupt:
         print("\n⏹ Interrupted by user")
@@ -208,12 +208,12 @@ def main():
     finally:
         df.to_csv(SAVE_PATH, index=False)
         print("✔ Progress saved to disk")
+    
+    print("\n========== SUMMARY ==========")
+    print(f"Successful extractions: {success_count}")
+    print(f"Failed extractions:     {fail_count}")
+    print(f"Total attempted:        {success_count + fail_count}")
 
 
 if __name__ == "__main__":
     main()
-
-print("\n========== SUMMARY ==========")
-print(f"Successful extractions: {success_count}")
-print(f"Failed extractions:     {fail_count}")
-print(f"Total attempted:        {success_count + fail_count}")
