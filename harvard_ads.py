@@ -18,7 +18,7 @@ ADS_API_KEY = os.getenv("ADS_API_KEY")
 ADS_URL = "https://api.adsabs.harvard.edu/v1/search/query"
 
 CSV_PATH = "FINAL_ARXIV_2025_copy.csv"
-OUTPUT_PATH = "papers_with_ads_metrics_copy.csv"
+OUTPUT_PATH = "papers_with_ads_metrics_5.csv"
 
 # Index Range (corresponds to row numbers in CSV)
 START_INDEX = 15000
