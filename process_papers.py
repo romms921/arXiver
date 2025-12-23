@@ -68,7 +68,6 @@ def escape_csv_field(field):
 def parse_paper_block(paper_content):
     """
     Parses a single paper's LaTeX snippet to extract title, authors, and affiliations.
-    It tries to automatically detect the LaTeX style used.
     """
     # --- Extract Title ---
     title = ""
@@ -81,8 +80,6 @@ def parse_paper_block(paper_content):
             title = clean_latex_text(title_match.group(1).split('\n')[0])
 
     authors_data = []
-
-    # --- Strategy detection and parsing ---
 
     # Strategy 1: aa-style (\author{...\inst{...}} and \institute{...\label{...}})
     if r'\inst' in paper_content and r'\institute' in paper_content:
@@ -139,8 +136,11 @@ def parse_paper_block(paper_content):
     # Strategy 3: mnras/spie-style (single \author block with numbered affiliations below)
     author_block_match = re.search(r'\\author\[[^\]]*\]\{(.*?)\}|\\author\{(.*?)\}', paper_content, re.DOTALL)
     if author_block_match:
-        content = author_block_match.group(1) or author_block_match.group(2)
-        if r'\\' in content and re.search(r'\$\^\{\d+\}', content):
+        # FIXED: Robustly handle potential None groups
+        content = author_block_match.group(1) if author_block_match.group(1) else author_block_match.group(2)
+        
+        # FIXED: Ensure content is a valid string before searching
+        if content and r'\\' in content and re.search(r'\$\^\{\d+\}', content):
             parts = re.split(r'\\\\', content, maxsplit=1)
             author_lines, affil_lines = parts[0], parts[1]
             
@@ -157,69 +157,45 @@ def parse_paper_block(paper_content):
                 if name:
                     affiliations = [affil_map.get(num, f"Unresolved Affil({num})") for num in affil_nums]
                     authors_data.append({'name': name, 'affiliations': affiliations})
-            if authors_data:
-                return title, authors_data
-
+            
     return title, authors_data
 
 def process_file(filename):
-    """
-    Reads a file, splits it into paper blocks, and processes each block into
-    a robust CSV format.
-    """
     try:
         with open(filename, 'r', encoding='utf-8') as f:
             content = f.read()
-    except FileNotFoundError:
-        print(f"Error: File '{filename}' not found.", file=sys.stderr)
-        return
     except Exception as e:
         print(f"Error reading file: {e}", file=sys.stderr)
         return
 
     paper_blocks = re.split(r'\n-{20,}\n', content)
-    
     output_blocks = []
     for i, block in enumerate(paper_blocks):
         block = block.strip()
-        if not block:
-            continue
+        if not block: continue
 
         fallback_title_match = re.search(r'PAPER:\s*(.*)', block)
         fallback_title = fallback_title_match.group(1).strip() if fallback_title_match else f"Untitled Paper {i+1}"
         
         title, parsed_authors = parse_paper_block(block)
-        if not title:
-            title = fallback_title
-        
-        if not parsed_authors:
-            continue
+        if not title: title = fallback_title
+        if not parsed_authors: continue
         
         paper_output = []
         for author_info in parsed_authors:
             name = author_info['name']
             if not name: continue
-            
             affiliations = '; '.join(filter(None, [aff.strip() for aff in author_info['affiliations']]))
-            
-            # Create a properly formatted CSV line
-            line_parts = [
-                escape_csv_field(title),
-                escape_csv_field(name),
-                escape_csv_field(affiliations)
-            ]
+            line_parts = [escape_csv_field(title), escape_csv_field(name), escape_csv_field(affiliations)]
             paper_output.append(','.join(line_parts))
         
         if paper_output:
             output_blocks.append('\n'.join(paper_output))
             
-    # Print the final result with blank lines between papers
     print('\n\n'.join(output_blocks))
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python process_papers.py <papers.txt>", file=sys.stderr)
+        print("Usage: python process_papers.py <filename>", file=sys.stderr)
         sys.exit(1)
-    
-    input_filename = sys.argv[1]
-    process_file(input_filename)
+    process_file(sys.argv[1])
