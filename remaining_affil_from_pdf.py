@@ -53,26 +53,47 @@ def download_tex_sources(arxiv_id):
         if r.status_code != 200:
             return None
 
-        tar = tarfile.open(fileobj=io.BytesIO(r.content), mode="r:gz")
-        tex_files = []
+        fileobj = io.BytesIO(r.content)
 
+        # Try gzip, fallback to plain tar
+        try:
+            tar = tarfile.open(fileobj=fileobj, mode="r:gz")
+        except tarfile.ReadError:
+            tar = tarfile.open(fileobj=fileobj, mode="r:")
+
+        tex_files = {}
         for member in tar.getmembers():
             if member.name.endswith(".tex"):
-                tex_files.append(
-                    tar.extractfile(member).read().decode(errors="ignore")
+                tex_files[member.name] = (
+                    tar.extractfile(member)
+                    .read()
+                    .decode(errors="ignore")
                 )
 
-        return tex_files
-    except Exception:
+        return tex_files  # dict now
+    except Exception as e:
         return None
 
 
 def extract_author_block(tex_files):
-    for tex in tex_files:
-        if "\\begin{abstract}" in tex:
-            pre = tex.split("\\begin{abstract}")[0]
-            if "\\author" in pre:
-                return pre
+    for name, tex in tex_files.items():
+        # Strip comments
+        tex_nc = re.sub(r"%.*", "", tex)
+
+        # Look for document start
+        if "\\begin{document}" in tex_nc:
+            body = tex_nc.split("\\begin{document}", 1)[1]
+        else:
+            body = tex_nc
+
+        # Stop at abstract or maketitle
+        for stop in ["\\begin{abstract}", "\\maketitle"]:
+            if stop in body:
+                body = body.split(stop, 1)[0]
+
+        if "\\author" in body or "\\affiliation" in body:
+            return body
+
     return None
 
 
@@ -81,22 +102,147 @@ def extract_author_block(tex_files):
 # ========================
 
 def clean_tex(s):
-    s = re.sub(r"\\thanks\{.*?\}", "", s)
-    s = re.sub(r"\\altaffiliation\{(.*?)\}", r"\1", s)
+    if not s:
+        return ""
+
+    # Remove comments
+    s = re.sub(r"%.*", "", s)
+
+    # Remove math
     s = re.sub(r"\$.*?\$", "", s)
+
+    # Replace common formatting macros
+    s = re.sub(r"\\(textbf|emph|textit|underline)\{([^}]*)\}", r"\2", s)
+
+    # Remove thanks, footnotes
+    s = re.sub(r"\\thanks\{.*?\}", "", s)
+
+    # Line breaks & spacing
+    s = s.replace("~", " ")
+    s = s.replace("\\\\", " ")
+
+    # Remove remaining macros
+    s = re.sub(r"\\[a-zA-Z]+\*?(?:\[[^\]]*\])?", "", s)
+
+    # Collapse whitespace
     s = re.sub(r"\s+", " ", s)
+
     return s.strip()
 
 
 def parse_authors(block):
     authors = []
 
-    for m in re.finditer(r"\\author(?:\[[^\]]*\])?\{([^}]*)\}", block):
+    for m in re.finditer(
+        r"\\author(?:\[[^\]]*\])?\{([^}]*)\}",
+        block,
+    ):
         chunk = clean_tex(m.group(1))
+
+        # Remove numeric markers
+        chunk = re.sub(r"\$?\^\{?\d+\}?\$?", "", chunk)
+
         parts = re.split(r",| and ", chunk)
-        authors.extend([p.strip() for p in parts if p.strip()])
+        authors.extend(p.strip() for p in parts if p.strip())
 
     return authors
+
+
+def parse_numbered_affiliations(block):
+    """
+    Returns dict: index -> affiliation string
+    """
+    affil_map = {}
+
+    patterns = [
+        r"\\affil\s*\[(\d+)\]\s*\{([^}]*)\}",
+        r"\\affiliation\s*\[(\d+)\]\s*\{([^}]*)\}",
+        r"\\altaffiltext\s*\{(\d+)\}\s*\{([^}]*)\}",
+    ]
+
+    for pat in patterns:
+        for m in re.finditer(pat, block):
+            idx = m.group(1)
+            affil_map[idx] = clean_tex(m.group(2))
+
+    return affil_map
+
+def parse_block_affiliation(block):
+    affil_map = {}
+
+    m = re.search(r"\\affiliation\s*\{", block)
+    if not m:
+        return affil_map
+
+    content = extract_brace_block(block, m.end() - 1)
+
+    # Split on LaTeX line breaks
+    lines = re.split(r"\\\\|\n", content)
+
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+
+        # Match $^1$ Institution OR ^1 Institution
+        m2 = re.match(r"\$?\^\{?(\d+)\}?\$?\s*(.*)", line)
+        if not m2:
+            continue
+
+        idx = m2.group(1)
+        inst = clean_tex(m2.group(2))
+
+        if inst:
+            affil_map[idx] = inst
+
+    return affil_map
+
+
+def parse_authors_with_indices(block):
+    authors = []
+    indices = []
+
+    for m in re.finditer(r"\\author\{([^}]*)\}", block):
+        raw = m.group(1)
+
+        raw = strip_orcid_and_thanks(raw)
+
+        # Extract ALL numeric superscripts safely
+        # Matches ^{1,2,*} or ^1 or $^{1,2}
+        sup_matches = re.findall(r"\^\{?([0-9,\s]+)\}?", raw)
+        idxs = []
+        for sm in sup_matches:
+            idxs.extend(re.findall(r"\d+", sm))
+
+        # Remove superscripts aggressively
+        raw = re.sub(r"\$?\^\{?[^}]*\}?\$?", "", raw)
+
+        name = clean_tex(raw)
+
+        authors.append(name)
+        indices.append(sorted(set(idxs)))
+
+    return authors, indices
+
+def extract_brace_block(tex, start):
+    """
+    Extracts {...} content starting at index `start`,
+    respecting nested braces.
+    """
+    depth = 0
+    out = []
+    for i in range(start, len(tex)):
+        if tex[i] == "{":
+            depth += 1
+            if depth == 1:
+                continue
+        elif tex[i] == "}":
+            depth -= 1
+            if depth == 0:
+                break
+        if depth >= 1:
+            out.append(tex[i])
+    return "".join(out)
 
 
 def parse_affiliations(block):
@@ -122,17 +268,102 @@ def parse_affiliations(block):
 
 
 
-def build_affiliation_list(authors, affils):
+def build_affiliation_list(authors, author_indices, affil_map, fallback_affils):
+    """
+    Returns:
+      affiliations_per_author: list[list[str]]
+      confidence: float
+    """
     if not authors:
         return [], 0.0
 
-    if not affils:
-        return [""] * len(authors), 0.2
+    result = []
 
-    # Astro papers usually list all affiliations globally
-    if len(affils) >= 1:
-        return [affils[0]] * len(authors), 0.85
+    # Best case: explicit mapping
+    if affil_map and any(author_indices):
+        for idxs in author_indices:
+            affs = [affil_map[i] for i in idxs if i in affil_map]
+            result.append(affs)
 
+        confidence = 0.95
+        return result, confidence
+
+    # Fallback: global affiliations apply to all
+    if fallback_affils:
+        for _ in authors:
+            result.append(fallback_affils)
+        return result, 0.75
+
+    # Worst case
+    return [[] for _ in authors], 0.2
+
+def serialize_author_affiliations(authors, affils_per_author):
+    """
+    Returns a list of dicts:
+    [
+      {"author": str, "affiliations": [str, ...]},
+      ...
+    ]
+    """
+    if not authors or not affils_per_author:
+        return []
+
+    serialized = []
+
+    for author, affils in zip(authors, affils_per_author):
+        # Ensure list
+        if not isinstance(affils, list):
+            affils = []
+
+        # Remove empty / None affiliations
+        affils = [a for a in affils if a and a.strip()]
+
+        serialized.append(
+            {
+                "author": author,
+                "affiliations": affils,
+            }
+        )
+
+    return serialized
+
+
+def strip_orcid_and_thanks(s):
+    s = re.sub(r"\\orcidlink\{[^}]*\}", "", s)
+    s = re.sub(r"\\thanks\{[^}]*\}", "", s)
+    return s
+
+
+def parse_authors_and_affiliations(block):
+    """
+    Returns:
+        authors: list of author names
+        affils_per_author: list of lists of affiliations
+    """
+    authors = []
+    affils_per_author = []
+
+    # Pre-clean ORCID and \thanks
+    block = strip_orcid_and_thanks(block)
+
+    # Split block into author-affiliation chunks
+    # Regex matches \author{...} followed by zero or more \affiliation{...}
+    pattern = re.compile(
+        r"\\author(?:\[[^\]]*\])?\{([^}]*)\}"  # author name
+        r"((?:\s*\\affiliation\{[^}]*\})*)",  # zero or more affiliations
+        re.S
+    )
+
+    for m in pattern.finditer(block):
+        raw_author = clean_tex(m.group(1))
+        authors.append(raw_author)
+
+        raw_affils_block = m.group(2)
+        affils = re.findall(r"\\affiliation\{([^}]*)\}", raw_affils_block, re.S)
+        affils = [clean_tex(a) for a in affils if a.strip()]
+        affils_per_author.append(affils)
+
+    return authors, affils_per_author
 
 
 # ========================
@@ -142,24 +373,59 @@ def build_affiliation_list(authors, affils):
 def process_row(row):
     arxiv_id = extract_arxiv_id(row.get("pdf_link", ""))
     if not arxiv_id:
-        return None, None, 0.0
+        return [], 0.0
 
     tex_files = download_tex_sources(arxiv_id)
     time.sleep(SLEEP_SECONDS)
 
     if not tex_files:
-        return None, None, 0.0
+        return [], 0.0
 
     block = extract_author_block(tex_files)
     if not block:
-        return None, None, 0.0
+        return [], 0.0
 
-    authors = parse_authors(block)
-    affils = parse_affiliations(block)
+    # --- Parse authors + indices ---
+    authors, affils_per_author = parse_authors_and_affiliations(block)
 
-    final_affils, confidence = build_affiliation_list(authors, affils)
-    print("FOUND AFFILS:", affils[:2])
-    return authors, final_affils, confidence
+    # fallback only if all authors have empty affiliations
+    if not any(affils_per_author):
+        # numbered/block style fallback
+        authors_tmp, author_indices = parse_authors_with_indices(block)
+        affil_map = parse_block_affiliation(block)
+        if not affil_map:
+            affil_map = parse_numbered_affiliations(block)
+        fallback_affils = parse_affiliations(block)
+        affils_per_author, confidence = build_affiliation_list(
+            authors_tmp, author_indices, affil_map, fallback_affils
+        )
+    else:
+        confidence = 0.95
+
+
+    # --- Defensive check ---
+    if not isinstance(affils_per_author, list) or any(
+        not isinstance(a, list) for a in affils_per_author
+    ):
+        raise ValueError(
+            "affils_per_author must be a list of lists (one list per author)"
+        )
+
+    # --- Serialize ---
+    serialized = serialize_author_affiliations(
+        authors,
+        affils_per_author,
+    )
+
+    # 🔎 DEBUG PRINT
+    print("Extracted affiliations:")
+    for entry in serialized:
+        print(f"  - {entry['author']}: {entry['affiliations']}")
+
+    print(f"Confidence score: {confidence:.2f}")
+
+    return serialized, confidence
+
 
 
 def main():
@@ -187,20 +453,26 @@ def main():
     try:
         for i in to_process:
             print(f"Processing row {i}")
-            authors, affils, conf = process_row(df.loc[i])
+            serialized, conf = process_row(df.loc[i])
 
-            # Success means: extracted affiliations exist AND are non-empty
-            if affils and any(a.strip() for a in affils):
-                df.at[i, "affiliations_auto"] = str(affils)
+            if serialized and any(d["affiliations"] for d in serialized):
+                print("Extracted affiliations:")
+                for entry in serialized:
+                    print(f"  - {entry['author']}: {entry['affiliations']}")
+
+                df.at[i, "affiliations_auto"] = str(serialized)
                 df.at[i, "confidence"] = conf
                 df.at[i, "needs_review"] = conf < 0.8
                 success_count += 1
             else:
+                print("❌ No affiliations found")
                 fail_count += 1
+
 
             df.at[i, "processed"] = True
 
             print(f"Success: {success_count} | Fail: {fail_count}")
+            print(f"Confidence score: {conf:.2f}")
 
     except KeyboardInterrupt:
         print("\n⏹ Interrupted by user")
