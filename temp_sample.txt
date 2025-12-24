@@ -1,0 +1,109 @@
+================================================================================
+LaTeX Affiliation Extraction Results
+================================================================================
+
+--------------------------------------------------------------------------------
+PAPER: High-Frequency Power Spectrum of AGN NGC 4051 Revealed by NICER
+--------------------------------------------------------------------------------
+AFFILIATION SECTION:
+
+\documentclass[twocolumn]{aastex631}
+
+
+
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage{graphicx}
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+\title{High-Frequency Power Spectrum of AGN NGC~4051 Revealed by NICER}
+
+
+\author[0000-0001-5711-084X]{B. Rani}
+\affiliation{NASA Goddard Space Flight Center, Greenbelt, MD 20771, USA}
+\affiliation{Center for Space Science and Technology, University of Maryland Baltimore County, USA}
+\affiliation{Korea Astronomy and Space science Institute, 776 Daedeokdae-ro, Yuseong-gu, Daejeon 30455, Korea}
+
+\author{Jungeun Kim}
+\affiliation{Korea Advanced Institute of Science and Technology, 291 Daehak-ro, Yuseong-gu, Daejeon 34141, Republic of Korea} 
+
+\author{I. Papadakis}
+\affiliation{Department of Physics and Institute of Theoretical and Computational Physics, University of Crete, 71003 Heraklion, Greece}
+\affiliation{Institute of Astrophysics, FORTH, GR-71110 Heraklion, Greece}
+
+\author{K. C. Gendreau}
+\affiliation{NASA Goddard Space Flight Center, Greenbelt, MD 20771, USA} 
+
+
+\author{M. Masterson}
+\affiliation{MIT Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, Cambridge, MA 02139, USA}
+
+\author{K. Hamaguchi}
+\affiliation{NASA Goddard Space Flight Center, Greenbelt, MD 20771, USA} 
+
+
+\author{E. Kara}
+\affiliation{MIT Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, Cambridge, MA 02139, USA}
+
+
+\author{S.-S. Lee}
+\affiliation{Korea Astronomy and Space science Institute, 776 Daedeokdae-ro, Yuseong-gu, Daejeon 30455, Korea}
+
+\author{R.~Mushotzky}
+\affiliation{Department of Astronomy, University of Maryland, College Park, MD 20742, USA} 
+
+
+
+
+\begin{abstract}
+Variability studies offer a compelling glimpse into black hole dynamics, and NICER's (Neutron Star 
+Interior Composition Explorer)
+remarkable temporal resolution propels us even further.
+NICER observations of an Active Galactic 
+Nucleus (AGN), NGC 4051, have charted the geometry of the emission region of the central supermassive 
+black hole. Our investigation of X-ray variability in NGC 4051 has detected extreme variations spanning 
+a factor of 40 to 50 over a mere 10 to 12 hours. For the first time, we have constrained the X-ray Power 
+Spectral Density (PSD) of the source to 0.1 Hz, corresponding to a temporal frequency of 
+10$^4$~Hz in a 
+galactic X-ray binary (GXRB) with a mass of 10~$M_{\odot}$. No extra high-frequency break/bend or 
+any quasi-periodic oscillations are found. Through detailed analysis of energy-dependent PSDs, we found that 
+ the PSD normalization, the high-frequency PSD slope as well as the bending frequency remains consistent 
+across all energies within the 0.3-3 keV band, revealing the presence of a constant 
+temperature corona. These significant findings impose critical constraints 
+
+--------------------------------------------------------------------------------
+PAPER: VEGA: Voids idEntification using Genetic Algorithm
+--------------------------------------------------------------------------------
+AFFILIATION SECTION:
+\documentclass[a4paper,11pt]{article}
+\usepackage{jcappub}
+\usepackage{lineno}
+\usepackage{orcidlink}
+\usepackage{multirow}
+
+\hypersetup{ linktoc=all,
+    colorlinks=true, linkcolor={black},  
+       citecolor={blue}, urlcolor={blue}
+}
+
+\title{VEGA: Voids idEntification using Genetic Algorithm}
+
+\author[a,1]{Parsa Ghafour\,\orcidlink{0009-0003-2960-1563}\note{corresponding author}}
+\author[a]{Saeed Tavasoli\,\orcidlink{0000-0003-0126-8554}}
+\author[a]{Mohammad Reza Shojaei\,\orcidlink{0009-0004-7055-2203}}
+\affiliation[a]{Department of Astronomy and High Energy Physics, Kharazmi University, 15719-14911, Tehran, Iran}
+\emailAdd{P.Ghafour@outlook.com}
+\emailAdd{stavasoli@khu.ac.ir}
+\emailAdd{mrshojaei@ipm.ir}
+
+\abstract{Cosmic voids are large, nearly empty regions that lie between the web of galaxies, filaments and walls, and are recognized for their extensive applications in the field of cosmology and astrophysics. Despite their significance, a universal definition of voids remains unsettled as various void-finding methods identify different types of voids, each differing in shape and density, based on the method that were used. In this paper, we present VEGA, a novel algorithm for void identification. VEGA utilizes Voronoi tessellation to divide the dataset space into spatial cells and applies the Convex Hull algorithm to estimate the volume of each cell. It then integrates Genetic Algorithm analysis with luminosity density contrast to filter out o
