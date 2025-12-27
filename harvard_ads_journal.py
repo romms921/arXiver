@@ -13,8 +13,8 @@ dotenv.load_dotenv()
 ADS_API_KEY = os.getenv("ADS_API_KEY")
 ADS_URL = "https://api.adsabs.harvard.edu/v1/search/query"
 
-CSV_PATH = "FINAL_ARXIV_2025_copy_updated.csv"
-OUTPUT_PATH = "papers_with_journals.csv"
+CSV_PATH = "FINAL_ARXIV_2025_with_affiliations.csv"
+OUTPUT_PATH = "papers_with_journals_2.csv"
 
 # Index Range (corresponds to row numbers in CSV)
 START_INDEX = 0
@@ -135,12 +135,15 @@ def main():
         print(f"No papers in range {START_INDEX} to {STOP_INDEX}")
         return
 
-    # Filter for 'submitted' in comments
-    df['comments'] = df['comments'].astype(str).fillna('')
-    todo = df[df['comments'].str.contains('submitted', case=False, na=False)].copy()
+    # Filter for mismatch: journal_flag == 0 AND total_citations > 0
+    if 'journal_flag' not in df.columns or 'total_citations' not in df.columns:
+        print("Error: 'journal_flag' or 'total_citations' columns missing.")
+        return
+
+    todo = df[(df['journal_flag'] == 0) & (df['total_citations'] > 0)].copy()
 
     if todo.empty:
-        print("No papers with 'submitted' in comments found.")
+        print("No papers with mismatch (journal_flag=0 and citations>0) found.")
         return
 
     # Progress tracking
