@@ -56,7 +56,7 @@ def recommend_keywords(title, abstract, bank):
             matches.append(kw)
             
     # Return all unique matches
-    return sorted(list(set(matches)))
+    return sorted(list(set(matches)))[:3]
 
 def main():
     csv_path = 'arxiv_papers_copy.csv'
