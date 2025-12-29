@@ -58,7 +58,11 @@ def main():
     for index, row in df.iterrows():
         if index % 100 == 0:
             print(f"Processing row {index}/{total_rows}...")
-            
+
+        # Already has keywords
+        if pd.notna(row.get('keywords', None)) and str(row['keywords']).strip():
+            smart_keywords_column.append(str(row['keywords']))
+            continue
         recs = recommend_keywords(row['title'], row['abstract'], bank)
         smart_keywords_column.append(str(recs)) # Store as string representation of list to match csv format
 
