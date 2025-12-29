@@ -13,8 +13,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # CONFIG
 # ========================
 
-CSV_PATH = "test.csv"
-OUTPUT_PATH = "latex_affiliations_output_2.txt"
+CSV_PATH = "missing_papers_with_links.csv"
+OUTPUT_PATH = "latex_affiliations_output_3.txt"
 SLEEP_SECONDS = 0.5  # Reduced sleep for parallel threads
 MAX_WORKERS = 5      # arXiv is strict; keep this low
 
@@ -89,7 +89,7 @@ def download_tex_sources(arxiv_id):
                 )
 
         return tex_files
-    except Exception as e:
+    except Exception:
         # Silencing error output for parallel execution to keep console clean
         return None
 
@@ -110,11 +110,19 @@ def find_affiliation_section(tex_content):
     lines = tex_nc.split('\n')
     
     # Keywords to search for (case-insensitive)
-    keywords = [
-        'University', 'Institute', 'Department', 'Centre', 'Center',
-        'College', 'Laboratory', 'Observatory', 'School of',
-        '\\\\affiliation', '\\\\affil', '\\\\address', '\\\\institute'
+
+    list_countries = pd.read_csv('world_coords.csv')['country'].tolist()
+    list_countries.extend(['United States', 'United Kingdom', 'Canada', 'Australia', 'New Zealand', 'USA', 'UK', 'The Netherlands', 'China', 'South Korea',
+                        'UAE','The United Arab Emirates', 'The United States', 'The United Kingdom', 'The United States of America', 'Italy', 'France', 'Germany', 'Spain', 'Japan'])
+    
+    keywords = list_countries + [
+        "university", "institute", "department", "laboratory", "lab",
+        "school of", "faculty of", "observatory", "centre", "center",
+        "college", "academy", "national"
     ]
+
+    # Remove duplicates
+    list_countries = list(set(list_countries))
     
     # Find the first line that contains any keyword
     first_match_line = -1
@@ -130,8 +138,8 @@ def find_affiliation_section(tex_content):
         return None
     
     # Extract 50 lines before and 50 lines after
-    start_line = max(0, first_match_line - 50)
-    end_line = min(len(lines), first_match_line + 50)
+    start_line = max(0, first_match_line - 100)
+    end_line = min(len(lines), first_match_line + 100)
     
     # Join the extracted lines
     extracted_section = '\n'.join(lines[start_line:end_line])
@@ -143,7 +151,7 @@ def find_affiliation_section(tex_content):
 # WORKER LOGIC
 # ========================
 
-def process_row_worker(index, row, total_to_process):
+def process_row_worker(row, total_to_process):
     """
     Worker function to process a single paper row.
     Handles I/O and thread-safe writing.
@@ -211,13 +219,18 @@ def main():
     df = pd.read_csv(CSV_PATH)
     
     # Only beyond a certain index for testing
-    df = df.iloc[10390:]  # Change 0 to desired starting index if needed
+    df = df.iloc[:]  # Change 0 to desired starting index if needed
 
-    # Identify which papers to process
-    to_process_indices = df[df["affiliations"].apply(affiliations_need_fix)].index.tolist()
-    total = len(to_process_indices)
-    print(f"Total papers needing affiliation fix: {total}")
+    # # Identify which papers to process
+    # to_process_indices = df[df["affiliations"].apply(affiliations_need_fix)].index.tolist()
+    # total = len(to_process_indices)
+    # print(f"Total papers needing affiliation fix: {total}")
     
+    # Identify which papers to process
+    to_process_indices = df.index.tolist()
+    total = len(to_process_indices)
+    print(f"Total papers to process: {total}")
+
     # Initialize/Clear output file
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as outfile:
         outfile.write("=" * 80 + "\n")
@@ -230,7 +243,7 @@ def main():
         futures = []
         for i in to_process_indices:
             row = df.loc[i]
-            futures.append(executor.submit(process_row_worker, i, row, total))
+            futures.append(executor.submit(process_row_worker, row, total))
             # Slightly stagger thread starts to avoid instant burst to arXiv
             time.sleep(0.1)
         
