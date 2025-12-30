@@ -1,0 +1,2814 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a4eb683ff3fb25d092a4ac34d7437ba2 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+     <div style="position: fixed; 
+                 bottom: 50px; left: 50px; width: 250px; height: 300px; 
+                 border:2px solid grey; z-index:9999; font-size:12px;
+                 background-color:white; opacity: 0.9; overflow-y: auto; padding: 10px;">
+                 <b>Primary Subject Distribution Legend</b><br>
+<i style="background:#000080; width:12px; height:12px; float:left; margin-right:5px; border:1px solid black;"></i> Astrophysics<br><i style="background:#002aff; width:12px; height:12px; float:left; margin-right:5px; border:1px solid black;"></i> Astrophysics of Galaxies<br><i style="background:#00d4ff; width:12px; height:12px; float:left; margin-right:5px; border:1px solid black;"></i> Cosmology and Nongalactic Astrophysics<br><i style="background:#7bff7b; width:12px; height:12px; float:left; margin-right:5px; border:1px solid black;"></i> Earth and Planetary Astrophysics<br><i style="background:#ffe600; width:12px; height:12px; float:left; margin-right:5px; border:1px solid black;"></i> High Energy Astrophysical Phenomena<br><i style="background:#ff4800; width:12px; height:12px; float:left; margin-right:5px; border:1px solid black;"></i> Instrumentation and Methods for Astrophysics<br><i style="background:#800000; width:12px; height:12px; float:left; margin-right:5px; border:1px solid black;"></i> Solar and Stellar Astrophysics<br></div>
+    
+            <div class="folium-map" id="map_a4eb683ff3fb25d092a4ac34d7437ba2" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a4eb683ff3fb25d092a4ac34d7437ba2 = L.map(
+                "map_a4eb683ff3fb25d092a4ac34d7437ba2",
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b9d6de8535a7abce5d98d4b28c89dd7c = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b9d6de8535a7abce5d98d4b28c89dd7c.addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var marker_d9ee51906ac51f86da19f70ae0eedcb4 = L.marker(
+                [37.09024, -95.712891],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_0e8006b11ac6cc065fcec939b1786ec1 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.049733205339166815 0.9987625384878491 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.049733205339166815 0.9987625384878491 A 1 1 0 0 1 -0.46598140892548856 0.8847945109096329 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.46598140892548856 0.8847945109096329 A 1 1 0 0 1 -0.7428276778376214 0.6694826667198839 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.7428276778376214 0.6694826667198839 A 1 1 0 0 1 -0.7155989607441212 -0.6985113652489369 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.7155989607441212 -0.6985113652489369 A 1 1 0 0 1 0.4045711086023721 -0.914506543489027 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.4045711086023721 -0.914506543489027 A 1 1 0 0 1 0.993540527265239 -0.11347784224909685 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.993540527265239 -0.11347784224909685 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_73c87a1680f5d431cd2ecbab8fc59807 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_70f5fdc1da27ae4ca5b5cfff950b0b2c = $(`<div id="html_70f5fdc1da27ae4ca5b5cfff950b0b2c" style="width: 100.0%; height: 100.0%;"><b>United States</b><br>Astrophysics of Galaxies: 570<br>Earth and Planetary Astrophysics: 530<br>Solar and Stellar Astrophysics: 427<br>High Energy Astrophysical Phenomena: 366<br>Cosmology and Nongalactic Astrophysics: 153</div>`)[0];
+                popup_73c87a1680f5d431cd2ecbab8fc59807.setContent(html_70f5fdc1da27ae4ca5b5cfff950b0b2c);
+            
+        
+
+        marker_d9ee51906ac51f86da19f70ae0eedcb4.bindPopup(popup_73c87a1680f5d431cd2ecbab8fc59807)
+        ;
+
+        
+    
+    
+                marker_d9ee51906ac51f86da19f70ae0eedcb4.setIcon(div_icon_0e8006b11ac6cc065fcec939b1786ec1);
+            
+    
+            var marker_a044b6d366f90b711633dc7575030285 = L.marker(
+                [41.87194, 12.56738],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_c4192cdc5ef4f3a5eb168a56ec451130 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.9404229044550432 0.3400070010695966 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9404229044550432 0.3400070010695966 A 1 1 0 0 1 -0.23859584784944837 0.9711189532642244 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.23859584784944837 0.9711189532642244 A 1 1 0 0 1 -0.8545645051252091 0.5193452672164314 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8545645051252091 0.5193452672164314 A 1 1 0 0 1 -0.9620837660233864 -0.2727541514885849 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9620837660233864 -0.2727541514885849 A 1 1 0 0 1 0.8082610785546703 -0.5888242767529553 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8082610785546703 -0.5888242767529553 A 1 1 0 0 1 0.9979369837498727 -0.06420106279654769 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9979369837498727 -0.06420106279654769 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_4859400da6c1624d439b8fdbb7026ae1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_41bb7e24148e0da0430ac8d3001be50f = $(`<div id="html_41bb7e24148e0da0430ac8d3001be50f" style="width: 100.0%; height: 100.0%;"><b>Italy</b><br>Astrophysics of Galaxies: 174<br>High Energy Astrophysical Phenomena: 114<br>Cosmology and Nongalactic Astrophysics: 64<br>Solar and Stellar Astrophysics: 61<br>Earth and Planetary Astrophysics: 44</div>`)[0];
+                popup_4859400da6c1624d439b8fdbb7026ae1.setContent(html_41bb7e24148e0da0430ac8d3001be50f);
+            
+        
+
+        marker_a044b6d366f90b711633dc7575030285.bindPopup(popup_4859400da6c1624d439b8fdbb7026ae1)
+        ;
+
+        
+    
+    
+                marker_a044b6d366f90b711633dc7575030285.setIcon(div_icon_c4192cdc5ef4f3a5eb168a56ec451130);
+            
+    
+            var marker_a43077be7b852c10fe51de5e5604b253 = L.marker(
+                [35.86166, 104.195397],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_da296d497cf208605969f9b95dfde3e9 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.07417051193589226 0.9972455741486986 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.07417051193589226 0.9972455741486986 A 1 1 0 0 1 -0.9003837252577868 0.4350967102736016 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9003837252577868 0.4350967102736016 A 1 1 0 0 1 -0.9989975930183047 0.0447639268120407 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9989975930183047 0.0447639268120407 A 1 1 0 0 1 0.27566252778785744 -0.9612544776351415 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.27566252778785744 -0.9612544776351415 A 1 1 0 0 1 0.6176816985499063 -0.7864282035103413 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6176816985499063 -0.7864282035103413 A 1 1 0 0 1 0.995104992057579 -0.09882335140079879 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.995104992057579 -0.09882335140079879 A 1 1 0 0 1 1.0 6.432490598706546e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_3ab302ed7012f402f66fa696fc4c2fe1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c4efa04cb18217a5f63de32bc10eb2bc = $(`<div id="html_c4efa04cb18217a5f63de32bc10eb2bc" style="width: 100.0%; height: 100.0%;"><b>China</b><br>High Energy Astrophysical Phenomena: 402<br>Astrophysics of Galaxies: 349<br>Solar and Stellar Astrophysics: 222<br>Cosmology and Nongalactic Astrophysics: 171<br>Earth and Planetary Astrophysics: 86</div>`)[0];
+                popup_3ab302ed7012f402f66fa696fc4c2fe1.setContent(html_c4efa04cb18217a5f63de32bc10eb2bc);
+            
+        
+
+        marker_a43077be7b852c10fe51de5e5604b253.bindPopup(popup_3ab302ed7012f402f66fa696fc4c2fe1)
+        ;
+
+        
+    
+    
+                marker_a43077be7b852c10fe51de5e5604b253.setIcon(div_icon_da296d497cf208605969f9b95dfde3e9);
+            
+    
+            var marker_b722b33aa8d770aead817cb2488326e4 = L.marker(
+                [40.463667, -3.74922],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_9fb2e399645410b3ae99dc0a92b55bff = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.15082429716137394 0.9885605855918885 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.15082429716137394 0.9885605855918885 A 1 1 0 0 1 -0.9784091409455727 -0.20667741268495274 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9784091409455727 -0.20667741268495274 A 1 1 0 0 1 -0.3518810151318336 -0.9360447378142726 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.3518810151318336 -0.9360447378142726 A 1 1 0 0 1 -0.03784147671767093 -0.9992837548163315 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.03784147671767093 -0.9992837548163315 A 1 1 0 0 1 0.7268924518431433 -0.6867513112135014 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7268924518431433 -0.6867513112135014 A 1 1 0 0 1 0.997136045279652 -0.07562874588445698 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.997136045279652 -0.07562874588445698 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_bc9b9ea546ca8e0e677768b541d22e21 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_34631eb514a38f1d7e76224be9a51bc2 = $(`<div id="html_34631eb514a38f1d7e76224be9a51bc2" style="width: 100.0%; height: 100.0%;"><b>Spain</b><br>Astrophysics of Galaxies: 102<br>Solar and Stellar Astrophysics: 75<br>High Energy Astrophysical Phenomena: 53<br>Earth and Planetary Astrophysics: 45<br>Cosmology and Nongalactic Astrophysics: 36</div>`)[0];
+                popup_bc9b9ea546ca8e0e677768b541d22e21.setContent(html_34631eb514a38f1d7e76224be9a51bc2);
+            
+        
+
+        marker_b722b33aa8d770aead817cb2488326e4.bindPopup(popup_bc9b9ea546ca8e0e677768b541d22e21)
+        ;
+
+        
+    
+    
+                marker_b722b33aa8d770aead817cb2488326e4.setIcon(div_icon_9fb2e399645410b3ae99dc0a92b55bff);
+            
+    
+            var marker_83ca3f4eb02d40cf116d172529b36dfb = L.marker(
+                [-30.559482, 22.937506],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_0c559b40beb6c87fac3efd22c9043be0 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.784799385278661 0.6197498889602449 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.784799385278661 0.6197498889602449 A 1 1 0 0 1 -0.2962755808856338 0.9551024972069124 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.2962755808856338 0.9551024972069124 A 1 1 0 0 1 -0.9446690916079187 0.32802485783956936 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9446690916079187 0.32802485783956936 A 1 1 0 0 1 0.9206498866764287 -0.3903892751634952 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9206498866764287 -0.3903892751634952 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_948edd10ee50860065bc68ad3205ec30 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4d622d5ffc6e19d333fc6867c1fea1a8 = $(`<div id="html_4d622d5ffc6e19d333fc6867c1fea1a8" style="width: 100.0%; height: 100.0%;"><b>South Africa</b><br>Astrophysics of Galaxies: 23<br>Cosmology and Nongalactic Astrophysics: 9<br>Solar and Stellar Astrophysics: 7<br>High Energy Astrophysical Phenomena: 5<br>Instrumentation and Methods for Astrophysics: 3</div>`)[0];
+                popup_948edd10ee50860065bc68ad3205ec30.setContent(html_4d622d5ffc6e19d333fc6867c1fea1a8);
+            
+        
+
+        marker_83ca3f4eb02d40cf116d172529b36dfb.bindPopup(popup_948edd10ee50860065bc68ad3205ec30)
+        ;
+
+        
+    
+    
+                marker_83ca3f4eb02d40cf116d172529b36dfb.setIcon(div_icon_0c559b40beb6c87fac3efd22c9043be0);
+            
+    
+            var marker_9fe62b043b9e7317ec2172e4a1915e52 = L.marker(
+                [61.52401, 105.318756],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_fe1d362d1305712ceaa28c1f52e348ef = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.1330704620164537 0.9911065796062135 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.1330704620164537 0.9911065796062135 A 1 1 0 0 1 -0.3897858732926793 0.9209055179449537 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.3897858732926793 0.9209055179449537 A 1 1 0 0 1 -0.9529420004271566 -0.30315267411304336 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9529420004271566 -0.30315267411304336 A 1 1 0 0 1 -0.8041620963415417 -0.5944100628417869 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8041620963415417 -0.5944100628417869 A 1 1 0 0 1 0.7660444431189778 -0.6427876096865396 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7660444431189778 -0.6427876096865396 A 1 1 0 0 1 0.9924205096719357 -0.12288829066471402 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9924205096719357 -0.12288829066471402 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_c287056c9b665a457ef2cc6e32167af2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b5799c2de9a10a72a21e818d80fd1976 = $(`<div id="html_b5799c2de9a10a72a21e818d80fd1976" style="width: 100.0%; height: 100.0%;"><b>Russia</b><br>High Energy Astrophysical Phenomena: 44<br>Solar and Stellar Astrophysics: 36<br>Astrophysics of Galaxies: 35<br>Earth and Planetary Astrophysics: 14<br>Instrumentation and Methods for Astrophysics: 13</div>`)[0];
+                popup_c287056c9b665a457ef2cc6e32167af2.setContent(html_b5799c2de9a10a72a21e818d80fd1976);
+            
+        
+
+        marker_9fe62b043b9e7317ec2172e4a1915e52.bindPopup(popup_c287056c9b665a457ef2cc6e32167af2)
+        ;
+
+        
+    
+    
+                marker_9fe62b043b9e7317ec2172e4a1915e52.setIcon(div_icon_fe1d362d1305712ceaa28c1f52e348ef);
+            
+    
+            var marker_5cf88fbce121f4e9519904150d046924 = L.marker(
+                [36.204824, 138.252924],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_73aa357ab4ae60f54faed4c146af896b = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.9271518799506491 0.37468572364580044 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9271518799506491 0.37468572364580044 A 1 1 0 0 1 -0.37112217014620363 0.9285840483370217 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.37112217014620363 0.9285840483370217 A 1 1 0 0 1 -0.8214705530928322 -0.5702509363441294 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8214705530928322 -0.5702509363441294 A 1 1 0 0 1 -0.08821846052088929 -0.9961011511002907 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.08821846052088929 -0.9961011511002907 A 1 1 0 0 1 0.7084633259296792 -0.7057476289812507 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7084633259296792 -0.7057476289812507 A 1 1 0 0 1 0.9857559079834021 -0.1681823114237004 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9857559079834021 -0.1681823114237004 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_0a51a574595bc4405e900cf0bfd7e6ef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cd120186e7262cc22edd2688d8d44442 = $(`<div id="html_cd120186e7262cc22edd2688d8d44442" style="width: 100.0%; height: 100.0%;"><b>Japan</b><br>High Energy Astrophysical Phenomena: 117<br>Astrophysics of Galaxies: 102<br>Earth and Planetary Astrophysics: 57<br>Solar and Stellar Astrophysics: 57<br>Cosmology and Nongalactic Astrophysics: 40</div>`)[0];
+                popup_0a51a574595bc4405e900cf0bfd7e6ef.setContent(html_cd120186e7262cc22edd2688d8d44442);
+            
+        
+
+        marker_5cf88fbce121f4e9519904150d046924.bindPopup(popup_0a51a574595bc4405e900cf0bfd7e6ef)
+        ;
+
+        
+    
+    
+                marker_5cf88fbce121f4e9519904150d046924.setIcon(div_icon_73aa357ab4ae60f54faed4c146af896b);
+            
+    
+            var marker_2e6f11fafeeb6297e789221ef4236c67 = L.marker(
+                [-25.274398, 133.775136],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_6aeb20a4969ff0760a4bda3f9421c8e1 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.6451719835420874 0.7640373758216077 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.6451719835420874 0.7640373758216077 A 1 1 0 0 1 -0.9901811253364456 -0.13979033953549913 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9901811253364456 -0.13979033953549913 A 1 1 0 0 1 0.11196447610330768 -0.9937122098932426 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.11196447610330768 -0.9937122098932426 A 1 1 0 0 1 0.4589818644675373 -0.8884456359788725 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.4589818644675373 -0.8884456359788725 A 1 1 0 0 1 0.8314696123025452 -0.5555702330196022 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8314696123025452 -0.5555702330196022 A 1 1 0 0 1 0.9901811253364455 -0.1397903395354995 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9901811253364455 -0.1397903395354995 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_7ad246c1356a9cada4581bb3eba67114 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_39362da9b9743b960b346bd679dce8c7 = $(`<div id="html_39362da9b9743b960b346bd679dce8c7" style="width: 100.0%; height: 100.0%;"><b>Australia</b><br>Astrophysics of Galaxies: 81<br>High Energy Astrophysical Phenomena: 55<br>Solar and Stellar Astrophysics: 36<br>Instrumentation and Methods for Astrophysics: 18<br>Earth and Planetary Astrophysics: 16</div>`)[0];
+                popup_7ad246c1356a9cada4581bb3eba67114.setContent(html_39362da9b9743b960b346bd679dce8c7);
+            
+        
+
+        marker_2e6f11fafeeb6297e789221ef4236c67.bindPopup(popup_7ad246c1356a9cada4581bb3eba67114)
+        ;
+
+        
+    
+    
+                marker_2e6f11fafeeb6297e789221ef4236c67.setIcon(div_icon_6aeb20a4969ff0760a4bda3f9421c8e1);
+            
+    
+            var marker_3d3d2bc175831953ba9f8dd64634b86d = L.marker(
+                [55.378051, -3.435973],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_424e8e3e66dc79e75681f4c493ee8a0c = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.7453601829584587 0.6666619815619703 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7453601829584587 0.6666619815619703 A 1 1 0 0 1 -0.8022803653156981 0.5969474142911668 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8022803653156981 0.5969474142911668 A 1 1 0 0 1 -0.8079014653402414 -0.5893175903543783 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8079014653402414 -0.5893175903543783 A 1 1 0 0 1 0.2782174639164521 -0.9605181116313725 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.2782174639164521 -0.9605181116313725 A 1 1 0 0 1 0.8983088170477549 -0.43936461989361775 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8983088170477549 -0.43936461989361775 A 1 1 0 0 1 0.9945713140113186 -0.10405720227739694 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9945713140113186 -0.10405720227739694 A 1 1 0 0 1 1.0 -1.133107779529596e-15 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_3d047b8cf478973a415b6167d8775871 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_619ed791300143f3aa5a1ab2fd0165bf = $(`<div id="html_619ed791300143f3aa5a1ab2fd0165bf" style="width: 100.0%; height: 100.0%;"><b>United Kingdom</b><br>Astrophysics of Galaxies: 187<br>Earth and Planetary Astrophysics: 134<br>Solar and Stellar Astrophysics: 129<br>High Energy Astrophysical Phenomena: 88<br>Cosmology and Nongalactic Astrophysics: 77</div>`)[0];
+                popup_3d047b8cf478973a415b6167d8775871.setContent(html_619ed791300143f3aa5a1ab2fd0165bf);
+            
+        
+
+        marker_3d3d2bc175831953ba9f8dd64634b86d.bindPopup(popup_3d047b8cf478973a415b6167d8775871)
+        ;
+
+        
+    
+    
+                marker_3d3d2bc175831953ba9f8dd64634b86d.setIcon(div_icon_424e8e3e66dc79e75681f4c493ee8a0c);
+            
+    
+            var marker_4c128b097a6ee549c7239638d63840f4 = L.marker(
+                [20.593684, 78.96288],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_247a6fb99e27472fa740ecbd898aa0de = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.924570551266159 0.3810108866310658 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.924570551266159 0.3810108866310658 A 1 1 0 0 1 -0.6676948547342039 0.7444350750478315 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.6676948547342039 0.7444350750478315 A 1 1 0 0 1 -0.9131524666599232 -0.40761817014566193 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9131524666599232 -0.40761817014566193 A 1 1 0 0 1 -0.7772977873975634 -0.62913285537067 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.7772977873975634 -0.62913285537067 A 1 1 0 0 1 0.4662016485245268 -0.8846784856166751 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.4662016485245268 -0.8846784856166751 A 1 1 0 0 1 0.9983237110061697 -0.05787718067485531 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9983237110061697 -0.05787718067485531 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_beaef6ec7546ab06351c19e405efef3c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_172b98e9a81fe5ed1f62a783ba535b83 = $(`<div id="html_172b98e9a81fe5ed1f62a783ba535b83" style="width: 100.0%; height: 100.0%;"><b>India</b><br>High Energy Astrophysical Phenomena: 132<br>Astrophysics of Galaxies: 95<br>Solar and Stellar Astrophysics: 87<br>Cosmology and Nongalactic Astrophysics: 71<br>Instrumentation and Methods for Astrophysics: 27</div>`)[0];
+                popup_beaef6ec7546ab06351c19e405efef3c.setContent(html_172b98e9a81fe5ed1f62a783ba535b83);
+            
+        
+
+        marker_4c128b097a6ee549c7239638d63840f4.bindPopup(popup_beaef6ec7546ab06351c19e405efef3c)
+        ;
+
+        
+    
+    
+                marker_4c128b097a6ee549c7239638d63840f4.setIcon(div_icon_247a6fb99e27472fa740ecbd898aa0de);
+            
+    
+            var marker_d255656c7170a2d5faf8f5711c03688f = L.marker(
+                [-38.416097, -63.616672],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_fd71f0da84bb02b78d01400430125de0 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.9954719225730846 0.09505604330418288 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9954719225730846 0.09505604330418288 A 1 1 0 0 1 -0.8412535328311814 -0.5406408174555972 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8412535328311814 -0.5406408174555972 A 1 1 0 0 1 0.14231483827328487 -0.9898214418809328 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.14231483827328487 -0.9898214418809328 A 1 1 0 0 1 0.7860530947427872 -0.6181589862206056 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7860530947427872 -0.6181589862206056 A 1 1 0 0 1 0.9954719225730845 -0.09505604330418344 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9954719225730845 -0.09505604330418344 A 1 1 0 0 1 1.0 -1.133107779529596e-15 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_903fef6876d721fb152c67d361c04c21 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1290233509c5d5d24c82e4089099d005 = $(`<div id="html_1290233509c5d5d24c82e4089099d005" style="width: 100.0%; height: 100.0%;"><b>Argentina</b><br>Astrophysics of Galaxies: 32<br>High Energy Astrophysical Phenomena: 12<br>Solar and Stellar Astrophysics: 8<br>Earth and Planetary Astrophysics: 7<br>Cosmology and Nongalactic Astrophysics: 6</div>`)[0];
+                popup_903fef6876d721fb152c67d361c04c21.setContent(html_1290233509c5d5d24c82e4089099d005);
+            
+        
+
+        marker_d255656c7170a2d5faf8f5711c03688f.bindPopup(popup_903fef6876d721fb152c67d361c04c21)
+        ;
+
+        
+    
+    
+                marker_d255656c7170a2d5faf8f5711c03688f.setIcon(div_icon_fd71f0da84bb02b78d01400430125de0);
+            
+    
+            var marker_6fe9f82d68be6a0d365ed51515ad21b1 = L.marker(
+                [23.634501, -102.552784],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_8b81e36f4e0bcbf072469147d57145a7 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.42869256140305423 0.9034504346103822 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.42869256140305423 0.9034504346103822 A 1 1 0 0 1 -0.8451900855437946 0.5344658261278012 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8451900855437946 0.5344658261278012 A 1 1 0 0 1 -0.9709418174260521 -0.23931566428755743 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9709418174260521 -0.23931566428755743 A 1 1 0 0 1 0.7994427634035006 -0.6007422642379796 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7994427634035006 -0.6007422642379796 A 1 1 0 0 1 0.8854560256532096 -0.4647231720437692 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8854560256532096 -0.4647231720437692 A 1 1 0 0 1 0.9870502626379128 -0.16041128085776063 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9870502626379128 -0.16041128085776063 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_ca65951e70d3dc90f18eeb4e7c7c6313 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_24922d2258897949cae3161b2bbcb40f = $(`<div id="html_24922d2258897949cae3161b2bbcb40f" style="width: 100.0%; height: 100.0%;"><b>Mexico</b><br>Astrophysics of Galaxies: 14<br>High Energy Astrophysical Phenomena: 9<br>Solar and Stellar Astrophysics: 7<br>Cosmology and Nongalactic Astrophysics: 5<br>Instrumentation and Methods for Astrophysics: 2</div>`)[0];
+                popup_ca65951e70d3dc90f18eeb4e7c7c6313.setContent(html_24922d2258897949cae3161b2bbcb40f);
+            
+        
+
+        marker_6fe9f82d68be6a0d365ed51515ad21b1.bindPopup(popup_ca65951e70d3dc90f18eeb4e7c7c6313)
+        ;
+
+        
+    
+    
+                marker_6fe9f82d68be6a0d365ed51515ad21b1.setIcon(div_icon_8b81e36f4e0bcbf072469147d57145a7);
+            
+    
+            var marker_73e7baf25ba8e7bb0ce98542208da9c8 = L.marker(
+                [-14.235004, -51.92528],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_668492fa4d0c19129944a3ebbb90ee83 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.8207634412072763 0.5712682150947923 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8207634412072763 0.5712682150947923 A 1 1 0 0 1 -0.6121059825476629 0.7907757369376985 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.6121059825476629 0.7907757369376985 A 1 1 0 0 1 -0.5289640103269627 -0.8486442574947508 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5289640103269627 -0.8486442574947508 A 1 1 0 0 1 0.6121059825476625 -0.7907757369376989 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6121059825476625 -0.7907757369376989 A 1 1 0 0 1 0.994869323391895 -0.10116832198743285 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.994869323391895 -0.10116832198743285 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_32d16dd972b86284975a20c2fd75f55f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_91fed3daff1bf096c683ac02beaa41f8 = $(`<div id="html_91fed3daff1bf096c683ac02beaa41f8" style="width: 100.0%; height: 100.0%;"><b>Brazil</b><br>Astrophysics of Galaxies: 38<br>Cosmology and Nongalactic Astrophysics: 32<br>Solar and Stellar Astrophysics: 24<br>High Energy Astrophysical Phenomena: 16<br>Earth and Planetary Astrophysics: 12</div>`)[0];
+                popup_32d16dd972b86284975a20c2fd75f55f.setContent(html_91fed3daff1bf096c683ac02beaa41f8);
+            
+        
+
+        marker_73e7baf25ba8e7bb0ce98542208da9c8.bindPopup(popup_32d16dd972b86284975a20c2fd75f55f)
+        ;
+
+        
+    
+    
+                marker_73e7baf25ba8e7bb0ce98542208da9c8.setIcon(div_icon_668492fa4d0c19129944a3ebbb90ee83);
+            
+    
+            var marker_af027cf517518633896284f4c3f75617 = L.marker(
+                [46.227638, 2.213749],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_be62d037f1b7b3a86238d3757769e6b8 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.16213952334472476 0.9867678424885691 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.16213952334472476 0.9867678424885691 A 1 1 0 0 1 -0.6748367163042575 0.7379670767234043 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.6748367163042575 0.7379670767234043 A 1 1 0 0 1 -0.6270040554961869 -0.7790159911011677 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.6270040554961869 -0.7790159911011677 A 1 1 0 0 1 0.36440934737932124 -0.931238867070408 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.36440934737932124 -0.931238867070408 A 1 1 0 0 1 0.7952151865779787 -0.6063273101516626 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7952151865779787 -0.6063273101516626 A 1 1 0 0 1 0.9980135115942135 -0.06300024345497934 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9980135115942135 -0.06300024345497934 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_698fe9f05b62c17f67428cbe858903e9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_74b209abd943f9f0bef3b69f7a93728f = $(`<div id="html_74b209abd943f9f0bef3b69f7a93728f" style="width: 100.0%; height: 100.0%;"><b>France</b><br>Earth and Planetary Astrophysics: 82<br>Astrophysics of Galaxies: 67<br>Solar and Stellar Astrophysics: 50<br>Cosmology and Nongalactic Astrophysics: 43<br>High Energy Astrophysical Phenomena: 28</div>`)[0];
+                popup_698fe9f05b62c17f67428cbe858903e9.setContent(html_74b209abd943f9f0bef3b69f7a93728f);
+            
+        
+
+        marker_af027cf517518633896284f4c3f75617.bindPopup(popup_698fe9f05b62c17f67428cbe858903e9)
+        ;
+
+        
+    
+    
+                marker_af027cf517518633896284f4c3f75617.setIcon(div_icon_be62d037f1b7b3a86238d3757769e6b8);
+            
+    
+            var marker_7a6cb645e0ca65db10ebe1842193eedc = L.marker(
+                [40.069099, 45.038189],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_a8160a4206de862475ca80290a6e6787 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 -0.2225209339563146 -0.9749279121818236 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.2225209339563146 -0.9749279121818236 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_2d08046cc02ba44574d6da6a57096aef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b7d4c9d40aa48d5fd2ea415271012ca7 = $(`<div id="html_b7d4c9d40aa48d5fd2ea415271012ca7" style="width: 100.0%; height: 100.0%;"><b>Armenia</b><br>High Energy Astrophysical Phenomena: 5<br>Astrophysics of Galaxies: 2</div>`)[0];
+                popup_2d08046cc02ba44574d6da6a57096aef.setContent(html_b7d4c9d40aa48d5fd2ea415271012ca7);
+            
+        
+
+        marker_7a6cb645e0ca65db10ebe1842193eedc.bindPopup(popup_2d08046cc02ba44574d6da6a57096aef)
+        ;
+
+        
+    
+    
+                marker_7a6cb645e0ca65db10ebe1842193eedc.setIcon(div_icon_a8160a4206de862475ca80290a6e6787);
+            
+    
+            var marker_f151081ea9252948925b015bdf4fb97a = L.marker(
+                [61.92411, 25.748151],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_4b8c6d4f92ee5257e8f0591d1a4a4c75 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.5469481581224267 0.8371664782625287 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5469481581224267 0.8371664782625287 A 1 1 0 0 1 -0.9863613034027224 -0.16459459028073334 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9863613034027224 -0.16459459028073334 A 1 1 0 0 1 -0.7891405093963939 -0.6142127126896675 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.7891405093963939 -0.6142127126896675 A 1 1 0 0 1 0.9458172417006343 -0.32469946920468457 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9458172417006343 -0.32469946920468457 A 1 1 0 0 1 1.0 -1.133107779529596e-15 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_c577868ac6e81ef8433d1d6c76cbafbb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d4f2be9c9b51412085bd072d465588cc = $(`<div id="html_d4f2be9c9b51412085bd072d465588cc" style="width: 100.0%; height: 100.0%;"><b>Finland</b><br>High Energy Astrophysical Phenomena: 13<br>Solar and Stellar Astrophysics: 13<br>Astrophysics of Galaxies: 7<br>Earth and Planetary Astrophysics: 3<br>Instrumentation and Methods for Astrophysics: 2</div>`)[0];
+                popup_c577868ac6e81ef8433d1d6c76cbafbb.setContent(html_d4f2be9c9b51412085bd072d465588cc);
+            
+        
+
+        marker_f151081ea9252948925b015bdf4fb97a.bindPopup(popup_c577868ac6e81ef8433d1d6c76cbafbb)
+        ;
+
+        
+    
+    
+                marker_f151081ea9252948925b015bdf4fb97a.setIcon(div_icon_4b8c6d4f92ee5257e8f0591d1a4a4c75);
+            
+    
+            var marker_4498e9033c3ae4e856f372f312cec920 = L.marker(
+                [-35.675147, -71.542969],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_1f3130c8e76cbb6dbf28ea2d441cf7df = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.6955237186107385 0.7185031362839625 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.6955237186107385 0.7185031362839625 A 1 1 0 0 1 -0.8568571761675893 0.5155538571770216 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8568571761675893 0.5155538571770216 A 1 1 0 0 1 -0.9164590810602259 -0.40012842031308676 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9164590810602259 -0.40012842031308676 A 1 1 0 0 1 -0.5965147355676341 -0.8026021244992287 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5965147355676341 -0.8026021244992287 A 1 1 0 0 1 0.6797944945155078 -0.7334026487724224 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6797944945155078 -0.7334026487724224 A 1 1 0 0 1 0.9915622907289694 -0.12963110585163884 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9915622907289694 -0.12963110585163884 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_24143fd7e4b4450800dcd77b1b0fe88a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_08a9fc9d23c8d46b40915b80be087cd5 = $(`<div id="html_08a9fc9d23c8d46b40915b80be087cd5" style="width: 100.0%; height: 100.0%;"><b>Chile</b><br>Astrophysics of Galaxies: 54<br>Solar and Stellar Astrophysics: 32<br>Earth and Planetary Astrophysics: 22<br>High Energy Astrophysical Phenomena: 16<br>Cosmology and Nongalactic Astrophysics: 12</div>`)[0];
+                popup_24143fd7e4b4450800dcd77b1b0fe88a.setContent(html_08a9fc9d23c8d46b40915b80be087cd5);
+            
+        
+
+        marker_4498e9033c3ae4e856f372f312cec920.bindPopup(popup_24143fd7e4b4450800dcd77b1b0fe88a)
+        ;
+
+        
+    
+    
+                marker_4498e9033c3ae4e856f372f312cec920.setIcon(div_icon_1f3130c8e76cbb6dbf28ea2d441cf7df);
+            
+    
+            var marker_61ed3f1a142e4b91604224dd6b0286cf = L.marker(
+                [23.885942, 45.079162],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_c7678db08725165a1d4cc2a9d254d6de = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.4999999999999998 0.8660254037844387 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.4999999999999998 0.8660254037844387 A 1 1 0 0 1 -0.5000000000000004 -0.8660254037844385 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5000000000000004 -0.8660254037844385 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b5d6a1e4e10caad0d3939a68e646c248 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7b2585284616d8c6ae1d0401b2c93a31 = $(`<div id="html_7b2585284616d8c6ae1d0401b2c93a31" style="width: 100.0%; height: 100.0%;"><b>Saudi Arabia</b><br>Solar and Stellar Astrophysics: 2<br>Astrophysics of Galaxies: 2<br>Cosmology and Nongalactic Astrophysics: 2</div>`)[0];
+                popup_b5d6a1e4e10caad0d3939a68e646c248.setContent(html_7b2585284616d8c6ae1d0401b2c93a31);
+            
+        
+
+        marker_61ed3f1a142e4b91604224dd6b0286cf.bindPopup(popup_b5d6a1e4e10caad0d3939a68e646c248)
+        ;
+
+        
+    
+    
+                marker_61ed3f1a142e4b91604224dd6b0286cf.setIcon(div_icon_c7678db08725165a1d4cc2a9d254d6de);
+            
+    
+            var marker_4b1b0a03fbda74b17befd9bf12a957fb = L.marker(
+                [56.130366, -106.346771],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_463f1c1b5a40e72735a0275c5b8adcbb = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.18472605601718942 0.9827900509408579 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.18472605601718942 0.9827900509408579 A 1 1 0 0 1 -0.7587581226927906 0.6513724827222225 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.7587581226927906 0.6513724827222225 A 1 1 0 0 1 0.11795671715084528 -0.9930187374259337 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.11795671715084528 -0.9930187374259337 A 1 1 0 0 1 0.34730525284481945 -0.9377521321470808 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.34730525284481945 -0.9377521321470808 A 1 1 0 0 1 0.6121059825476625 -0.7907757369376989 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6121059825476625 -0.7907757369376989 A 1 1 0 0 1 0.999429490929718 -0.03377414188346914 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.999429490929718 -0.03377414188346914 A 1 1 0 0 1 1.0 -1.133107779529596e-15 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_af50f0b3fc79024af3cd7e70552497b9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4cabb5f1b264d9c9dd8a6e1e83422636 = $(`<div id="html_4cabb5f1b264d9c9dd8a6e1e83422636" style="width: 100.0%; height: 100.0%;"><b>Canada</b><br>Astrophysics of Galaxies: 71<br>Earth and Planetary Astrophysics: 41<br>Solar and Stellar Astrophysics: 31<br>High Energy Astrophysical Phenomena: 26<br>Cosmology and Nongalactic Astrophysics: 9</div>`)[0];
+                popup_af50f0b3fc79024af3cd7e70552497b9.setContent(html_4cabb5f1b264d9c9dd8a6e1e83422636);
+            
+        
+
+        marker_4b1b0a03fbda74b17befd9bf12a957fb.bindPopup(popup_af50f0b3fc79024af3cd7e70552497b9)
+        ;
+
+        
+    
+    
+                marker_4b1b0a03fbda74b17befd9bf12a957fb.setIcon(div_icon_463f1c1b5a40e72735a0275c5b8adcbb);
+            
+    
+            var marker_fa0532c32f5a64a9842c7111a39a5b4e = L.marker(
+                [47.516231, 14.550072],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_fc1a81aa3399bdf900295d44747e28fe = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.0627905195293134 0.9980267284282716 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.0627905195293134 0.9980267284282716 A 1 1 0 0 1 -0.42577929156507294 -0.9048270524660194 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.42577929156507294 -0.9048270524660194 A 1 1 0 0 1 0.8090169943749473 -0.5877852522924734 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8090169943749473 -0.5877852522924734 A 1 1 0 0 1 0.968583161128631 -0.24868988716485535 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.968583161128631 -0.24868988716485535 A 1 1 0 0 1 0.9921147013144778 -0.12533323356430465 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9921147013144778 -0.12533323356430465 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b0ce95cbbde63a8dbea59761dd69d5bc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_37f8ca00c1832c5145d81098b4a8acf8 = $(`<div id="html_37f8ca00c1832c5145d81098b4a8acf8" style="width: 100.0%; height: 100.0%;"><b>Austria</b><br>Solar and Stellar Astrophysics: 21<br>Astrophysics of Galaxies: 13<br>Earth and Planetary Astrophysics: 11<br>Cosmology and Nongalactic Astrophysics: 3<br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_b0ce95cbbde63a8dbea59761dd69d5bc.setContent(html_37f8ca00c1832c5145d81098b4a8acf8);
+            
+        
+
+        marker_fa0532c32f5a64a9842c7111a39a5b4e.bindPopup(popup_b0ce95cbbde63a8dbea59761dd69d5bc)
+        ;
+
+        
+    
+    
+                marker_fa0532c32f5a64a9842c7111a39a5b4e.setIcon(div_icon_fc1a81aa3399bdf900295d44747e28fe);
+            
+    
+            var marker_feaa2ee2604de9a25f6ab76edec0c666 = L.marker(
+                [51.165691, 10.451526],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_62edec24b55466cffad75641594d00be = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.6963654452055138 0.7176873739475472 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6963654452055138 0.7176873739475472 A 1 1 0 0 1 0.15562213096372005 0.9878166592816254 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.15562213096372005 0.9878166592816254 A 1 1 0 0 1 -0.9641293689104438 -0.26543277869236376 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9641293689104438 -0.26543277869236376 A 1 1 0 0 1 -0.2041561392912113 -0.9789383386044841 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.2041561392912113 -0.9789383386044841 A 1 1 0 0 1 0.9230907770420737 -0.3845821334121759 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9230907770420737 -0.3845821334121759 A 1 1 0 0 1 0.9927342700117497 -0.12032734163205955 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9927342700117497 -0.12032734163205955 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_15dc93b34116c547e6db7276481b3ab8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b10ffdbc6a51d43eee79a6e13c1357ba = $(`<div id="html_b10ffdbc6a51d43eee79a6e13c1357ba" style="width: 100.0%; height: 100.0%;"><b>Germany</b><br>Astrophysics of Galaxies: 182<br>Solar and Stellar Astrophysics: 126<br>High Energy Astrophysical Phenomena: 100<br>Earth and Planetary Astrophysics: 73<br>Cosmology and Nongalactic Astrophysics: 56</div>`)[0];
+                popup_15dc93b34116c547e6db7276481b3ab8.setContent(html_b10ffdbc6a51d43eee79a6e13c1357ba);
+            
+        
+
+        marker_feaa2ee2604de9a25f6ab76edec0c666.bindPopup(popup_15dc93b34116c547e6db7276481b3ab8)
+        ;
+
+        
+    
+    
+                marker_feaa2ee2604de9a25f6ab76edec0c666.setIcon(div_icon_62edec24b55466cffad75641594d00be);
+            
+    
+            var marker_66a3960754680e9e43f0ad8fe8e4cc9f = L.marker(
+                [31.046051, 34.851612],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_3ca9d25f9562a96e31190f68354305c9 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.5243072835572316 0.8515291377333114 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5243072835572316 0.8515291377333114 A 1 1 0 0 1 -0.9112284903881357 -0.4119012482439926 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9112284903881357 -0.4119012482439926 A 1 1 0 0 1 -0.7780357543184395 -0.6282199972956424 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.7780357543184395 -0.6282199972956424 A 1 1 0 0 1 -0.3728564777803087 -0.9278890272965092 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.3728564777803087 -0.9278890272965092 A 1 1 0 0 1 0.6606747233900812 -0.7506723052527245 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6606747233900812 -0.7506723052527245 A 1 1 0 0 1 0.7780357543184395 -0.6282199972956423 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7780357543184395 -0.6282199972956423 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_67845bea822a874b722d3a6b7300fa52 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d3e7b28283575d9a530a87fd44263700 = $(`<div id="html_d3e7b28283575d9a530a87fd44263700" style="width: 100.0%; height: 100.0%;"><b>Israel</b><br>High Energy Astrophysical Phenomena: 25<br>Solar and Stellar Astrophysics: 17<br>Astrophysics of Galaxies: 13<br>Cosmology and Nongalactic Astrophysics: 8<br>Earth and Planetary Astrophysics: 6</div>`)[0];
+                popup_67845bea822a874b722d3a6b7300fa52.setContent(html_d3e7b28283575d9a530a87fd44263700);
+            
+        
+
+        marker_66a3960754680e9e43f0ad8fe8e4cc9f.bindPopup(popup_67845bea822a874b722d3a6b7300fa52)
+        ;
+
+        
+    
+    
+                marker_66a3960754680e9e43f0ad8fe8e4cc9f.setIcon(div_icon_3ca9d25f9562a96e31190f68354305c9);
+            
+    
+            var marker_d09417f3cf8cdf8e1dfcefff3dee0395 = L.marker(
+                [60.128161, 18.643501],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_dabe611ea72fbe1d1465aebdf89dc5f6 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.3171912885891059 0.9483615800121716 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.3171912885891059 0.9483615800121716 A 1 1 0 0 1 -0.99167731989929 -0.12874817745258066 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.99167731989929 -0.12874817745258066 A 1 1 0 0 1 -0.4749510720670502 -0.8800122039735356 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.4749510720670502 -0.8800122039735356 A 1 1 0 0 1 0.7146733860429608 -0.6994583270516471 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7146733860429608 -0.6994583270516471 A 1 1 0 0 1 0.9668478136052775 -0.2553532951161872 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9668478136052775 -0.2553532951161872 A 1 1 0 0 1 0.9962981749346077 -0.0859647987374467 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9962981749346077 -0.0859647987374467 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_1d8b9660339af356e0064e78536b75c6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9256a27fa298214b5c1162ebc39fd9c9 = $(`<div id="html_9256a27fa298214b5c1162ebc39fd9c9" style="width: 100.0%; height: 100.0%;"><b>Sweden</b><br>Astrophysics of Galaxies: 22<br>Solar and Stellar Astrophysics: 16<br>High Energy Astrophysical Phenomena: 15<br>Earth and Planetary Astrophysics: 11<br>Cosmology and Nongalactic Astrophysics: 6</div>`)[0];
+                popup_1d8b9660339af356e0064e78536b75c6.setContent(html_9256a27fa298214b5c1162ebc39fd9c9);
+            
+        
+
+        marker_d09417f3cf8cdf8e1dfcefff3dee0395.bindPopup(popup_1d8b9660339af356e0064e78536b75c6)
+        ;
+
+        
+    
+    
+                marker_d09417f3cf8cdf8e1dfcefff3dee0395.setIcon(div_icon_dabe611ea72fbe1d1465aebdf89dc5f6);
+            
+    
+            var marker_accc37efceae77bdb5f83c2ccc6768a9 = L.marker(
+                [60.472024, 8.468946],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_662a22a166dfcbeb4aab51e95a9dca74 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.9781476007338057 0.20791169081775931 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9781476007338057 0.20791169081775931 A 1 1 0 0 1 -0.8090169943749475 -0.587785252292473 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8090169943749475 -0.587785252292473 A 1 1 0 0 1 -0.10452846326765336 -0.9945218953682734 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.10452846326765336 -0.9945218953682734 A 1 1 0 0 1 0.913545457642601 -0.40673664307580015 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.913545457642601 -0.40673664307580015 A 1 1 0 0 1 0.9781476007338057 -0.20791169081775898 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9781476007338057 -0.20791169081775898 A 1 1 0 0 1 1.0 6.432490598706546e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_c09d47d1167d3e842ecfc06642f5d9f2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_463e71987e138a2e98cb1290a38fa0a3 = $(`<div id="html_463e71987e138a2e98cb1290a38fa0a3" style="width: 100.0%; height: 100.0%;"><b>Norway</b><br>Solar and Stellar Astrophysics: 14<br>High Energy Astrophysical Phenomena: 6<br>Cosmology and Nongalactic Astrophysics: 4<br>Earth and Planetary Astrophysics: 4<br>Instrumentation and Methods for Astrophysics: 1</div>`)[0];
+                popup_c09d47d1167d3e842ecfc06642f5d9f2.setContent(html_463e71987e138a2e98cb1290a38fa0a3);
+            
+        
+
+        marker_accc37efceae77bdb5f83c2ccc6768a9.bindPopup(popup_c09d47d1167d3e842ecfc06642f5d9f2)
+        ;
+
+        
+    
+    
+                marker_accc37efceae77bdb5f83c2ccc6768a9.setIcon(div_icon_662a22a166dfcbeb4aab51e95a9dca74);
+            
+    
+            var marker_dee13be81e5bf6337b709dd8b97323cc = L.marker(
+                [39.399872, -8.224454],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_001e4e9f324a2ba6e06317c359f1347d = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.37013815533991445 0.9289767198167914 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.37013815533991445 0.9289767198167914 A 1 1 0 0 1 -0.9476531711828025 -0.31930153013597995 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9476531711828025 -0.31930153013597995 A 1 1 0 0 1 0.267528338529221 -0.9635499925192229 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.267528338529221 -0.9635499925192229 A 1 1 0 0 1 0.796093065705644 -0.6051742151937649 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.796093065705644 -0.6051742151937649 A 1 1 0 0 1 0.9766205557100868 -0.21497044021102352 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9766205557100868 -0.21497044021102352 A 1 1 0 0 1 1.0 6.432490598706546e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_5a46e3fa2a5d0f5e81830840aeec644b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fb457d1780480532f0998951f1b2ec39 = $(`<div id="html_fb457d1780480532f0998951f1b2ec39" style="width: 100.0%; height: 100.0%;"><b>Portugal</b><br>Cosmology and Nongalactic Astrophysics: 9<br>Earth and Planetary Astrophysics: 7<br>Astrophysics of Galaxies: 7<br>Solar and Stellar Astrophysics: 3<br>Instrumentation and Methods for Astrophysics: 2</div>`)[0];
+                popup_5a46e3fa2a5d0f5e81830840aeec644b.setContent(html_fb457d1780480532f0998951f1b2ec39);
+            
+        
+
+        marker_dee13be81e5bf6337b709dd8b97323cc.bindPopup(popup_5a46e3fa2a5d0f5e81830840aeec644b)
+        ;
+
+        
+    
+    
+                marker_dee13be81e5bf6337b709dd8b97323cc.setIcon(div_icon_001e4e9f324a2ba6e06317c359f1347d);
+            
+    
+            var marker_14880dff4d2fea448fa7f2970a27fa49 = L.marker(
+                [50.503887, 4.469936],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_197a1eff994a1c0fa8a5df5a770a0d66 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.9993770622619782 0.03529146390585268 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9993770622619782 0.03529146390585268 A 1 1 0 0 1 -0.39487898637059116 -0.9187331419530562 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.39487898637059116 -0.9187331419530562 A 1 1 0 0 1 0.29555817896568415 -0.9553247420885155 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.29555817896568415 -0.9553247420885155 A 1 1 0 0 1 0.7609787877609676 -0.6487767602017263 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7609787877609676 -0.6487767602017263 A 1 1 0 0 1 0.9116210382765417 -0.41103172939762217 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9116210382765417 -0.41103172939762217 A 1 1 0 0 1 0.9900485105144543 -0.14072649653889113 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9900485105144543 -0.14072649653889113 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_e8d7f33f74e6fe8d7e84b2443ba1ccdc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1d14978210e3d5ef4b87c5672798d535 = $(`<div id="html_1d14978210e3d5ef4b87c5672798d535" style="width: 100.0%; height: 100.0%;"><b>Belgium</b><br>Solar and Stellar Astrophysics: 44<br>Astrophysics of Galaxies: 17<br>High Energy Astrophysical Phenomena: 10<br>Earth and Planetary Astrophysics: 8<br>Cosmology and Nongalactic Astrophysics: 4</div>`)[0];
+                popup_e8d7f33f74e6fe8d7e84b2443ba1ccdc.setContent(html_1d14978210e3d5ef4b87c5672798d535);
+            
+        
+
+        marker_14880dff4d2fea448fa7f2970a27fa49.bindPopup(popup_e8d7f33f74e6fe8d7e84b2443ba1ccdc)
+        ;
+
+        
+    
+    
+                marker_14880dff4d2fea448fa7f2970a27fa49.setIcon(div_icon_197a1eff994a1c0fa8a5df5a770a0d66);
+            
+    
+            var marker_d76192a1a4123cbff69efbfabbd1d579 = L.marker(
+                [56.26392, 9.501785],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_466a118ed1f0e2d7719850833fc8df9b = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.8333139190825151 0.5528000653611933 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8333139190825151 0.5528000653611933 A 1 1 0 0 1 -0.833313919082515 -0.5528000653611934 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.833313919082515 -0.5528000653611934 A 1 1 0 0 1 -0.43730732045885556 -0.8993121301712191 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.43730732045885556 -0.8993121301712191 A 1 1 0 0 1 0.4845508703326504 -0.8747630845319612 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.4845508703326504 -0.8747630845319612 A 1 1 0 0 1 0.6585113790650388 -0.7525707698561385 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6585113790650388 -0.7525707698561385 A 1 1 0 0 1 0.9943348002101371 -0.1062934856473656 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9943348002101371 -0.1062934856473656 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_61dc5f7a21dd4b572193a0d0a00e1da5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5367a22f9313073946486502e072c203 = $(`<div id="html_5367a22f9313073946486502e072c203" style="width: 100.0%; height: 100.0%;"><b>Denmark</b><br>High Energy Astrophysical Phenomena: 24<br>Astrophysics of Galaxies: 11<br>Earth and Planetary Astrophysics: 9<br>Solar and Stellar Astrophysics: 7<br>Cosmology and Nongalactic Astrophysics: 5</div>`)[0];
+                popup_61dc5f7a21dd4b572193a0d0a00e1da5.setContent(html_5367a22f9313073946486502e072c203);
+            
+        
+
+        marker_d76192a1a4123cbff69efbfabbd1d579.bindPopup(popup_61dc5f7a21dd4b572193a0d0a00e1da5)
+        ;
+
+        
+    
+    
+                marker_d76192a1a4123cbff69efbfabbd1d579.setIcon(div_icon_466a118ed1f0e2d7719850833fc8df9b);
+            
+    
+            var marker_dc8abc0619af343c116effc60b9342ba = L.marker(
+                [47.162494, 19.503304],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_05423219f6b927cc8e98e49d6c7dd8d4 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.391104720490156 0.9203461835691594 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.391104720490156 0.9203461835691594 A 1 1 0 0 1 -0.3228804047714462 0.9464397731576094 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.3228804047714462 0.9464397731576094 A 1 1 0 0 1 0.25293338239168045 -0.9674836970574253 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.25293338239168045 -0.9674836970574253 A 1 1 0 0 1 0.9054482374931464 -0.4244566988758156 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9054482374931464 -0.4244566988758156 A 1 1 0 0 1 0.9576005999084057 -0.2880990993652383 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9576005999084057 -0.2880990993652383 A 1 1 0 0 1 1.0 -1.133107779529596e-15 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_4f882fff82ad235d673b3b5abe565faf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_18b64147eaec1822d00a926999276bbf = $(`<div id="html_18b64147eaec1822d00a926999276bbf" style="width: 100.0%; height: 100.0%;"><b>Hungary</b><br>Solar and Stellar Astrophysics: 21<br>Earth and Planetary Astrophysics: 8<br>Astrophysics of Galaxies: 6<br>High Energy Astrophysical Phenomena: 5<br>Astrophysics: 2</div>`)[0];
+                popup_4f882fff82ad235d673b3b5abe565faf.setContent(html_18b64147eaec1822d00a926999276bbf);
+            
+        
+
+        marker_dc8abc0619af343c116effc60b9342ba.bindPopup(popup_4f882fff82ad235d673b3b5abe565faf)
+        ;
+
+        
+    
+    
+                marker_dc8abc0619af343c116effc60b9342ba.setIcon(div_icon_05423219f6b927cc8e98e49d6c7dd8d4);
+            
+    
+            var marker_ab32dae38598c858436c81ecfcbb69fa = L.marker(
+                [23.69781, 120.960515],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_e4283210dace6f6c3f57183c6bcc0a0c = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.09226835946330202 0.9957341762950345 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.09226835946330202 0.9957341762950345 A 1 1 0 0 1 -0.961825643172819 0.27366299007208306 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.961825643172819 0.27366299007208306 A 1 1 0 0 1 0.09226835946330154 -0.9957341762950346 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.09226835946330154 -0.9957341762950346 A 1 1 0 0 1 0.5264321628773558 -0.8502171357296141 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.5264321628773558 -0.8502171357296141 A 1 1 0 0 1 0.9829730996839018 -0.18374951781657006 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9829730996839018 -0.18374951781657006 A 1 1 0 0 1 0.9957341762950346 -0.09226835946330197 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9957341762950346 -0.09226835946330197 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_5a35c8a036adc0784c9c1e87cb454af0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b051e10825137ef559985bb3ff65ba50 = $(`<div id="html_b051e10825137ef559985bb3ff65ba50" style="width: 100.0%; height: 100.0%;"><b>Taiwan</b><br>High Energy Astrophysical Phenomena: 21<br>Astrophysics of Galaxies: 16<br>Earth and Planetary Astrophysics: 15<br>Cosmology and Nongalactic Astrophysics: 9<br>Solar and Stellar Astrophysics: 5</div>`)[0];
+                popup_5a35c8a036adc0784c9c1e87cb454af0.setContent(html_b051e10825137ef559985bb3ff65ba50);
+            
+        
+
+        marker_ab32dae38598c858436c81ecfcbb69fa.bindPopup(popup_5a35c8a036adc0784c9c1e87cb454af0)
+        ;
+
+        
+    
+    
+                marker_ab32dae38598c858436c81ecfcbb69fa.setIcon(div_icon_e4283210dace6f6c3f57183c6bcc0a0c);
+            
+    
+            var marker_743ac20f413bb9fff6f0d0cad96ff114 = L.marker(
+                [26.820553, 30.802498],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_04a177a047b1eac52f577a87765efe8e = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.22252093395631434 0.9749279121818236 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.22252093395631434 0.9749279121818236 A 1 1 0 0 1 -0.2225209339563146 -0.9749279121818236 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.2225209339563146 -0.9749279121818236 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b11506ac7fef95f9c5d79b6af16f3cf9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ea939abbe97962767a5431ffd627200f = $(`<div id="html_ea939abbe97962767a5431ffd627200f" style="width: 100.0%; height: 100.0%;"><b>Egypt</b><br>Cosmology and Nongalactic Astrophysics: 3<br>Solar and Stellar Astrophysics: 2<br>Astrophysics of Galaxies: 2</div>`)[0];
+                popup_b11506ac7fef95f9c5d79b6af16f3cf9.setContent(html_ea939abbe97962767a5431ffd627200f);
+            
+        
+
+        marker_743ac20f413bb9fff6f0d0cad96ff114.bindPopup(popup_b11506ac7fef95f9c5d79b6af16f3cf9)
+        ;
+
+        
+    
+    
+                marker_743ac20f413bb9fff6f0d0cad96ff114.setIcon(div_icon_04a177a047b1eac52f577a87765efe8e);
+            
+    
+            var marker_ea399b0029e2809bb68dc9b0f1da085a = L.marker(
+                [-1.831239, -78.183406],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_ac68338cd972d7a470d528f74ea63534 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_cb267416c1c200563a51bead20393dbe = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_534648a2f3fe035d0a98ecb7fc896749 = $(`<div id="html_534648a2f3fe035d0a98ecb7fc896749" style="width: 100.0%; height: 100.0%;"><b>Ecuador</b><br>Astrophysics of Galaxies: 1</div>`)[0];
+                popup_cb267416c1c200563a51bead20393dbe.setContent(html_534648a2f3fe035d0a98ecb7fc896749);
+            
+        
+
+        marker_ea399b0029e2809bb68dc9b0f1da085a.bindPopup(popup_cb267416c1c200563a51bead20393dbe)
+        ;
+
+        
+    
+    
+                marker_ea399b0029e2809bb68dc9b0f1da085a.setIcon(div_icon_ac68338cd972d7a470d528f74ea63534);
+            
+    
+            var marker_26df19aa762ac050d88b2ac83cd4d554 = L.marker(
+                [32.427908, 53.688046],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_cf71753ac900d8a4252b3926e579860d = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.9629172873477994 0.2697967711570243 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9629172873477994 0.2697967711570243 A 1 1 0 0 1 -0.8544194045464883 0.5195839500354339 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8544194045464883 0.5195839500354339 A 1 1 0 0 1 -0.9629172873477994 -0.26979677115702405 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9629172873477994 -0.26979677115702405 A 1 1 0 0 1 -0.5766803221148672 -0.816969893010442 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5766803221148672 -0.816969893010442 A 1 1 0 0 1 0.9906859460363306 -0.1361666490962472 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9906859460363306 -0.1361666490962472 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_20e3d60cd3dcb76f3c7bd5e7b0c738de = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_85befae765e370bd4b470efb980e2c2a = $(`<div id="html_85befae765e370bd4b470efb980e2c2a" style="width: 100.0%; height: 100.0%;"><b>Iran</b><br>Cosmology and Nongalactic Astrophysics: 17<br>Astrophysics of Galaxies: 15<br>High Energy Astrophysical Phenomena: 6<br>Solar and Stellar Astrophysics: 5<br>Instrumentation and Methods for Astrophysics: 2</div>`)[0];
+                popup_20e3d60cd3dcb76f3c7bd5e7b0c738de.setContent(html_85befae765e370bd4b470efb980e2c2a);
+            
+        
+
+        marker_26df19aa762ac050d88b2ac83cd4d554.bindPopup(popup_20e3d60cd3dcb76f3c7bd5e7b0c738de)
+        ;
+
+        
+    
+    
+                marker_26df19aa762ac050d88b2ac83cd4d554.setIcon(div_icon_cf71753ac900d8a4252b3926e579860d);
+            
+    
+            var marker_4e5b0b89a626807757a161cfd9b36a02 = L.marker(
+                [46.151241, 14.995463],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_95275746890fce0902f364e0aa49e978 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.4999999999999998 0.8660254037844387 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.4999999999999998 0.8660254037844387 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_3fa306f9169389d0d7ad2b8d6bacb76a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d381137ead4b4c32b7544ecbbd8fb754 = $(`<div id="html_d381137ead4b4c32b7544ecbbd8fb754" style="width: 100.0%; height: 100.0%;"><b>Slovenia</b><br>Astrophysics of Galaxies: 2<br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_3fa306f9169389d0d7ad2b8d6bacb76a.setContent(html_d381137ead4b4c32b7544ecbbd8fb754);
+            
+        
+
+        marker_4e5b0b89a626807757a161cfd9b36a02.bindPopup(popup_3fa306f9169389d0d7ad2b8d6bacb76a)
+        ;
+
+        
+    
+    
+                marker_4e5b0b89a626807757a161cfd9b36a02.setIcon(div_icon_95275746890fce0902f364e0aa49e978);
+            
+    
+            var marker_a69a12f5d2ed2ab8b6d851fd19687b9f = L.marker(
+                [46.818188, 8.227512],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_3783b10b2c8924a67be088fa4f89bdcc = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.72967916579403 0.6837896716141071 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.72967916579403 0.6837896716141071 A 1 1 0 0 1 -0.9594929736144974 -0.28173255684142984 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9594929736144974 -0.28173255684142984 A 1 1 0 0 1 -0.4849357721743169 -0.874549768089672 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.4849357721743169 -0.874549768089672 A 1 1 0 0 1 0.6350202663875381 -0.7724954765415136 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6350202663875381 -0.7724954765415136 A 1 1 0 0 1 0.8681809200986438 -0.4962478110547918 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8681809200986438 -0.4962478110547918 A 1 1 0 0 1 0.998652088398823 -0.05190381813189963 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.998652088398823 -0.05190381813189963 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_90cad2486235fe77502b49c7c4b5b07a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_25a944b8ce2336521a01429d95f7d5dd = $(`<div id="html_25a944b8ce2336521a01429d95f7d5dd" style="width: 100.0%; height: 100.0%;"><b>Switzerland</b><br>Earth and Planetary Astrophysics: 46<br>Cosmology and Nongalactic Astrophysics: 23<br>Astrophysics of Galaxies: 20<br>Solar and Stellar Astrophysics: 15<br>Instrumentation and Methods for Astrophysics: 9</div>`)[0];
+                popup_90cad2486235fe77502b49c7c4b5b07a.setContent(html_25a944b8ce2336521a01429d95f7d5dd);
+            
+        
+
+        marker_a69a12f5d2ed2ab8b6d851fd19687b9f.bindPopup(popup_90cad2486235fe77502b49c7c4b5b07a)
+        ;
+
+        
+    
+    
+                marker_a69a12f5d2ed2ab8b6d851fd19687b9f.setIcon(div_icon_3783b10b2c8924a67be088fa4f89bdcc);
+            
+    
+            var marker_e163e1aa9f3e61b574925aae0ce52d72 = L.marker(
+                [35.907757, 127.766922],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_925416e6f534b1fd279478b1642baf02 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.4999999999999998 0.8660254037844387 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.4999999999999998 0.8660254037844387 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b034b88ed6caad5d8674db00e9d455fd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1ae62f3fabb0e6250e666833d47e13c1 = $(`<div id="html_1ae62f3fabb0e6250e666833d47e13c1" style="width: 100.0%; height: 100.0%;"><b>South Korea</b><br>High Energy Astrophysical Phenomena: 2<br>Cosmology and Nongalactic Astrophysics: 1</div>`)[0];
+                popup_b034b88ed6caad5d8674db00e9d455fd.setContent(html_1ae62f3fabb0e6250e666833d47e13c1);
+            
+        
+
+        marker_e163e1aa9f3e61b574925aae0ce52d72.bindPopup(popup_b034b88ed6caad5d8674db00e9d455fd)
+        ;
+
+        
+    
+    
+                marker_e163e1aa9f3e61b574925aae0ce52d72.setIcon(div_icon_925416e6f534b1fd279478b1642baf02);
+            
+    
+            var marker_6de4f10625b114a8fb4b82ba16f689ca = L.marker(
+                [58.595272, 25.013607],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_aed5286849e0462e08df4b451f16782d = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.30901699437494745 0.9510565162951535 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.30901699437494745 0.9510565162951535 A 1 1 0 1 1 0.30901699437494723 -0.9510565162951536 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.30901699437494723 -0.9510565162951536 A 1 1 0 0 1 0.8090169943749473 -0.5877852522924734 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8090169943749473 -0.5877852522924734 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_fb7d57bb402c77c3e1aa6ca882182b00 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0f514a3bc01fd6766a2ae98bec997997 = $(`<div id="html_0f514a3bc01fd6766a2ae98bec997997" style="width: 100.0%; height: 100.0%;"><b>Estonia</b><br>Cosmology and Nongalactic Astrophysics: 6<br>Solar and Stellar Astrophysics: 2<br>Earth and Planetary Astrophysics: 1<br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_fb7d57bb402c77c3e1aa6ca882182b00.setContent(html_0f514a3bc01fd6766a2ae98bec997997);
+            
+        
+
+        marker_6de4f10625b114a8fb4b82ba16f689ca.bindPopup(popup_fb7d57bb402c77c3e1aa6ca882182b00)
+        ;
+
+        
+    
+    
+                marker_6de4f10625b114a8fb4b82ba16f689ca.setIcon(div_icon_aed5286849e0462e08df4b451f16782d);
+            
+    
+            var marker_b54cb5b3101e8873f85d1892d58cc12b = L.marker(
+                [48.379433, 31.16558],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_dc3e4d1974f909770cda4384e87ffde3 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.4999999999999998 0.8660254037844387 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.4999999999999998 0.8660254037844387 A 1 1 0 0 1 -0.5000000000000004 -0.8660254037844385 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5000000000000004 -0.8660254037844385 A 1 1 0 0 1 0.6691306063588578 -0.7431448254773946 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6691306063588578 -0.7431448254773946 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_64b41837b6db1e1ac125547a9bf69e51 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_652f2b74a5571b1a808194bfba513fcd = $(`<div id="html_652f2b74a5571b1a808194bfba513fcd" style="width: 100.0%; height: 100.0%;"><b>Ukraine</b><br>Astrophysics of Galaxies: 5<br>Solar and Stellar Astrophysics: 5<br>Cosmology and Nongalactic Astrophysics: 3<br>High Energy Astrophysical Phenomena: 2</div>`)[0];
+                popup_64b41837b6db1e1ac125547a9bf69e51.setContent(html_652f2b74a5571b1a808194bfba513fcd);
+            
+        
+
+        marker_b54cb5b3101e8873f85d1892d58cc12b.bindPopup(popup_64b41837b6db1e1ac125547a9bf69e51)
+        ;
+
+        
+    
+    
+                marker_b54cb5b3101e8873f85d1892d58cc12b.setIcon(div_icon_dc3e4d1974f909770cda4384e87ffde3);
+            
+    
+            var marker_5d2815feded1162b92b1d0b866969ac7 = L.marker(
+                [44.016521, 21.005859],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_cb648724c14760b9848f19935ebc753e = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 -0.2225209339563146 -0.9749279121818236 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.2225209339563146 -0.9749279121818236 A 1 1 0 0 1 0.6234898018587334 -0.7818314824680299 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6234898018587334 -0.7818314824680299 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_1f401b65c52e08e4183df2de0f8ec269 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_11cd3b9da3748f00206522c1997f2784 = $(`<div id="html_11cd3b9da3748f00206522c1997f2784" style="width: 100.0%; height: 100.0%;"><b>Serbia</b><br>Astrophysics of Galaxies: 5<br>Earth and Planetary Astrophysics: 1<br>Cosmology and Nongalactic Astrophysics: 1</div>`)[0];
+                popup_1f401b65c52e08e4183df2de0f8ec269.setContent(html_11cd3b9da3748f00206522c1997f2784);
+            
+        
+
+        marker_5d2815feded1162b92b1d0b866969ac7.bindPopup(popup_1f401b65c52e08e4183df2de0f8ec269)
+        ;
+
+        
+    
+    
+                marker_5d2815feded1162b92b1d0b866969ac7.setIcon(div_icon_cb648724c14760b9848f19935ebc753e);
+            
+    
+            var marker_c8f9eb1818cae50f53b261748621baec = L.marker(
+                [51.919438, 19.145136],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_c6feda29006b231e6e986a1e0019ed01 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.22252093395631434 0.9749279121818236 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.22252093395631434 0.9749279121818236 A 1 1 0 0 1 -0.6910626489868645 0.7227948638273916 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.6910626489868645 0.7227948638273916 A 1 1 0 0 1 -0.6910626489868648 -0.7227948638273914 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.6910626489868648 -0.7227948638273914 A 1 1 0 0 1 0.39302503165392344 -0.9195277725514507 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.39302503165392344 -0.9195277725514507 A 1 1 0 0 1 0.9362348706397371 -0.3513748240813429 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9362348706397371 -0.3513748240813429 A 1 1 0 0 1 0.995974293995239 -0.08963930890343375 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.995974293995239 -0.08963930890343375 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_f585fb857b487473f1dec0e56ab33807 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_58315e235b4af0caccf184baa43719ed = $(`<div id="html_58315e235b4af0caccf184baa43719ed" style="width: 100.0%; height: 100.0%;"><b>Poland</b><br>Solar and Stellar Astrophysics: 20<br>High Energy Astrophysical Phenomena: 18<br>Astrophysics of Galaxies: 13<br>Earth and Planetary Astrophysics: 9<br>Cosmology and Nongalactic Astrophysics: 6</div>`)[0];
+                popup_f585fb857b487473f1dec0e56ab33807.setContent(html_58315e235b4af0caccf184baa43719ed);
+            
+        
+
+        marker_c8f9eb1818cae50f53b261748621baec.bindPopup(popup_f585fb857b487473f1dec0e56ab33807)
+        ;
+
+        
+    
+    
+                marker_c8f9eb1818cae50f53b261748621baec.setIcon(div_icon_c6feda29006b231e6e986a1e0019ed01);
+            
+    
+            var marker_cc6b812725d0ba6ec81377cf64ce9195 = L.marker(
+                [23.424076, 53.847818],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_a298d9d3b190b3a07a22ba0a77958bb9 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 -0.5000000000000004 -0.8660254037844385 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5000000000000004 -0.8660254037844385 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_18170ecfa8c6a8dab67a9a5d6e75bd0a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_66513ac77f26413b3bf4b2bb99fce710 = $(`<div id="html_66513ac77f26413b3bf4b2bb99fce710" style="width: 100.0%; height: 100.0%;"><b>United Arab Emirates</b><br>Astrophysics of Galaxies: 2<br>Solar and Stellar Astrophysics: 1</div>`)[0];
+                popup_18170ecfa8c6a8dab67a9a5d6e75bd0a.setContent(html_66513ac77f26413b3bf4b2bb99fce710);
+            
+        
+
+        marker_cc6b812725d0ba6ec81377cf64ce9195.bindPopup(popup_18170ecfa8c6a8dab67a9a5d6e75bd0a)
+        ;
+
+        
+    
+    
+                marker_cc6b812725d0ba6ec81377cf64ce9195.setIcon(div_icon_a298d9d3b190b3a07a22ba0a77958bb9);
+            
+    
+            var marker_e0c4b148ded051cfb59775d8f4781623 = L.marker(
+                [15.870032, 100.992541],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_9529178f69d2a0c9517ba41f48f2c445 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.8660254037844387 0.49999999999999994 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8660254037844387 0.49999999999999994 A 1 1 0 0 1 -0.8660254037844388 -0.4999999999999997 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8660254037844388 -0.4999999999999997 A 1 1 0 0 1 -1.8369701987210297e-16 -1.0 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.8369701987210297e-16 -1.0 A 1 1 0 0 1 0.8660254037844384 -0.5000000000000004 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8660254037844384 -0.5000000000000004 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_9581eac328c7d607fc2bd9d483d12e83 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f34ca4997f7e63dcc62a64fb55dcfbfb = $(`<div id="html_f34ca4997f7e63dcc62a64fb55dcfbfb" style="width: 100.0%; height: 100.0%;"><b>Thailand</b><br>High Energy Astrophysical Phenomena: 6<br>Solar and Stellar Astrophysics: 2<br>Cosmology and Nongalactic Astrophysics: 2<br>Astrophysics of Galaxies: 1<br>Instrumentation and Methods for Astrophysics: 1</div>`)[0];
+                popup_9581eac328c7d607fc2bd9d483d12e83.setContent(html_f34ca4997f7e63dcc62a64fb55dcfbfb);
+            
+        
+
+        marker_e0c4b148ded051cfb59775d8f4781623.bindPopup(popup_9581eac328c7d607fc2bd9d483d12e83)
+        ;
+
+        
+    
+    
+                marker_e0c4b148ded051cfb59775d8f4781623.setIcon(div_icon_9529178f69d2a0c9517ba41f48f2c445);
+            
+    
+            var marker_82180a6bbc30561fa6a02535d50e0325 = L.marker(
+                [39.074208, 21.824312],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_710e7ae7c5e476274092308097c99bc2 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.5946331763042867 0.8039971303669405 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5946331763042867 0.8039971303669405 A 1 1 0 0 1 -0.9677329469334989 0.251978061385125 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9677329469334989 0.251978061385125 A 1 1 0 0 1 -0.5946331763042865 -0.8039971303669406 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5946331763042865 -0.8039971303669406 A 1 1 0 0 1 0.8730141131611884 -0.4876949438136342 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8730141131611884 -0.4876949438136342 A 1 1 0 0 1 0.9428774454610844 -0.33313979474205685 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9428774454610844 -0.33313979474205685 A 1 1 0 0 1 1.0 6.432490598706546e-16 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_2da0133cbf49378f32ba19a9504d9d56 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1e3c9f369aa45699a29a8c52f27c7da1 = $(`<div id="html_1e3c9f369aa45699a29a8c52f27c7da1" style="width: 100.0%; height: 100.0%;"><b>Greece</b><br>High Energy Astrophysical Phenomena: 13<br>Solar and Stellar Astrophysics: 10<br>Astrophysics of Galaxies: 7<br>Cosmology and Nongalactic Astrophysics: 4<br>Astrophysics: 2</div>`)[0];
+                popup_2da0133cbf49378f32ba19a9504d9d56.setContent(html_1e3c9f369aa45699a29a8c52f27c7da1);
+            
+        
+
+        marker_82180a6bbc30561fa6a02535d50e0325.bindPopup(popup_2da0133cbf49378f32ba19a9504d9d56)
+        ;
+
+        
+    
+    
+                marker_82180a6bbc30561fa6a02535d50e0325.setIcon(div_icon_710e7ae7c5e476274092308097c99bc2);
+            
+    
+            var marker_6da2de2c22acb80d6eb565fcb6c59983 = L.marker(
+                [45.943161, 24.96676],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_7831a849b1379fb0b107dea977ea7437 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.22252093395631434 0.9749279121818236 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.22252093395631434 0.9749279121818236 A 1 1 0 0 1 -0.9009688679024191 -0.433883739117558 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9009688679024191 -0.433883739117558 A 1 1 0 0 1 -0.2225209339563146 -0.9749279121818236 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.2225209339563146 -0.9749279121818236 A 1 1 0 0 1 0.6234898018587334 -0.7818314824680299 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.6234898018587334 -0.7818314824680299 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_10fcf5ab76872588c611439fb0c22a8b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_297f55529f4f00816b605598ff772428 = $(`<div id="html_297f55529f4f00816b605598ff772428" style="width: 100.0%; height: 100.0%;"><b>Romania</b><br>Earth and Planetary Astrophysics: 2<br>Astrophysics of Galaxies: 2<br>Solar and Stellar Astrophysics: 1<br>Cosmology and Nongalactic Astrophysics: 1<br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_10fcf5ab76872588c611439fb0c22a8b.setContent(html_297f55529f4f00816b605598ff772428);
+            
+        
+
+        marker_6da2de2c22acb80d6eb565fcb6c59983.bindPopup(popup_10fcf5ab76872588c611439fb0c22a8b)
+        ;
+
+        
+    
+    
+                marker_6da2de2c22acb80d6eb565fcb6c59983.setIcon(div_icon_7831a849b1379fb0b107dea977ea7437);
+            
+    
+            var marker_1d3076375758d934c5d8cd9cb629fb4b = L.marker(
+                [56.879635, 24.603189],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_c2a3b042a58dcaae4ecece1a1fcc7b98 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -1.0 1.2246467991473532e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.0 1.2246467991473532e-16 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b423cac4cb174f362659a882d3001102 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0a6afdd009aa346f6e699a3fe1e78a6b = $(`<div id="html_0a6afdd009aa346f6e699a3fe1e78a6b" style="width: 100.0%; height: 100.0%;"><b>Latvia</b><br>Astrophysics of Galaxies: 1<br>Solar and Stellar Astrophysics: 1</div>`)[0];
+                popup_b423cac4cb174f362659a882d3001102.setContent(html_0a6afdd009aa346f6e699a3fe1e78a6b);
+            
+        
+
+        marker_1d3076375758d934c5d8cd9cb629fb4b.bindPopup(popup_b423cac4cb174f362659a882d3001102)
+        ;
+
+        
+    
+    
+                marker_1d3076375758d934c5d8cd9cb629fb4b.setIcon(div_icon_c2a3b042a58dcaae4ecece1a1fcc7b98);
+            
+    
+            var marker_8ced16f7e27da2e1366f20aa2b049ccc = L.marker(
+                [31.791702, -7.09262],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_85a5986c8bada78ffec656d2726d1242 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -1.0 1.2246467991473532e-16 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.0 1.2246467991473532e-16 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_f28e01be7e8f82c74c8cb5d8569d29e1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7d763d955f3558dec9e49575e9cafb8b = $(`<div id="html_7d763d955f3558dec9e49575e9cafb8b" style="width: 100.0%; height: 100.0%;"><b>Morocco</b><br>Cosmology and Nongalactic Astrophysics: 2<br>Earth and Planetary Astrophysics: 2</div>`)[0];
+                popup_f28e01be7e8f82c74c8cb5d8569d29e1.setContent(html_7d763d955f3558dec9e49575e9cafb8b);
+            
+        
+
+        marker_8ced16f7e27da2e1366f20aa2b049ccc.bindPopup(popup_f28e01be7e8f82c74c8cb5d8569d29e1)
+        ;
+
+        
+    
+    
+                marker_8ced16f7e27da2e1366f20aa2b049ccc.setIcon(div_icon_85a5986c8bada78ffec656d2726d1242);
+            
+    
+            var marker_5ca94c3f53aa7b160f110fa81e8a21ea = L.marker(
+                [-40.900557, 174.885971],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_a07c78d9498e3265eaf6f0e98e2b8e97 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.7071067811865475 0.7071067811865476 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.7071067811865475 0.7071067811865476 A 1 1 0 0 1 -1.0 1.2246467991473532e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.0 1.2246467991473532e-16 A 1 1 0 0 1 -1.8369701987210297e-16 -1.0 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.8369701987210297e-16 -1.0 A 1 1 0 0 1 0.7071067811865474 -0.7071067811865477 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7071067811865474 -0.7071067811865477 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_747483393261cb81962ae6b1adb016bf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6cd95ab6cbfb16cf53a529ad6b1b2ec3 = $(`<div id="html_6cd95ab6cbfb16cf53a529ad6b1b2ec3" style="width: 100.0%; height: 100.0%;"><b>New Zealand</b><br>Cosmology and Nongalactic Astrophysics: 3<br>Earth and Planetary Astrophysics: 2<br>Solar and Stellar Astrophysics: 1<br>Instrumentation and Methods for Astrophysics: 1<br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_747483393261cb81962ae6b1adb016bf.setContent(html_6cd95ab6cbfb16cf53a529ad6b1b2ec3);
+            
+        
+
+        marker_5ca94c3f53aa7b160f110fa81e8a21ea.bindPopup(popup_747483393261cb81962ae6b1adb016bf)
+        ;
+
+        
+    
+    
+                marker_5ca94c3f53aa7b160f110fa81e8a21ea.setIcon(div_icon_a07c78d9498e3265eaf6f0e98e2b8e97);
+            
+    
+            var marker_fa326df86d248dd1bea90c36a21dc250 = L.marker(
+                [30.375321, 69.345116],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_50b40bb4c88f39602ea45ff4aeff4dcb = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 -0.5000000000000004 -0.8660254037844385 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5000000000000004 -0.8660254037844385 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_954e07b7686da6baac03479ebb9b1340 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5846e3d5933c6ec4f09ed081ab754def = $(`<div id="html_5846e3d5933c6ec4f09ed081ab754def" style="width: 100.0%; height: 100.0%;"><b>Pakistan</b><br>Solar and Stellar Astrophysics: 2<br>Cosmology and Nongalactic Astrophysics: 1</div>`)[0];
+                popup_954e07b7686da6baac03479ebb9b1340.setContent(html_5846e3d5933c6ec4f09ed081ab754def);
+            
+        
+
+        marker_fa326df86d248dd1bea90c36a21dc250.bindPopup(popup_954e07b7686da6baac03479ebb9b1340)
+        ;
+
+        
+    
+    
+                marker_fa326df86d248dd1bea90c36a21dc250.setIcon(div_icon_50b40bb4c88f39602ea45ff4aeff4dcb);
+            
+    
+            var marker_68df2ef7c4a8e3a727d04afc25561c3f = L.marker(
+                [-13.133897, 27.849332],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_6ba367007bb61823ee8a4a705359eff4 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_0a6f56e74e502a0529cc9adceb08db5f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d6d6abf8a7d0336172ab764dbef92f82 = $(`<div id="html_d6d6abf8a7d0336172ab764dbef92f82" style="width: 100.0%; height: 100.0%;"><b>Zambia</b><br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_0a6f56e74e502a0529cc9adceb08db5f.setContent(html_d6d6abf8a7d0336172ab764dbef92f82);
+            
+        
+
+        marker_68df2ef7c4a8e3a727d04afc25561c3f.bindPopup(popup_0a6f56e74e502a0529cc9adceb08db5f)
+        ;
+
+        
+    
+    
+                marker_68df2ef7c4a8e3a727d04afc25561c3f.setIcon(div_icon_6ba367007bb61823ee8a4a705359eff4);
+            
+    
+            var marker_4fae8e839424a4ec956745161f7b95d9 = L.marker(
+                [48.019573, 66.923684],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_7b1fa6b0c026a6d045577c3009ade119 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -1.0 1.2246467991473532e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.0 1.2246467991473532e-16 A 1 1 0 0 1 0.8090169943749473 -0.5877852522924734 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8090169943749473 -0.5877852522924734 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_36c19bdd590fe3fcc8a995b8f96fa77d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_26167585f09b02931bbc064c9e22f206 = $(`<div id="html_26167585f09b02931bbc064c9e22f206" style="width: 100.0%; height: 100.0%;"><b>Kazakhstan</b><br>Astrophysics of Galaxies: 5<br>Cosmology and Nongalactic Astrophysics: 4<br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_36c19bdd590fe3fcc8a995b8f96fa77d.setContent(html_26167585f09b02931bbc064c9e22f206);
+            
+        
+
+        marker_4fae8e839424a4ec956745161f7b95d9.bindPopup(popup_36c19bdd590fe3fcc8a995b8f96fa77d)
+        ;
+
+        
+    
+    
+                marker_4fae8e839424a4ec956745161f7b95d9.setIcon(div_icon_7b1fa6b0c026a6d045577c3009ade119);
+            
+    
+            var marker_1bc9b4b1a5edd198a2af84f0630f0593 = L.marker(
+                [38.963745, 35.243322],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_96c8e152fd4153ae6bfe958afefb7338 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.142314838273285 0.9898214418809328 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.142314838273285 0.9898214418809328 A 1 1 0 0 1 -0.9594929736144975 -0.2817325568414294 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9594929736144975 -0.2817325568414294 A 1 1 0 0 1 0.8412535328311812 -0.5406408174555974 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.8412535328311812 -0.5406408174555974 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_14e7eff53887268767a2c91dd1f61ecc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_569659b30bc05b6ccfb2b5d66b9ec6d5 = $(`<div id="html_569659b30bc05b6ccfb2b5d66b9ec6d5" style="width: 100.0%; height: 100.0%;"><b>Turkey</b><br>Astrophysics of Galaxies: 4<br>Solar and Stellar Astrophysics: 3<br>High Energy Astrophysical Phenomena: 3<br>Earth and Planetary Astrophysics: 1</div>`)[0];
+                popup_14e7eff53887268767a2c91dd1f61ecc.setContent(html_569659b30bc05b6ccfb2b5d66b9ec6d5);
+            
+        
+
+        marker_1bc9b4b1a5edd198a2af84f0630f0593.bindPopup(popup_14e7eff53887268767a2c91dd1f61ecc)
+        ;
+
+        
+    
+    
+                marker_1bc9b4b1a5edd198a2af84f0630f0593.setIcon(div_icon_96c8e152fd4153ae6bfe958afefb7338);
+            
+    
+            var marker_265b647f08939d023cc89c10411161f0 = L.marker(
+                [53.41291, -8.24389],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_e336cdbb0c1374ac4813f3bfc35d8682 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.7660444431189779 0.6427876096865395 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.7660444431189779 0.6427876096865395 A 1 1 0 0 1 -0.17364817766693033 -0.984807753012208 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.17364817766693033 -0.984807753012208 A 1 1 0 0 1 0.7660444431189778 -0.6427876096865396 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7660444431189778 -0.6427876096865396 A 1 1 0 0 1 0.9396926207859081 -0.34202014332566943 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9396926207859081 -0.34202014332566943 A 1 1 0 0 1 1.0 -1.133107779529596e-15 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_3cf292b2c8af36226b77b2713ec04d03 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_88f75cf14a6d9feb637072945b71efe2 = $(`<div id="html_88f75cf14a6d9feb637072945b71efe2" style="width: 100.0%; height: 100.0%;"><b>Ireland</b><br>Earth and Planetary Astrophysics: 7<br>High Energy Astrophysical Phenomena: 6<br>Solar and Stellar Astrophysics: 3<br>Astrophysics of Galaxies: 1<br>Instrumentation and Methods for Astrophysics: 1</div>`)[0];
+                popup_3cf292b2c8af36226b77b2713ec04d03.setContent(html_88f75cf14a6d9feb637072945b71efe2);
+            
+        
+
+        marker_265b647f08939d023cc89c10411161f0.bindPopup(popup_3cf292b2c8af36226b77b2713ec04d03)
+        ;
+
+        
+    
+    
+                marker_265b647f08939d023cc89c10411161f0.setIcon(div_icon_e336cdbb0c1374ac4813f3bfc35d8682);
+            
+    
+            var marker_d5607e173cd9366b9790794815ff3fd8 = L.marker(
+                [33.854721, 35.862285],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_4c2fa7395c93a702e065ed67cebb745d = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_bf10859f05b303469378067ee183f66f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_00af0f2efcd42126d866ae2e5eeccd42 = $(`<div id="html_00af0f2efcd42126d866ae2e5eeccd42" style="width: 100.0%; height: 100.0%;"><b>Lebanon</b><br>Cosmology and Nongalactic Astrophysics: 1</div>`)[0];
+                popup_bf10859f05b303469378067ee183f66f.setContent(html_00af0f2efcd42126d866ae2e5eeccd42);
+            
+        
+
+        marker_d5607e173cd9366b9790794815ff3fd8.bindPopup(popup_bf10859f05b303469378067ee183f66f)
+        ;
+
+        
+    
+    
+                marker_d5607e173cd9366b9790794815ff3fd8.setIcon(div_icon_4c2fa7395c93a702e065ed67cebb745d);
+            
+    
+            var marker_9082e44b83d3986e5784553c665dfed4 = L.marker(
+                [52.132633, 5.291266],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_196ae1016aff79baba8e9e4825776d4f = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.4999999999999998 0.8660254037844387 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.4999999999999998 0.8660254037844387 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_390490982f394c619ce1db7631376f12 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_94fe83d9b3cf0e8c3021132fdcb3e051 = $(`<div id="html_94fe83d9b3cf0e8c3021132fdcb3e051" style="width: 100.0%; height: 100.0%;"><b>Netherlands</b><br>Earth and Planetary Astrophysics: 2<br>Instrumentation and Methods for Astrophysics: 1</div>`)[0];
+                popup_390490982f394c619ce1db7631376f12.setContent(html_94fe83d9b3cf0e8c3021132fdcb3e051);
+            
+        
+
+        marker_9082e44b83d3986e5784553c665dfed4.bindPopup(popup_390490982f394c619ce1db7631376f12)
+        ;
+
+        
+    
+    
+                marker_9082e44b83d3986e5784553c665dfed4.setIcon(div_icon_196ae1016aff79baba8e9e4825776d4f);
+            
+    
+            var marker_802262261a6df08625246dbbbdd7bff5 = L.marker(
+                [48.669026, 19.699024],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_424e55c96a206ae97e1c7709f322dc88 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 6.123233995736766e-17 1.0 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 6.123233995736766e-17 1.0 A 1 1 0 0 1 -1.0 1.2246467991473532e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.0 1.2246467991473532e-16 A 1 1 0 0 1 -1.8369701987210297e-16 -1.0 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.8369701987210297e-16 -1.0 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_91c5b771ede232c8ae310ae68d904bbc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_daa73ad85b45b288e638d33e1c4987eb = $(`<div id="html_daa73ad85b45b288e638d33e1c4987eb" style="width: 100.0%; height: 100.0%;"><b>Slovakia</b><br>Astrophysics of Galaxies: 1<br>Solar and Stellar Astrophysics: 1<br>Earth and Planetary Astrophysics: 1<br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_91c5b771ede232c8ae310ae68d904bbc.setContent(html_daa73ad85b45b288e638d33e1c4987eb);
+            
+        
+
+        marker_802262261a6df08625246dbbbdd7bff5.bindPopup(popup_91c5b771ede232c8ae310ae68d904bbc)
+        ;
+
+        
+    
+    
+                marker_802262261a6df08625246dbbbdd7bff5.setIcon(div_icon_424e55c96a206ae97e1c7709f322dc88);
+            
+    
+            var marker_07eebe21db94bd3664f91a8adc4c954f = L.marker(
+                [42.733883, 25.48583],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_1cd7e430dc40faa1e4a6e7db57c4137c = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 -0.9709418174260521 -0.23931566428755743 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9709418174260521 -0.23931566428755743 A 1 1 0 0 1 -0.3546048870425359 -0.9350162426854147 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.3546048870425359 -0.9350162426854147 A 1 1 0 0 1 0.12053668025532233 -0.9927088740980541 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.12053668025532233 -0.9927088740980541 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_bb6c6bb6c125d0e990dd8cb44b50f413 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_45f802352cd3dd0cee13e6055f97163f = $(`<div id="html_45f802352cd3dd0cee13e6055f97163f" style="width: 100.0%; height: 100.0%;"><b>Bulgaria</b><br>Solar and Stellar Astrophysics: 7<br>High Energy Astrophysical Phenomena: 3<br>Astrophysics of Galaxies: 2<br>Cosmology and Nongalactic Astrophysics: 1</div>`)[0];
+                popup_bb6c6bb6c125d0e990dd8cb44b50f413.setContent(html_45f802352cd3dd0cee13e6055f97163f);
+            
+        
+
+        marker_07eebe21db94bd3664f91a8adc4c954f.bindPopup(popup_bb6c6bb6c125d0e990dd8cb44b50f413)
+        ;
+
+        
+    
+    
+                marker_07eebe21db94bd3664f91a8adc4c954f.setIcon(div_icon_1cd7e430dc40faa1e4a6e7db57c4137c);
+            
+    
+            var marker_e675c28552f4a35a0ef3b26b1ffc6dad = L.marker(
+                [35.126413, 33.429859],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_800794968ac960e8c6cc0e3cf1806e90 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_9ea7d4cc4c67ffdb69fd82f3a7e9c2cc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f4c3ec83b2f28570cee219e15e1dda95 = $(`<div id="html_f4c3ec83b2f28570cee219e15e1dda95" style="width: 100.0%; height: 100.0%;"><b>Cyprus</b><br>Astrophysics of Galaxies: 2</div>`)[0];
+                popup_9ea7d4cc4c67ffdb69fd82f3a7e9c2cc.setContent(html_f4c3ec83b2f28570cee219e15e1dda95);
+            
+        
+
+        marker_e675c28552f4a35a0ef3b26b1ffc6dad.bindPopup(popup_9ea7d4cc4c67ffdb69fd82f3a7e9c2cc)
+        ;
+
+        
+    
+    
+                marker_e675c28552f4a35a0ef3b26b1ffc6dad.setIcon(div_icon_800794968ac960e8c6cc0e3cf1806e90);
+            
+    
+            var marker_d3e826835cf89776478f8b0a023d1b65 = L.marker(
+                [45.1, 15.2],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_fa9c334a7d45df4ab21540f9db9ea476 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_e774c8163994fdb8ec6ee845c28492f4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_de32e2bcaafd16f46006e953f231181e = $(`<div id="html_de32e2bcaafd16f46006e953f231181e" style="width: 100.0%; height: 100.0%;"><b>Croatia</b><br>Solar and Stellar Astrophysics: 4</div>`)[0];
+                popup_e774c8163994fdb8ec6ee845c28492f4.setContent(html_de32e2bcaafd16f46006e953f231181e);
+            
+        
+
+        marker_d3e826835cf89776478f8b0a023d1b65.bindPopup(popup_e774c8163994fdb8ec6ee845c28492f4)
+        ;
+
+        
+    
+    
+                marker_d3e826835cf89776478f8b0a023d1b65.setIcon(div_icon_fa9c334a7d45df4ab21540f9db9ea476);
+            
+    
+            var marker_53d1ba9dd483d536e7af943b4d2ce2a6 = L.marker(
+                [49.817492, 15.472962],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_6c5c2792fdfb0e0c3d3f85cf2658471a = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.2106792699957262 0.9775552389476863 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.2106792699957262 0.9775552389476863 A 1 1 0 0 1 -0.12701781974687898 0.9919004352588768 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.12701781974687898 0.9919004352588768 A 1 1 0 0 1 -0.9112284903881358 0.41190124824399243 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.9112284903881358 0.41190124824399243 A 1 1 0 0 1 -0.4502037448176728 -0.8929258581495687 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.4502037448176728 -0.8929258581495687 A 1 1 0 0 1 0.7780357543184401 -0.6282199972956416 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.7780357543184401 -0.6282199972956416 A 1 1 0 0 1 0.9856159103477087 -0.16900082032184793 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.9856159103477087 -0.16900082032184793 A 1 1 0 0 1 1.0 1.5314274795707798e-15 Z\" fill=\"#000080\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_2f885795f3afb1f80ca3e247f6a00070 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_322737e56cbe475348e351f5f33fb3f7 = $(`<div id="html_322737e56cbe475348e351f5f33fb3f7" style="width: 100.0%; height: 100.0%;"><b>Czech Republic</b><br>Solar and Stellar Astrophysics: 9<br>High Energy Astrophysical Phenomena: 8<br>Earth and Planetary Astrophysics: 8<br>Astrophysics of Galaxies: 6<br>Instrumentation and Methods for Astrophysics: 3</div>`)[0];
+                popup_2f885795f3afb1f80ca3e247f6a00070.setContent(html_322737e56cbe475348e351f5f33fb3f7);
+            
+        
+
+        marker_53d1ba9dd483d536e7af943b4d2ce2a6.bindPopup(popup_2f885795f3afb1f80ca3e247f6a00070)
+        ;
+
+        
+    
+    
+                marker_53d1ba9dd483d536e7af943b4d2ce2a6.setIcon(div_icon_6c5c2792fdfb0e0c3d3f85cf2658471a);
+            
+    
+            var marker_86a6aa83780e4373c96d31d80ad6c84d = L.marker(
+                [53.709807, 27.953389],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_423f3aec74689b15f5b60ad1952754a3 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_db45853511a2b19d7717dc7589572c0b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_25a643a0a1b7a8c894733ce40b5f1986 = $(`<div id="html_25a643a0a1b7a8c894733ce40b5f1986" style="width: 100.0%; height: 100.0%;"><b>Belarus</b><br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_db45853511a2b19d7717dc7589572c0b.setContent(html_25a643a0a1b7a8c894733ce40b5f1986);
+            
+        
+
+        marker_86a6aa83780e4373c96d31d80ad6c84d.bindPopup(popup_db45853511a2b19d7717dc7589572c0b)
+        ;
+
+        
+    
+    
+                marker_86a6aa83780e4373c96d31d80ad6c84d.setIcon(div_icon_423f3aec74689b15f5b60ad1952754a3);
+            
+    
+            var marker_fd351bf7ac5fafe95c6fba494a11cc93 = L.marker(
+                [9.145, 40.489673],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_9c134b76f457044906694a72410b4bbb = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -1.0 1.2246467991473532e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.0 1.2246467991473532e-16 A 1 1 0 0 1 -1.8369701987210297e-16 -1.0 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.8369701987210297e-16 -1.0 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_a55777daf69d7f4988a3d44be8d74600 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e41e260a3e846017d2b810efc0aed448 = $(`<div id="html_e41e260a3e846017d2b810efc0aed448" style="width: 100.0%; height: 100.0%;"><b>Ethiopia</b><br>High Energy Astrophysical Phenomena: 2<br>Astrophysics of Galaxies: 1<br>Solar and Stellar Astrophysics: 1</div>`)[0];
+                popup_a55777daf69d7f4988a3d44be8d74600.setContent(html_e41e260a3e846017d2b810efc0aed448);
+            
+        
+
+        marker_fd351bf7ac5fafe95c6fba494a11cc93.bindPopup(popup_a55777daf69d7f4988a3d44be8d74600)
+        ;
+
+        
+    
+    
+                marker_fd351bf7ac5fafe95c6fba494a11cc93.setIcon(div_icon_9c134b76f457044906694a72410b4bbb);
+            
+    
+            var marker_dee16ba20154523c1ce6c932146abe6d = L.marker(
+                [33.223191, 43.679291],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_5dd135e7ba89c29944d1389fb30059c7 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_1c425ab9e098cce44d7332a537e74faf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a25eb1f3b41228304993508a6572fcf1 = $(`<div id="html_a25eb1f3b41228304993508a6572fcf1" style="width: 100.0%; height: 100.0%;"><b>Iraq</b><br>Astrophysics of Galaxies: 1</div>`)[0];
+                popup_1c425ab9e098cce44d7332a537e74faf.setContent(html_a25eb1f3b41228304993508a6572fcf1);
+            
+        
+
+        marker_dee16ba20154523c1ce6c932146abe6d.bindPopup(popup_1c425ab9e098cce44d7332a537e74faf)
+        ;
+
+        
+    
+    
+                marker_dee16ba20154523c1ce6c932146abe6d.setIcon(div_icon_5dd135e7ba89c29944d1389fb30059c7);
+            
+    
+            var marker_61f3e03b855cf5012779ec9722d22e13 = L.marker(
+                [4.570868, -74.297333],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_8a7c8379ee442ce56d6b8bf7f00a47f6 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_9ccc30d77db630cff51434b96689843e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_66ff3aa017080a92d9fee0993c9145a6 = $(`<div id="html_66ff3aa017080a92d9fee0993c9145a6" style="width: 100.0%; height: 100.0%;"><b>Colombia</b><br>Astrophysics of Galaxies: 2</div>`)[0];
+                popup_9ccc30d77db630cff51434b96689843e.setContent(html_66ff3aa017080a92d9fee0993c9145a6);
+            
+        
+
+        marker_61f3e03b855cf5012779ec9722d22e13.bindPopup(popup_9ccc30d77db630cff51434b96689843e)
+        ;
+
+        
+    
+    
+                marker_61f3e03b855cf5012779ec9722d22e13.setIcon(div_icon_8a7c8379ee442ce56d6b8bf7f00a47f6);
+            
+    
+            var marker_6fecc32c8ad584302b5562886a67d143 = L.marker(
+                [23.684994, 90.356331],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_8014ab6db4b5de0af636917e9d74cbaa = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -0.4999999999999998 0.8660254037844387 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.4999999999999998 0.8660254037844387 A 1 1 0 0 1 -0.5000000000000004 -0.8660254037844385 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5000000000000004 -0.8660254037844385 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_ec9ba88879431fa1d1afee8ed62895d1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cf9ef4b957215f3005220ac499abbb24 = $(`<div id="html_cf9ef4b957215f3005220ac499abbb24" style="width: 100.0%; height: 100.0%;"><b>Bangladesh</b><br>Cosmology and Nongalactic Astrophysics: 1<br>Instrumentation and Methods for Astrophysics: 1<br>Astrophysics of Galaxies: 1</div>`)[0];
+                popup_ec9ba88879431fa1d1afee8ed62895d1.setContent(html_cf9ef4b957215f3005220ac499abbb24);
+            
+        
+
+        marker_6fecc32c8ad584302b5562886a67d143.bindPopup(popup_ec9ba88879431fa1d1afee8ed62895d1)
+        ;
+
+        
+    
+    
+                marker_6fecc32c8ad584302b5562886a67d143.setIcon(div_icon_8014ab6db4b5de0af636917e9d74cbaa);
+            
+    
+            var marker_bc55fb142dd837bdb9b4f081223be812 = L.marker(
+                [22.396428, 114.109497],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_447c9fe0f6181373447fe054188c3010 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 -0.8090169943749475 -0.587785252292473 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.8090169943749475 -0.587785252292473 A 1 1 0 0 1 0.30901699437494723 -0.9510565162951536 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.30901699437494723 -0.9510565162951536 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_7502fcac6ec47cc014db67e5cb2458bc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dfea34b09249ddac577251e1462f9641 = $(`<div id="html_dfea34b09249ddac577251e1462f9641" style="width: 100.0%; height: 100.0%;"><b>Hong Kong</b><br>Cosmology and Nongalactic Astrophysics: 3<br>Astrophysics of Galaxies: 1<br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_7502fcac6ec47cc014db67e5cb2458bc.setContent(html_dfea34b09249ddac577251e1462f9641);
+            
+        
+
+        marker_bc55fb142dd837bdb9b4f081223be812.bindPopup(popup_7502fcac6ec47cc014db67e5cb2458bc)
+        ;
+
+        
+    
+    
+                marker_bc55fb142dd837bdb9b4f081223be812.setIcon(div_icon_447c9fe0f6181373447fe054188c3010);
+            
+    
+            var marker_515d454727c16e3dfa734b14aa724e31 = L.marker(
+                [-0.789275, 113.921327],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_de6f0523c6d223c01a05e64cef8fa55e = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_e62540bfd690b2559b6d74339fb0ed4e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e611c7093f184ce730b1f4e85c1511c2 = $(`<div id="html_e611c7093f184ce730b1f4e85c1511c2" style="width: 100.0%; height: 100.0%;"><b>Indonesia</b><br>Solar and Stellar Astrophysics: 1</div>`)[0];
+                popup_e62540bfd690b2559b6d74339fb0ed4e.setContent(html_e611c7093f184ce730b1f4e85c1511c2);
+            
+        
+
+        marker_515d454727c16e3dfa734b14aa724e31.bindPopup(popup_e62540bfd690b2559b6d74339fb0ed4e)
+        ;
+
+        
+    
+    
+                marker_515d454727c16e3dfa734b14aa724e31.setIcon(div_icon_de6f0523c6d223c01a05e64cef8fa55e);
+            
+    
+            var marker_1c304d614a299a07be9d212f11d87193 = L.marker(
+                [55.169438, 23.881275],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_98bf6d3e3bc12fe8fbeb4bff76ab4266 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 -0.2225209339563146 -0.9749279121818236 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.2225209339563146 -0.9749279121818236 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_c68bc5a8d0c981925a48c37b271850c1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_052f9431102f281e55770613c949c12f = $(`<div id="html_052f9431102f281e55770613c949c12f" style="width: 100.0%; height: 100.0%;"><b>Lithuania</b><br>Solar and Stellar Astrophysics: 5<br>Astrophysics of Galaxies: 2</div>`)[0];
+                popup_c68bc5a8d0c981925a48c37b271850c1.setContent(html_052f9431102f281e55770613c949c12f);
+            
+        
+
+        marker_1c304d614a299a07be9d212f11d87193.bindPopup(popup_c68bc5a8d0c981925a48c37b271850c1)
+        ;
+
+        
+    
+    
+                marker_1c304d614a299a07be9d212f11d87193.setIcon(div_icon_98bf6d3e3bc12fe8fbeb4bff76ab4266);
+            
+    
+            var marker_202457baf11d709966f9092bb9a0d2a7 = L.marker(
+                [14.058324, 108.277199],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_626ee6a356ad056570762328b6bae9e8 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 0.30901699437494745 0.9510565162951535 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.30901699437494745 0.9510565162951535 A 1 1 0 1 1 0.30901699437494723 -0.9510565162951536 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L 0.30901699437494723 -0.9510565162951536 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_0f1366002b786d5789c09db3e2048ae3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_079d8a652075cd404387e51ce26a6d01 = $(`<div id="html_079d8a652075cd404387e51ce26a6d01" style="width: 100.0%; height: 100.0%;"><b>Vietnam</b><br>Astrophysics of Galaxies: 3<br>High Energy Astrophysical Phenomena: 1<br>Solar and Stellar Astrophysics: 1</div>`)[0];
+                popup_0f1366002b786d5789c09db3e2048ae3.setContent(html_079d8a652075cd404387e51ce26a6d01);
+            
+        
+
+        marker_202457baf11d709966f9092bb9a0d2a7.bindPopup(popup_0f1366002b786d5789c09db3e2048ae3)
+        ;
+
+        
+    
+    
+                marker_202457baf11d709966f9092bb9a0d2a7.setIcon(div_icon_626ee6a356ad056570762328b6bae9e8);
+            
+    
+            var marker_31d40bc8310b742bd2a89b6a60c7e964 = L.marker(
+                [42.315407, 43.356892],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_030adf6ea513d2e045fcf74b1a05655c = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 -0.5000000000000004 -0.8660254037844385 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -0.5000000000000004 -0.8660254037844385 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_0b45ad8ef55da73dbf183fd8f1e31a1a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_db3ec4969585cbdf2ce126a3b38b1b5b = $(`<div id="html_db3ec4969585cbdf2ce126a3b38b1b5b" style="width: 100.0%; height: 100.0%;"><b>Georgia</b><br>Solar and Stellar Astrophysics: 2<br>Astrophysics of Galaxies: 1</div>`)[0];
+                popup_0b45ad8ef55da73dbf183fd8f1e31a1a.setContent(html_db3ec4969585cbdf2ce126a3b38b1b5b);
+            
+        
+
+        marker_31d40bc8310b742bd2a89b6a60c7e964.bindPopup(popup_0b45ad8ef55da73dbf183fd8f1e31a1a)
+        ;
+
+        
+    
+    
+                marker_31d40bc8310b742bd2a89b6a60c7e964.setIcon(div_icon_030adf6ea513d2e045fcf74b1a05655c);
+            
+    
+            var marker_763d8bdd1a6b3f510dd8f0ab18db32e4 = L.marker(
+                [28.394857, 84.124008],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_e9669a0ad77648e3e10ddf0f05bbb047 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_413bbed974a217cb5694112b52bd0131 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2710af48daba680904b1f0bb17fa8e43 = $(`<div id="html_2710af48daba680904b1f0bb17fa8e43" style="width: 100.0%; height: 100.0%;"><b>Nepal</b><br>Astrophysics of Galaxies: 1</div>`)[0];
+                popup_413bbed974a217cb5694112b52bd0131.setContent(html_2710af48daba680904b1f0bb17fa8e43);
+            
+        
+
+        marker_763d8bdd1a6b3f510dd8f0ab18db32e4.bindPopup(popup_413bbed974a217cb5694112b52bd0131)
+        ;
+
+        
+    
+    
+                marker_763d8bdd1a6b3f510dd8f0ab18db32e4.setIcon(div_icon_e9669a0ad77648e3e10ddf0f05bbb047);
+            
+    
+            var marker_ceab562ba8b912621ca4a7cb1294958d = L.marker(
+                [-32.522779, -55.765835],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_f82f1d44d888ed2b06d86033a429e38b = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#7bff7b\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_a2ddf1cea0a5c383deb56de2a817d97e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_183e0cb779b0e926e092c6d0c9670df0 = $(`<div id="html_183e0cb779b0e926e092c6d0c9670df0" style="width: 100.0%; height: 100.0%;"><b>Uruguay</b><br>Earth and Planetary Astrophysics: 2</div>`)[0];
+                popup_a2ddf1cea0a5c383deb56de2a817d97e.setContent(html_183e0cb779b0e926e092c6d0c9670df0);
+            
+        
+
+        marker_ceab562ba8b912621ca4a7cb1294958d.bindPopup(popup_a2ddf1cea0a5c383deb56de2a817d97e)
+        ;
+
+        
+    
+    
+                marker_ceab562ba8b912621ca4a7cb1294958d.setIcon(div_icon_f82f1d44d888ed2b06d86033a429e38b);
+            
+    
+            var marker_7c0a2238cb81cc7752cd278e57f5dba0 = L.marker(
+                [4.210484, 101.975766],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_805c091331dbc7cad09b1d2a676cabaf = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 0 1 -1.0 1.2246467991473532e-16 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003cpath d=\"M 0 0 L -1.0 1.2246467991473532e-16 A 1 1 0 0 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_41a0586c9079e32f8daf67a3888e53bf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_afd72b2a6e7cc1046e01a3ec324c7532 = $(`<div id="html_afd72b2a6e7cc1046e01a3ec324c7532" style="width: 100.0%; height: 100.0%;"><b>Malaysia</b><br>Instrumentation and Methods for Astrophysics: 1<br>Astrophysics of Galaxies: 1</div>`)[0];
+                popup_41a0586c9079e32f8daf67a3888e53bf.setContent(html_afd72b2a6e7cc1046e01a3ec324c7532);
+            
+        
+
+        marker_7c0a2238cb81cc7752cd278e57f5dba0.bindPopup(popup_41a0586c9079e32f8daf67a3888e53bf)
+        ;
+
+        
+    
+    
+                marker_7c0a2238cb81cc7752cd278e57f5dba0.setIcon(div_icon_805c091331dbc7cad09b1d2a676cabaf);
+            
+    
+            var marker_ed97798860f57755946710fa08d98892 = L.marker(
+                [30.585164, 36.238414],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_a8b6cc9735bfe78cf39664436d8f6ec2 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_dbdae9520b80ae57d5bc1987ad21ffb4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bcb5f5df7a8c511bc73b38e60396ad36 = $(`<div id="html_bcb5f5df7a8c511bc73b38e60396ad36" style="width: 100.0%; height: 100.0%;"><b>Jordan</b><br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_dbdae9520b80ae57d5bc1987ad21ffb4.setContent(html_bcb5f5df7a8c511bc73b38e60396ad36);
+            
+        
+
+        marker_ed97798860f57755946710fa08d98892.bindPopup(popup_dbdae9520b80ae57d5bc1987ad21ffb4)
+        ;
+
+        
+    
+    
+                marker_ed97798860f57755946710fa08d98892.setIcon(div_icon_a8b6cc9735bfe78cf39664436d8f6ec2);
+            
+    
+            var marker_0013593fc8e6667b59ecd3383ddf99a6 = L.marker(
+                [-22.95764, 18.49041],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_dc1fc6a6576e681ad089626fcc605af3 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_eac7dc7bd6bab377d4f2b8e9ef933aa7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bdf943784d32aab6ffcacd3f2feb9442 = $(`<div id="html_bdf943784d32aab6ffcacd3f2feb9442" style="width: 100.0%; height: 100.0%;"><b>Namibia</b><br>Instrumentation and Methods for Astrophysics: 2</div>`)[0];
+                popup_eac7dc7bd6bab377d4f2b8e9ef933aa7.setContent(html_bdf943784d32aab6ffcacd3f2feb9442);
+            
+        
+
+        marker_0013593fc8e6667b59ecd3383ddf99a6.bindPopup(popup_eac7dc7bd6bab377d4f2b8e9ef933aa7)
+        ;
+
+        
+    
+    
+                marker_0013593fc8e6667b59ecd3383ddf99a6.setIcon(div_icon_dc1fc6a6576e681ad089626fcc605af3);
+            
+    
+            var marker_5c744812a4f3a395c3dc7c2f50c67c55 = L.marker(
+                [12.879721, 121.774017],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_d4e92ec85a671c2807d911af63417aa5 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_50533288a5813d2e361c5086b75febe8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c51a306af1e8787e481da44283e766bc = $(`<div id="html_c51a306af1e8787e481da44283e766bc" style="width: 100.0%; height: 100.0%;"><b>Philippines</b><br>Cosmology and Nongalactic Astrophysics: 1</div>`)[0];
+                popup_50533288a5813d2e361c5086b75febe8.setContent(html_c51a306af1e8787e481da44283e766bc);
+            
+        
+
+        marker_5c744812a4f3a395c3dc7c2f50c67c55.bindPopup(popup_50533288a5813d2e361c5086b75febe8)
+        ;
+
+        
+    
+    
+                marker_5c744812a4f3a395c3dc7c2f50c67c55.setIcon(div_icon_d4e92ec85a671c2807d911af63417aa5);
+            
+    
+            var marker_774727c2415fc6adc1ccf2ce37bab809 = L.marker(
+                [41.377491, 64.585262],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_721c46f0a0c031fdc8f1aff389a2fc7a = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_71d2ef4cb032555502f10e4ce044a86a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7af78289f0beb95d0c169df99ed16563 = $(`<div id="html_7af78289f0beb95d0c169df99ed16563" style="width: 100.0%; height: 100.0%;"><b>Uzbekistan</b><br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_71d2ef4cb032555502f10e4ce044a86a.setContent(html_7af78289f0beb95d0c169df99ed16563);
+            
+        
+
+        marker_774727c2415fc6adc1ccf2ce37bab809.bindPopup(popup_71d2ef4cb032555502f10e4ce044a86a)
+        ;
+
+        
+    
+    
+                marker_774727c2415fc6adc1ccf2ce37bab809.setIcon(div_icon_721c46f0a0c031fdc8f1aff389a2fc7a);
+            
+    
+            var marker_eee3550b398dbd2367186fe1eaeb4db5 = L.marker(
+                [-22.328474, 24.684866],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_f451aa96c23d18b073194b213c7c9f49 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#00d4ff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_15d541b28677f1c50bda1a40b8a3d586 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_89bce084c3c7ba697cab23a1a026ab50 = $(`<div id="html_89bce084c3c7ba697cab23a1a026ab50" style="width: 100.0%; height: 100.0%;"><b>Botswana</b><br>Cosmology and Nongalactic Astrophysics: 1</div>`)[0];
+                popup_15d541b28677f1c50bda1a40b8a3d586.setContent(html_89bce084c3c7ba697cab23a1a026ab50);
+            
+        
+
+        marker_eee3550b398dbd2367186fe1eaeb4db5.bindPopup(popup_15d541b28677f1c50bda1a40b8a3d586)
+        ;
+
+        
+    
+    
+                marker_eee3550b398dbd2367186fe1eaeb4db5.setIcon(div_icon_f451aa96c23d18b073194b213c7c9f49);
+            
+    
+            var marker_8bae4000d69bfd0681a59e95f9409969 = L.marker(
+                [12.862807, 30.217636],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_5d640012cb8cbc0c860c863c4b6e2790 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ffe600\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_9cdb18207c0c16bd5a8b032f037f4a52 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_95a684823daaf0bd6435e6d1cdaec741 = $(`<div id="html_95a684823daaf0bd6435e6d1cdaec741" style="width: 100.0%; height: 100.0%;"><b>Sudan</b><br>High Energy Astrophysical Phenomena: 1</div>`)[0];
+                popup_9cdb18207c0c16bd5a8b032f037f4a52.setContent(html_95a684823daaf0bd6435e6d1cdaec741);
+            
+        
+
+        marker_8bae4000d69bfd0681a59e95f9409969.bindPopup(popup_9cdb18207c0c16bd5a8b032f037f4a52)
+        ;
+
+        
+    
+    
+                marker_8bae4000d69bfd0681a59e95f9409969.setIcon(div_icon_5d640012cb8cbc0c860c863c4b6e2790);
+            
+    
+            var marker_af7c2f19ca4eb019097abc4564d9e9a0 = L.marker(
+                [28.033886, 1.659626],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_418cb31b72b38881ba6d56e1ea97bc23 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_3b37da0f9462224fb53fff887ae9fbf0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_da837855583257fbf966b504ee0aa3e7 = $(`<div id="html_da837855583257fbf966b504ee0aa3e7" style="width: 100.0%; height: 100.0%;"><b>Algeria</b><br>Solar and Stellar Astrophysics: 1</div>`)[0];
+                popup_3b37da0f9462224fb53fff887ae9fbf0.setContent(html_da837855583257fbf966b504ee0aa3e7);
+            
+        
+
+        marker_af7c2f19ca4eb019097abc4564d9e9a0.bindPopup(popup_3b37da0f9462224fb53fff887ae9fbf0)
+        ;
+
+        
+    
+    
+                marker_af7c2f19ca4eb019097abc4564d9e9a0.setIcon(div_icon_418cb31b72b38881ba6d56e1ea97bc23);
+            
+    
+            var marker_1e823d20e5063e6c6c87d724fb7e68e8 = L.marker(
+                [64.963051, -19.020835],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_80a7d9c818d453ab243f304b40a17848 = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#002aff\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_797f77ccf4c2fa121a1c8142a7cbfe74 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_86189c1820f4794fd3e77c5767d9700a = $(`<div id="html_86189c1820f4794fd3e77c5767d9700a" style="width: 100.0%; height: 100.0%;"><b>Iceland</b><br>Astrophysics of Galaxies: 1</div>`)[0];
+                popup_797f77ccf4c2fa121a1c8142a7cbfe74.setContent(html_86189c1820f4794fd3e77c5767d9700a);
+            
+        
+
+        marker_1e823d20e5063e6c6c87d724fb7e68e8.bindPopup(popup_797f77ccf4c2fa121a1c8142a7cbfe74)
+        ;
+
+        
+    
+    
+                marker_1e823d20e5063e6c6c87d724fb7e68e8.setIcon(div_icon_80a7d9c818d453ab243f304b40a17848);
+            
+    
+            var marker_533f1b96291eb786192d3053c397ef96 = L.marker(
+                [12.238333, -1.561593],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_56998d8d9638d01da6470a47b9efadbf = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b179e9a9aef125784187b35f35bf914d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0a5b4d34c9f72ddfa48921020a54e002 = $(`<div id="html_0a5b4d34c9f72ddfa48921020a54e002" style="width: 100.0%; height: 100.0%;"><b>Burkina Faso</b><br>Solar and Stellar Astrophysics: 1</div>`)[0];
+                popup_b179e9a9aef125784187b35f35bf914d.setContent(html_0a5b4d34c9f72ddfa48921020a54e002);
+            
+        
+
+        marker_533f1b96291eb786192d3053c397ef96.bindPopup(popup_b179e9a9aef125784187b35f35bf914d)
+        ;
+
+        
+    
+    
+                marker_533f1b96291eb786192d3053c397ef96.setIcon(div_icon_56998d8d9638d01da6470a47b9efadbf);
+            
+    
+            var marker_f6fdc7439c220fc67cbcda04e60723c2 = L.marker(
+                [9.081999, 8.675277],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_1979652fc0b929a2357c8bac6d3ec28d = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#800000\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_9f121121f37c4a0d4ed36583321be50a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e8ba1ed59c4b8ffe7c15626dc7079f33 = $(`<div id="html_e8ba1ed59c4b8ffe7c15626dc7079f33" style="width: 100.0%; height: 100.0%;"><b>Nigeria</b><br>Solar and Stellar Astrophysics: 1</div>`)[0];
+                popup_9f121121f37c4a0d4ed36583321be50a.setContent(html_e8ba1ed59c4b8ffe7c15626dc7079f33);
+            
+        
+
+        marker_f6fdc7439c220fc67cbcda04e60723c2.bindPopup(popup_9f121121f37c4a0d4ed36583321be50a)
+        ;
+
+        
+    
+    
+                marker_f6fdc7439c220fc67cbcda04e60723c2.setIcon(div_icon_1979652fc0b929a2357c8bac6d3ec28d);
+            
+    
+            var marker_15c2d3e582b3d8da8043eaf63f9b4ba1 = L.marker(
+                [7.946527, -1.023194],
+                {
+}
+            ).addTo(map_a4eb683ff3fb25d092a4ac34d7437ba2);
+        
+    
+            var div_icon_41f018888ee2cd1d6be06cb856f0610c = L.divIcon({
+  "html": "\u003cdiv style=\"width:30px; height:30px;\"\u003e\u003csvg viewBox=\"-1 -1 2 2\" style=\"width:30px; height:30px;\"\u003e\u003cpath d=\"M 0 0 L 1.0 0.0 A 1 1 0 1 1 1.0 -2.4492935982947064e-16 Z\" fill=\"#ff4800\" stroke=\"white\" stroke-width=\"0.02\" /\u003e\u003c/svg\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_05d711f544a0a0343f0e2d7861461b2a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ca1ec48a8390bd4714c8fe76972b6b29 = $(`<div id="html_ca1ec48a8390bd4714c8fe76972b6b29" style="width: 100.0%; height: 100.0%;"><b>Ghana</b><br>Instrumentation and Methods for Astrophysics: 1</div>`)[0];
+                popup_05d711f544a0a0343f0e2d7861461b2a.setContent(html_ca1ec48a8390bd4714c8fe76972b6b29);
+            
+        
+
+        marker_15c2d3e582b3d8da8043eaf63f9b4ba1.bindPopup(popup_05d711f544a0a0343f0e2d7861461b2a)
+        ;
+
+        
+    
+    
+                marker_15c2d3e582b3d8da8043eaf63f9b4ba1.setIcon(div_icon_41f018888ee2cd1d6be06cb856f0610c);
+            
+</script>
+</html>
