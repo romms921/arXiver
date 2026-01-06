@@ -10,7 +10,7 @@ def extract_id(url):
     return match.group(1) if match else ""
 
 # The target counts
-check = [1344, 1287, 1585, 1467, 1386, 1478, 1816, 1304, 1860, 1889, 1551, 1305]
+check = [1344, 1287, 1585, 1467, 1386, 1478, 1816, 1304, 1860, 1889, 1551, 1694]
 months = [f"2025-{i:02d}" for i in range(1, 13)]
 
 print("Comparing CSV counts to ArXiv Target:")
