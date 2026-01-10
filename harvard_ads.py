@@ -17,12 +17,12 @@ dotenv.load_dotenv()
 ADS_API_KEY = os.getenv("ADS_API_KEY")
 ADS_URL = "https://api.adsabs.harvard.edu/v1/search/query"
 
-CSV_PATH = "FINAL_ARXIV_2025_copy.csv"
-OUTPUT_PATH = "papers_with_ads_metrics_5.csv"
+CSV_PATH = "FINAL_ARXIV_2025_Process.csv"
+OUTPUT_PATH = "papers_with_ads_metrics_6.csv"
 
 # Index Range (corresponds to row numbers in CSV)
-START_INDEX = 15000
-STOP_INDEX = 18334  # Set to None to process until the end
+START_INDEX = 18334
+STOP_INDEX = 18661  # Set to None to process until the end
 
 # Batching and Throttling
 BATCH_SIZE = 10
