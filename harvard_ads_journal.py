@@ -13,16 +13,16 @@ dotenv.load_dotenv()
 ADS_API_KEY = os.getenv("ADS_API_KEY")
 ADS_URL = "https://api.adsabs.harvard.edu/v1/search/query"
 
-CSV_PATH = "FINAL_ARXIV_2025_with_affiliations.csv"
-OUTPUT_PATH = "papers_with_journals_2.csv"
+CSV_PATH = "FINAL_ARXIV_2025_Process.csv"
+OUTPUT_PATH = "papers_with_journals_3.csv"
 
 # Index Range (corresponds to row numbers in CSV)
-START_INDEX = 0
-STOP_INDEX = None  # Set to None to process until the end
+START_INDEX = 18334
+STOP_INDEX = 18661  # Set to None to process until the end
 
 # Batching and Throttling
 BATCH_SIZE = 10
-RETRY_WAIT = 60 
+RETRY_WAIT = 60
 
 def get_headers():
     return {"Authorization": f"Bearer {ADS_API_KEY}"}
