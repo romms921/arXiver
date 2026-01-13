@@ -14,7 +14,7 @@ ADS_API_KEY = os.getenv("ADS_API_KEY")
 ADS_URL = "https://api.adsabs.harvard.edu/v1/search/query"
 
 CSV_PATH = "2025_Data_missing.csv"
-OUTPUT_PATH = "papers_with_journals_3.csv"
+OUTPUT_PATH = "papers_with_journals_4.csv"
 
 # Index Range (corresponds to row numbers in CSV)
 START_INDEX = 0
@@ -135,16 +135,8 @@ def main():
         print(f"No papers in range {START_INDEX} to {STOP_INDEX}")
         return
 
-    # Filter for mismatch: journal_flag == 0 AND total_citations > 0
-    if 'journal_flag' not in df.columns or 'total_citations' not in df.columns:
-        print("Error: 'journal_flag' or 'total_citations' columns missing.")
-        return
-
-    todo = df[(df['journal_flag'] == 0) & (df['total_citations'] > 0)].copy()
-
-    if todo.empty:
-        print("No papers with mismatch (journal_flag=0 and citations>0) found.")
-        return
+    # Process all rows irrespective of flags
+    todo = df.copy()
 
     # Progress tracking
     if os.path.exists(OUTPUT_PATH):

@@ -14,7 +14,7 @@ dotenv.load_dotenv()
 ADS_API_KEY = os.getenv("ADS_API_KEY")
 ADS_URL = "https://api.adsabs.harvard.edu/v1/search/query"
 
-CSV_PATH = "FINAL_ARXIV_2025_copy_updated.csv"
+CSV_PATH = "2025_Data_missing.csv"
 OUTPUT_PATH = "papers_with_ads_metrics.csv"
 
 BATCH_SIZE = 10
