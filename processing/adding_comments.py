@@ -20,6 +20,7 @@ for index, row in data.iterrows():
     
     # Skip if comments already collected (optional optimization)
     if pd.notna(row['comments']):
+        print(f"[{index + 1}/{len(data)}] Skipping {arxiv_id}, comments already present.")
         continue
 
     url = base_url.format(arxiv_id)
@@ -30,31 +31,38 @@ for index, row in data.iterrows():
         if response.status_code == 200:
             soup = bs4.BeautifulSoup(response.content, 'html.parser')
             
-            # Find the div that contains the metadata
-            meta_div = soup.find('div', class_='metatable')
-            
-            if meta_div:
-                # Extract Comments
-                comments_td = meta_div.find('td', class_='tablecell comments')
-                if comments_td:
-                    data.at[index, 'comments'] = comments_td.text.strip()
+            # --- Strategy 1: Look for "Comments:" label specifically (Most reliable across layouts) ---
+            # Finds <td class="tablecell label">Comments:</td> and gets the next sibling
+            comments_label = soup.find('td', class_='tablecell label', string='Comments:')
+            if comments_label:
+                comments_value = comments_label.find_next_sibling('td', class_='tablecell arx-comment')
+                # Sometimes the class isn't 'arx-comment', just the next td
+                if not comments_value:
+                     comments_value = comments_label.find_next_sibling('td')
                 
-                # Extract Journal-ref
-                journal_td = meta_div.find('td', class_='tablecell journal-ref')
-                if journal_td:
-                    data.at[index, 'journals'] = journal_td.text.strip()
+                if comments_value:
+                    data.at[index, 'comments'] = comments_value.text.strip()
+
+            # --- Strategy 2: Look for "Journal-ref:" label ---
+            journal_label = soup.find('td', class_='tablecell label', string='Journal-ref:')
+            if journal_label:
+                journal_value = journal_label.find_next_sibling('td', class_='tablecell jref')
+                if not journal_value:
+                     journal_value = journal_label.find_next_sibling('td')
+                
+                if journal_value:
+                    data.at[index, 'journals'] = journal_value.text.strip()
             
-            # Fallback for newer arXiv layout where class names are slightly different
-            # Looking for direct sibling classes often used in abstract pages
+            # --- Strategy 3: Fallback for newer CSS (div-based) layout ---
             if pd.isna(data.at[index, 'comments']):
-               comments_label = soup.find('span', class_='descriptor', string='Comments:')
-               if comments_label and comments_label.parent:
-                   data.at[index, 'comments'] = comments_label.parent.text.replace('Comments:', '', 1).strip()
+               div_comments_label = soup.find('span', class_='descriptor', string='Comments:')
+               if div_comments_label and div_comments_label.parent:
+                   data.at[index, 'comments'] = div_comments_label.parent.text.replace('Comments:', '', 1).strip()
 
             if pd.isna(data.at[index, 'journals']):
-               journal_label = soup.find('span', class_='descriptor', string='Journal-ref:')
-               if journal_label and journal_label.parent:
-                   data.at[index, 'journals'] = journal_label.parent.text.replace('Journal-ref:', '', 1).strip()
+               div_journal_label = soup.find('span', class_='descriptor', string='Journal-ref:')
+               if div_journal_label and div_journal_label.parent:
+                   data.at[index, 'journals'] = div_journal_label.parent.text.replace('Journal-ref:', '', 1).strip()
                    
         else:
             print(f"  Failed! Status code: {response.status_code}")
