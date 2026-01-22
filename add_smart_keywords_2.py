@@ -37,7 +37,7 @@ def recommend_keywords(title, abstract, bank):
     return sorted(list(set(matches)))[:3]
 
 def main():
-    csv_path = 'FINAL_ARXIV_2025_with_affiliations.csv'
+    csv_path = '.csv'
     if not os.path.exists(csv_path):
         print(f"File {csv_path} not found.")
         return
