@@ -37,7 +37,7 @@ def recommend_keywords(title, abstract, bank):
     return sorted(list(set(matches)))[:3]
 
 def main():
-    csv_path = '.csv'
+    csv_path = '/Users/ainsleylewis/Documents/Astronomy/arXiver/2025_Data_missing.csv'
     if not os.path.exists(csv_path):
         print(f"File {csv_path} not found.")
         return
