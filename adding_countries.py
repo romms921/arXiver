@@ -15,7 +15,7 @@ from tqdm import tqdm
 
 INPUT_FILE = '2025_Data.csv'
 COORDS_FILE = 'world_coords.csv'
-OUTPUT_FILE = '2025_Data_processed.csv'
+OUTPUT_FILE = '2025_Data_processed_2.csv'
 TEMP_DIR = 'temp_arxiv_source'
 SAVE_INTERVAL = 10
 ARXIV_RATE_LIMIT = 3  # Seconds (strict)
@@ -45,6 +45,9 @@ if not os.path.exists(TEMP_DIR):
 print("Loading datasets...")
 try:
     df = pd.read_csv(INPUT_FILE)
+    # Skip first 10000 rows
+    df = df.iloc[10000:]
+
     world_df = pd.read_csv(COORDS_FILE)
 except FileNotFoundError as e:
     print(f"Error: {e}")
@@ -90,9 +93,10 @@ def get_all_latex_lines(directory):
 def process_lines_with_buffer(lines):
     """
     Scans lines for countries. 
-    Stops if 50 lines pass after a match without finding a new match.
+    Stops if 30 lines pass after a match without finding a new match.
+    STORES DUPLICATES (e.g. Germany, Germany).
     """
-    found_matches = set()
+    found_matches = []  # CHANGED: List instead of Set to allow duplicates
     lines_since_last_match = 0
     has_found_any = False
     
@@ -109,7 +113,8 @@ def process_lines_with_buffer(lines):
                 # Resolve to standard name
                 for key in search_map:
                     if key.lower() == match.lower():
-                        found_matches.add(search_map[key])
+                        # CHANGED: Append directly to keep duplicates
+                        found_matches.append(search_map[key])
                         break
         else:
             # No match in this line
@@ -121,7 +126,8 @@ def process_lines_with_buffer(lines):
                     # We assume the affiliation section is over
                     break
                     
-    return sorted(list(found_matches))
+    # CHANGED: Return the list directly (preserves order of appearance)
+    return found_matches
 
 # ==========================================
 # THREAD 1: DOWNLOADER (PRODUCER)
@@ -219,7 +225,10 @@ def processor_thread(pbar):
             countries_found = process_lines_with_buffer(all_lines)
             
             if countries_found:
-                tqdm.write(f"   [{arxiv_id}] Found: {', '.join(countries_found)}")
+                # Only print first few to keep log clean, but process all
+                display_str = ', '.join(countries_found[:5])
+                if len(countries_found) > 5: display_str += "..."
+                tqdm.write(f"   [{arxiv_id}] Found: {display_str}")
 
         # 3. Update & Save
         df.at[index, 'latex_countries'] = ", ".join(countries_found)
@@ -239,7 +248,7 @@ def processor_thread(pbar):
 # MAIN EXECUTION
 # ==========================================
 
-print("Starting Optimized Processing (Buffer Stop Mode)...")
+print("Starting Optimized Processing (Buffer Stop Mode - Allowing Duplicates)...")
 
 total_papers = df.shape[0]
 pbar = tqdm(total=total_papers, unit="paper")
