@@ -15,7 +15,7 @@ from tqdm import tqdm
 
 INPUT_FILE = '2025_Data.csv'
 COORDS_FILE = 'world_coords.csv'
-OUTPUT_FILE = '2025_Data_processed_2.csv'
+OUTPUT_FILE = '2025_Data_processed_1.csv'
 TEMP_DIR = 'temp_arxiv_source'
 SAVE_INTERVAL = 10
 ARXIV_RATE_LIMIT = 3  # Seconds (strict)
@@ -45,8 +45,8 @@ if not os.path.exists(TEMP_DIR):
 print("Loading datasets...")
 try:
     df = pd.read_csv(INPUT_FILE)
-    # Skip first 10000 rows
-    df = df.iloc[10000:]
+    # Only first 10000 rows
+    df = df.head(10000)
 
     world_df = pd.read_csv(COORDS_FILE)
 except FileNotFoundError as e:
