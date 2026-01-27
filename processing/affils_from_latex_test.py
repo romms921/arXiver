@@ -1,13 +1,24 @@
 import json
+import time
+import os
 from typing import List, Optional
 from pydantic import BaseModel
-from ollama import chat
 from tqdm import tqdm
+from openai import OpenAI
 
 # --- CONFIGURATION ---
-INPUT_FILE = "papers_data.txt"
+# 1. PASTE YOUR DEEPSEEK API KEY HERE
+API_KEY = ""
+
+# 2. FILE PATHS
+INPUT_FILE = r"C:\Users\Rommulus\Documents\Astronomy\arXiver\latex_affiliations_output.txt"
 OUTPUT_FILE = "extracted_affiliations.json"
-MODEL = "llama3.2" 
+
+# --- SETUP CLIENT (DEEPSEEK) ---
+client = OpenAI(
+    api_key=API_KEY, 
+    base_url="https://api.deepseek.com"  # Connects to DeepSeek servers
+)
 
 # --- DATA STRUCTURES ---
 class Author(BaseModel):
@@ -19,129 +30,110 @@ class PaperData(BaseModel):
     title: str
     authors: List[Author]
 
-# --- PARSER WITH SKIP LOGIC ---
+# --- PARSER ---
 def paper_generator(file_path):
-    """
-    Yields only VALID papers containing LaTeX.
-    Skips papers with 'ERROR: Failed to download'.
-    """
     current_title = None
     current_latex = []
-    
-    # State flags
-    is_recording = False  # Are we currently capturing text?
-    is_error = False      # Did we hit an error for this paper?
-
-    skipped_count = 0
+    is_recording = False
+    is_error = False
 
     with open(file_path, 'r', encoding='utf-8', errors='replace') as f:
         for line in f:
             stripped = line.strip()
-
-            # 1. NEW PAPER DETECTED
             if line.startswith("PAPER:"):
-                # Yield previous paper ONLY if it was valid and not an error
                 if current_title and current_latex and not is_error:
                     yield current_title, "".join(current_latex)
-                
-                # Reset for new paper
                 current_title = line.replace("PAPER:", "").strip()
                 current_latex = []
                 is_recording = False
                 is_error = False
                 continue
-
-            # 2. IGNORE DASHES
-            if set(stripped) == {'-'}:
-                continue
-
-            # 3. DETECT ERROR (IMMEDIATE SKIP)
+            if set(stripped) == {'-'}: continue
             if line.startswith("ERROR:"):
                 is_error = True
-                is_recording = False # Stop recording
-                skipped_count += 1
+                is_recording = False
                 continue
-
-            # 4. DETECT VALID CONTENT START
             if "AFFILIATION SECTION:" in line:
                 is_recording = True
                 continue
-
-            # 5. CAPTURE CONTENT
             if is_recording and not is_error:
                 current_latex.append(line)
-
-        # Yield the very last paper if valid
         if current_title and current_latex and not is_error:
             yield current_title, "".join(current_latex)
-            
-    print(f"\n[Info] Skipped {skipped_count} papers due to download errors.")
 
-# --- LLM INFERENCE ---
+# --- DEEPSEEK INFERENCE ---
 def extract_from_latex(title, latex_content):
-    # Truncate to first 4000 chars to save speed/memory
-    truncated_latex = latex_content[:4000]
+    # DeepSeek V3 has a 64k context window, handling large papers easily
+    truncated_latex = latex_content[:15000]
 
     prompt = f"""
-    Analyze the following LaTeX header to extract Author Affiliations.
+    Extract Author Affiliations from the LaTeX header below into JSON.
+
+    CRITICAL RULES:
+    1. **Multiple Affiliations:** If an author has multiple markers (e.g., `^1,2` or `\\affil{{1,2}}`), you MUST add both institutions to their list.
+    2. **Resolve References:** Match the numbers/symbols to the correct institution text.
+    3. **JSON Only:** Return ONLY valid JSON, no markdown formatting like ```json.
     
-    RULES:
-    1. Extract all authors and their specific universities/institutes.
-    2. Resolve cross-references: If you see `\\author[1]` and `\\affil[1]`, link them.
-    3. Return valid JSON only.
-    
-    Paper Title: {title}
-    
+    Target Structure:
+    {{
+      "title": "{title}",
+      "authors": [
+        {{ "name": "Author Name", "affiliations": ["Univ A", "Univ B"], "email": "opt" }}
+      ]
+    }}
+
     LaTeX Content:
-    ```latex
     {truncated_latex}
-    ```
     """
 
     try:
-        response = chat(
-            model=MODEL,
-            messages=[{'role': 'user', 'content': prompt}],
-            format=PaperData.model_json_schema(),
-            options={'temperature': 0} 
+        response = client.chat.completions.create(
+            model="deepseek-chat",  # This is DeepSeek-V3 (Fast & Smart)
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant that outputs strict JSON."},
+                {"role": "user", "content": prompt},
+            ],
+            response_format={ 'type': 'json_object' }, # Enforces JSON
+            temperature=0,
+            stream=False
         )
-        return json.loads(response.message.content)
+        
+        content = response.choices[0].message.content
+        return json.loads(content)
+
     except Exception as e:
+        print(f"Error on '{title}': {e}")
+        # Basic rate limit handling just in case
+        time.sleep(2) 
         return {"title": title, "authors": [], "error": str(e)}
 
-# --- MAIN LOOP ---
+# --- MAIN ---
 def main():
     results = []
     
-    # 1. Quick Count for Progress Bar
-    print("Scanning file to count papers...")
-    total_entries = 0
-    with open(INPUT_FILE, 'r', encoding='utf-8', errors='ignore') as f:
-        for line in f:
-            if line.startswith("PAPER:"):
-                total_entries += 1
-    print(f"Found {total_entries} total entries (including errors).")
+    if not os.path.exists(INPUT_FILE):
+        print(f"Error: File not found at {INPUT_FILE}")
+        return
 
-    # 2. Process
+    print("Counting papers...")
+    total_entries = sum(1 for line in open(INPUT_FILE, 'r', encoding='utf-8', errors='ignore') if line.startswith("PAPER:"))
+    
+    print(f"Processing {total_entries} papers using DeepSeek API...")
     generator = paper_generator(INPUT_FILE)
     
-    # We use total_entries for the bar, though it will finish 'early' 
-    # because the generator skips the error ones invisibly.
     for title, latex in tqdm(generator, total=total_entries):
-        
         data = extract_from_latex(title, latex)
         results.append(data)
 
-        # Autosave every 50 VALID papers
-        if len(results) % 50 == 0:
+        # Save frequently
+        if len(results) % 10 == 0:
             with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
                 json.dump(results, f, indent=2)
-
-    # 3. Final Save
+    
+    # Final Save
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2)
-        
-    print(f"Done. Processed {len(results)} valid papers.")
+    print("Done.")
 
 if __name__ == "__main__":
     main()
