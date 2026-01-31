@@ -154,7 +154,7 @@ Output format should be a JSON object ONLY:
 }
 """
     # Truncate to avoid context limit if necessary
-    truncated_latex = latex_text[:50000]
+    truncated_latex = latex_text
 
     try:
         completion = client.chat.completions.create(
