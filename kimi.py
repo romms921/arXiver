@@ -25,8 +25,14 @@ DATASET_PATH = '2025_Data.csv'
 OUTPUT_CSV = 'kimi_output.csv'
 OUTPUT_JSON = 'kimi_output.json'
 ARXIV_DIR = 'arxiv_papers'
-START_INDEX = 0
+START_INDEX = 103
 STOP_INDEX = 1000000  # Run until end or manually stopped
+COUNTRY_DB_PATH = 'world_coords.csv'
+
+# Global regex patterns (initialized in main)
+SHORT_COUNTRY_PATTERN = None
+LONG_COUNTRY_PATTERN = None
+
 
 def setup_directories():
     if not os.path.exists(ARXIV_DIR):
@@ -35,6 +41,85 @@ def setup_directories():
     # Ensure output CSV has header if new
     if not os.path.exists(OUTPUT_CSV):
         pd.DataFrame(columns=['original_index', 'arxiv_id', 'extracted_authors', 'extracted_affiliations', 'extracted_countries', 'first_author_country']).to_csv(OUTPUT_CSV, index=False)
+
+def load_country_keywords(csv_path):
+    """Loads country names/codes and returns regex patterns."""
+    country_keywords = set()
+    
+    if os.path.exists(csv_path):
+        try:
+            df = pd.read_csv(csv_path)
+            for _, row in df.iterrows():
+                if pd.notna(row['country']):
+                    country_keywords.add(str(row['country']).strip())
+                if pd.notna(row['country_code']):
+                    country_keywords.add(str(row['country_code']).strip())
+        except Exception as e:
+            print(f"Error loading country DB: {e}")
+    
+    # Manual aliases
+    country_keywords.add("USA")
+    country_keywords.add("UK")
+    country_keywords.add("US") # Ensure US is in if not in CSV
+    
+    short_codes = {k for k in country_keywords if len(k) == 2 and k.isupper()}
+    long_names = {k for k in country_keywords if len(k) > 2 or not k.isupper()}
+    
+    # Regex 1: Short codes - strict case, word boundaries
+    # We explicitly treat them as strict case sensitive keys
+    if short_codes:
+        short_pattern = r'\b(' + '|'.join(re.escape(k) for k in short_codes) + r')\b'
+    else:
+        short_pattern = r'(?!)' # Match nothing
+
+    # Regex 2: Long names - ignore case (handled by re.IGNORECASE flag later), word boundaries
+    if long_names:
+        long_pattern = r'\b(' + '|'.join(re.escape(k) for k in long_names) + r')\b'
+    else:
+        long_pattern = r'(?!)'
+        
+    print(f"Loaded {len(short_codes)} short codes and {len(long_names)} long names.")
+    return short_pattern, long_pattern
+
+def filter_latex_by_country(latex_text):
+    """
+    Finds the first instance of a country match.
+    Returns 500 lines starting from that match.
+    If no match, returns first 10k chars.
+    """
+    if not latex_text or (not SHORT_COUNTRY_PATTERN and not LONG_COUNTRY_PATTERN):
+        return latex_text[:10000]
+
+    lines = latex_text.split('\n')
+    
+    # Compiled regexes
+    re_short = re.compile(SHORT_COUNTRY_PATTERN)
+    re_long = re.compile(LONG_COUNTRY_PATTERN, re.IGNORECASE)
+    
+    first_match_index = -1
+    
+    for i, line in enumerate(lines):
+        if re_short.search(line) or re_long.search(line):
+             first_match_index = i
+             break
+            
+    if first_match_index == -1:
+        print("No country keywords found. Returning first 10k chars.")
+        return latex_text[:10000]
+
+    # Take first match + 500 lines
+    # We'll include a small safety buffer of 10 lines before, just in case the country is on a new line 
+    # after the affiliation start, but primarily focus on the forward context as requested.
+    # Actually, user said "take + 500 lines". I'll do [i : i+500] to be precise to the request.
+    
+    start_line = first_match_index
+    end_line = min(len(lines), start_line + 500)
+    
+    final_lines = lines[start_line:end_line]
+        
+    print(f"Found country at line {start_line}. Extracted {len(final_lines)} lines.")
+    return "\n".join(final_lines)
+
 
 def get_eprint_url(pdf_link):
     """Converts a PDF link (e.g., https://arxiv.org/pdf/2501.13049) to an e-print source link."""
@@ -138,6 +223,10 @@ def cleanup(arxiv_id):
 
 def query_kimi(latex_text):
     """Sends LaTeX content to Kimi API."""
+    
+    # Filter text first
+    filtered_text = filter_latex_by_country(latex_text)
+    
     prompt = """
 From this LaTeX extract all the author names and their corresponding affiliations. Preserve the order of the authors and account for the fact that one author can have multiple affiliations. Also, extract the country associated with each affiliation as well as the country ot countires associated with the first author. Give the output as json with the authors their respective affiliations and country and finally a first author country/countries.
 
@@ -153,15 +242,15 @@ Output format should be a JSON object ONLY:
   "first_author_countries": ["Country 1"]
 }
 """
-    # Truncate to avoid context limit if necessary
-    truncated_latex = latex_text[:10000]
+    # Truncate to avoid context limit if necessary (though filtering should help)
+    truncated_latex = filtered_text[:120000] # Increased limit since we filtered for relevance
 
     try:
         completion = client.chat.completions.create(
             model="kimi-k2-turbo-preview",  # Using user specific model
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that extracts structured data from LaTeX."},
-                {"role": "user", "content": f"{prompt}\n\nLaTeX Content:\n{truncated_latex}"}
+                {"role": "user", "content": f"{prompt}\n\nLaTeX Content (Filtered):\n{truncated_latex}"}
             ],
             temperature=0.3,
         )
@@ -223,7 +312,12 @@ def format_for_csv(json_data):
     return json.dumps(authors), json.dumps(affiliations), json.dumps(countries), first_author_country
 
 def main():
+    global SHORT_COUNTRY_PATTERN, LONG_COUNTRY_PATTERN
     setup_directories()
+    
+    # Load country data
+    print("Loading country data...")
+    SHORT_COUNTRY_PATTERN, LONG_COUNTRY_PATTERN = load_country_keywords(COUNTRY_DB_PATH)
     
     print(f"Reading dataset {DATASET_PATH}...")
     df = pd.read_csv(DATASET_PATH)
