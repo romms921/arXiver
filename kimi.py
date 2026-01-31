@@ -154,7 +154,7 @@ Output format should be a JSON object ONLY:
 }
 """
     # Truncate to avoid context limit if necessary
-    truncated_latex = latex_text
+    truncated_latex = latex_text[:10000]
 
     try:
         completion = client.chat.completions.create(
@@ -275,6 +275,7 @@ def main():
             continue
             
         file_path = download_source(eprint_url, arxiv_id)
+        start_time = time.time()
         if not file_path:
             time.sleep(3)
             continue
@@ -312,7 +313,10 @@ def main():
             tqdm.write(f"[{index}] No latex text returned for {arxiv_id}")
         
         cleanup(arxiv_id)
-        time.sleep(3)
+        current_time = time.time()
+        elapsed = current_time - start_time
+        if elapsed < 3:
+            time.sleep(3 - elapsed)  # Rate limit
 
 if __name__ == "__main__":
     main()
