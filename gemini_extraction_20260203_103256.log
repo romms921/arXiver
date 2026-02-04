@@ -1,0 +1,117 @@
+2026-02-03 10:32:57 | INFO     | ============================================================
+2026-02-03 10:32:57 | INFO     | GEMINI AUTHOR AFFILIATION EXTRACTOR
+2026-02-03 10:32:57 | INFO     | Model: gemini-3-flash-preview
+2026-02-03 10:32:57 | INFO     | Batch Size: 15
+2026-02-03 10:32:57 | INFO     | Max LaTeX chars per paper: 15000
+2026-02-03 10:32:57 | INFO     | ============================================================
+2026-02-03 10:32:57 | INFO     | Using LaTeX directory: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver
+2026-02-03 10:32:57 | INFO     | Reading dataset: 2025_Data.csv
+2026-02-03 10:32:58 | INFO     | Total papers in dataset: 18660
+2026-02-03 10:32:58 | INFO     | Using link column: pdf_link
+2026-02-03 10:32:59 | INFO     | Found 3010 already processed entries
+2026-02-03 10:32:59 | INFO     | Papers to process: 15650
+2026-02-03 10:32:59 | INFO     | 
+========================================
+2026-02-03 10:32:59 | INFO     | BATCH 1/1044
+2026-02-03 10:32:59 | INFO     | Indices: [2, 12, 33, 37, 95, 96, 104, 115, 197, 260, 286, 302, 303, 312, 321]
+2026-02-03 10:32:59 | INFO     | ========================================
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.12781: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12781
+2026-02-03 10:32:59 | WARNING  | [2] No LaTeX text found for 2501.12781
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.12694: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12694
+2026-02-03 10:32:59 | WARNING  | [12] No LaTeX text found for 2501.12694
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.12970: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12970
+2026-02-03 10:32:59 | WARNING  | [33] No LaTeX text found for 2501.12970
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.12922: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12922
+2026-02-03 10:32:59 | WARNING  | [37] No LaTeX text found for 2501.12922
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.13861: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.13861
+2026-02-03 10:32:59 | WARNING  | [95] No LaTeX text found for 2501.13861
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.13847: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.13847
+2026-02-03 10:32:59 | WARNING  | [96] No LaTeX text found for 2501.13847
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.14026: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14026
+2026-02-03 10:32:59 | WARNING  | [104] No LaTeX text found for 2501.14026
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.14085: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14085
+2026-02-03 10:32:59 | WARNING  | [115] No LaTeX text found for 2501.14085
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.10512: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10512
+2026-02-03 10:32:59 | WARNING  | [197] No LaTeX text found for 2501.10512
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.11667: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.11667
+2026-02-03 10:32:59 | WARNING  | [260] No LaTeX text found for 2501.11667
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.11762: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.11762
+2026-02-03 10:32:59 | WARNING  | [286] No LaTeX text found for 2501.11762
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.10754: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10754
+2026-02-03 10:32:59 | WARNING  | [302] No LaTeX text found for 2501.10754
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.10749: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10749
+2026-02-03 10:32:59 | WARNING  | [303] No LaTeX text found for 2501.10749
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.10903: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10903
+2026-02-03 10:32:59 | WARNING  | [312] No LaTeX text found for 2501.10903
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.11298: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.11298
+2026-02-03 10:32:59 | WARNING  | [321] No LaTeX text found for 2501.11298
+2026-02-03 10:32:59 | INFO     | 📦 Batch collection complete: 0/15 papers collected
+2026-02-03 10:32:59 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 10:32:59 | INFO     | 
+========================================
+2026-02-03 10:32:59 | INFO     | BATCH 2/1044
+2026-02-03 10:32:59 | INFO     | Indices: [365, 381, 383, 384, 401, 402, 431, 455, 464, 465, 466, 467, 468, 469, 470]
+2026-02-03 10:32:59 | INFO     | ========================================
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.17932
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.17932 (5867 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [365] Collected 2501.17932: CIBER 4th flight fluctuation analysis: Pseudo-powe... (0.03s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.17220
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.17220 (118011 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [381] Collected 2501.17220: The initial-to-final mass relation of white dwarfs... (0.26s)
+2026-02-03 10:32:59 | DEBUG    | Found 2 .tex files for 2501.17173
+2026-02-03 10:32:59 | INFO     | Combined 2 .tex files for 2501.17173 (282791 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [383] Collected 2501.17173: Model Evaluation of a Transformable CubeSat for No... (0.05s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.17163
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.17163 (10999 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [384] Collected 2501.17163: Nonlinear fitting of undersampled discrete dataset... (0.03s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.17362
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.17362 (64891 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [401] Collected 2501.17362: Dark Matter Substructure: A Lensing Perspective... (0.03s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.17360
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.17360 (92655 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [402] Collected 2501.17360: Observing Rayleigh-Taylor stable and unstable accr... (0.11s)
+2026-02-03 10:32:59 | WARNING  | Folder not found for 2501.18730: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.18730
+2026-02-03 10:32:59 | WARNING  | [431] No LaTeX text found for 2501.18730
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.19169
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.19169 (105749 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [455] Collected 2501.19169: Testing the Rossby Paradigm: Weakened Magnetic Bra... (0.02s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.18335
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.18335 (33267 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [464] Collected 2501.18335: Quintessential Implications of the presence of AdS... (0.04s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.18333
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.18333 (51306 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [465] Collected 2501.18333: Interpretability of deep-learning methods applied ... (0.03s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.18276
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.18276 (102790 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [466] Collected 2501.18276: Variations of absolute source positions determined... (0.02s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.18249
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.18249 (43208 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [467] Collected 2501.18249: An examination of large-scale galactic effects on ... (0.03s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.18241
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.18241 (23338 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [468] Collected 2501.18241: Evolution of molecular clouds on galaxy-cloud scal... (0.02s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.18239
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.18239 (35875 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [469] Collected 2501.18239: On the increase in the concentration of primordial... (0.04s)
+2026-02-03 10:32:59 | DEBUG    | Found 1 .tex files for 2501.18182
+2026-02-03 10:32:59 | INFO     | Combined 1 .tex files for 2501.18182 (36462 chars total)
+2026-02-03 10:32:59 | INFO     | ✅ [470] Collected 2501.18182: Constraints on Baryon Density from the Effective O... (0.06s)
+2026-02-03 10:32:59 | INFO     | 📦 Batch collection complete: 14/15 papers collected
+2026-02-03 10:32:59 | INFO     | Sending batch of 14 papers to Gemini...
+2026-02-03 10:32:59 | INFO     | Processing batch of 14 papers:
+2026-02-03 10:32:59 | INFO     |   - 2501.17932: CIBER 4th flight fluctuation analysis: Pseudo-powe...
+2026-02-03 10:32:59 | INFO     |   - 2501.17220: The initial-to-final mass relation of white dwarfs...
+2026-02-03 10:32:59 | INFO     |   - 2501.17173: Model Evaluation of a Transformable CubeSat for No...
+2026-02-03 10:32:59 | INFO     |   - 2501.17163: Nonlinear fitting of undersampled discrete dataset...
+2026-02-03 10:32:59 | INFO     |   - 2501.17362: Dark Matter Substructure: A Lensing Perspective...
+2026-02-03 10:32:59 | INFO     |   - 2501.17360: Observing Rayleigh-Taylor stable and unstable accr...
+2026-02-03 10:32:59 | INFO     |   - 2501.19169: Testing the Rossby Paradigm: Weakened Magnetic Bra...
+2026-02-03 10:32:59 | INFO     |   - 2501.18335: Quintessential Implications of the presence of AdS...
+2026-02-03 10:32:59 | INFO     |   - 2501.18333: Interpretability of deep-learning methods applied ...
+2026-02-03 10:32:59 | INFO     |   - 2501.18276: Variations of absolute source positions determined...
+2026-02-03 10:32:59 | INFO     |   - 2501.18249: An examination of large-scale galactic effects on ...
+2026-02-03 10:32:59 | INFO     |   - 2501.18241: Evolution of molecular clouds on galaxy-cloud scal...
+2026-02-03 10:32:59 | INFO     |   - 2501.18239: On the increase in the concentration of primordial...
+2026-02-03 10:32:59 | INFO     |   - 2501.18182: Constraints on Baryon Density from the Effective O...
+2026-02-03 10:34:18 | WARNING  | Service unavailable (503) - model overloaded. Waiting 30s before retry 1/5
+2026-02-03 10:34:18 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...

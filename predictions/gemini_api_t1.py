@@ -11,7 +11,7 @@ import dotenv
 # =======================
 # CONFIGURATION
 # =======================
-MODEL_ID = "gemini-2.5-flash-lite"
+MODEL_ID = "gemini-3-flash-preview"
 CSV_PATH = "test_filled_16.csv"
 OUTPUT_CSV_PATH = "test_filled_17.csv"
 LATEX_FILES = [

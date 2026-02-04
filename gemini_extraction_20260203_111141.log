@@ -1,0 +1,1169 @@
+2026-02-03 11:11:41 | INFO     | ============================================================
+2026-02-03 11:11:41 | INFO     | GEMINI AUTHOR AFFILIATION EXTRACTOR
+2026-02-03 11:11:41 | INFO     | Model: gemini-2.5-flash-lite
+2026-02-03 11:11:41 | INFO     | Batch Size: 8
+2026-02-03 11:11:41 | INFO     | Max LaTeX chars per paper: 25000
+2026-02-03 11:11:41 | INFO     | ============================================================
+2026-02-03 11:11:41 | INFO     | Using LaTeX directory: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver
+2026-02-03 11:11:41 | INFO     | Reading dataset: 2025_Data.csv
+2026-02-03 11:11:43 | INFO     | Total papers in dataset: 18660
+2026-02-03 11:11:43 | INFO     | Using link column: pdf_link
+2026-02-03 11:11:43 | INFO     | Found 3348 already processed entries
+2026-02-03 11:11:43 | INFO     | Papers to process: 15312
+2026-02-03 11:11:43 | INFO     | 
+========================================
+2026-02-03 11:11:43 | INFO     | BATCH 1/1914
+2026-02-03 11:11:43 | INFO     | Indices: [2, 12, 33, 37, 95, 96, 104, 115]
+2026-02-03 11:11:43 | INFO     | ========================================
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.12781: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12781
+2026-02-03 11:11:43 | WARNING  | [2] No LaTeX text found for 2501.12781
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.12694: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12694
+2026-02-03 11:11:43 | WARNING  | [12] No LaTeX text found for 2501.12694
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.12970: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12970
+2026-02-03 11:11:43 | WARNING  | [33] No LaTeX text found for 2501.12970
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.12922: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12922
+2026-02-03 11:11:43 | WARNING  | [37] No LaTeX text found for 2501.12922
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.13861: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.13861
+2026-02-03 11:11:43 | WARNING  | [95] No LaTeX text found for 2501.13861
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.13847: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.13847
+2026-02-03 11:11:43 | WARNING  | [96] No LaTeX text found for 2501.13847
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.14026: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14026
+2026-02-03 11:11:43 | WARNING  | [104] No LaTeX text found for 2501.14026
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.14085: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14085
+2026-02-03 11:11:43 | WARNING  | [115] No LaTeX text found for 2501.14085
+2026-02-03 11:11:43 | INFO     | 📦 Batch collection complete: 0/8 papers collected
+2026-02-03 11:11:43 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:11:43 | INFO     | 
+========================================
+2026-02-03 11:11:43 | INFO     | BATCH 2/1914
+2026-02-03 11:11:43 | INFO     | Indices: [197, 260, 286, 302, 303, 312, 321, 431]
+2026-02-03 11:11:43 | INFO     | ========================================
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.10512: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10512
+2026-02-03 11:11:43 | WARNING  | [197] No LaTeX text found for 2501.10512
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.11667: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.11667
+2026-02-03 11:11:43 | WARNING  | [260] No LaTeX text found for 2501.11667
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.11762: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.11762
+2026-02-03 11:11:43 | WARNING  | [286] No LaTeX text found for 2501.11762
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.10754: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10754
+2026-02-03 11:11:43 | WARNING  | [302] No LaTeX text found for 2501.10754
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.10749: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10749
+2026-02-03 11:11:43 | WARNING  | [303] No LaTeX text found for 2501.10749
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.10903: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10903
+2026-02-03 11:11:43 | WARNING  | [312] No LaTeX text found for 2501.10903
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.11298: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.11298
+2026-02-03 11:11:43 | WARNING  | [321] No LaTeX text found for 2501.11298
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.18730: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.18730
+2026-02-03 11:11:43 | WARNING  | [431] No LaTeX text found for 2501.18730
+2026-02-03 11:11:43 | INFO     | 📦 Batch collection complete: 0/8 papers collected
+2026-02-03 11:11:43 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:11:43 | INFO     | 
+========================================
+2026-02-03 11:11:43 | INFO     | BATCH 3/1914
+2026-02-03 11:11:43 | INFO     | Indices: [510, 523, 551, 574, 583, 589, 594, 609]
+2026-02-03 11:11:43 | INFO     | ========================================
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.15254: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.15254
+2026-02-03 11:11:43 | WARNING  | [510] No LaTeX text found for 2501.15254
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.15004: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.15004
+2026-02-03 11:11:43 | WARNING  | [523] No LaTeX text found for 2501.15004
+2026-02-03 11:11:43 | WARNING  | No .tex files found in folder: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14509
+2026-02-03 11:11:43 | WARNING  | [551] No LaTeX text found for 2501.14509
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.14871: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14871
+2026-02-03 11:11:43 | WARNING  | [574] No LaTeX text found for 2501.14871
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.14650: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14650
+2026-02-03 11:11:43 | WARNING  | [583] No LaTeX text found for 2501.14650
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.16755: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16755
+2026-02-03 11:11:43 | WARNING  | [589] No LaTeX text found for 2501.16755
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.16682: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16682
+2026-02-03 11:11:43 | WARNING  | [594] No LaTeX text found for 2501.16682
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.16818: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16818
+2026-02-03 11:11:43 | WARNING  | [609] No LaTeX text found for 2501.16818
+2026-02-03 11:11:43 | INFO     | 📦 Batch collection complete: 0/8 papers collected
+2026-02-03 11:11:43 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:11:43 | INFO     | 
+========================================
+2026-02-03 11:11:43 | INFO     | BATCH 4/1914
+2026-02-03 11:11:43 | INFO     | Indices: [646, 648, 652, 666, 671, 673, 688, 726]
+2026-02-03 11:11:43 | INFO     | ========================================
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.16047: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16047
+2026-02-03 11:11:43 | WARNING  | [646] No LaTeX text found for 2501.16047
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.16203: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16203
+2026-02-03 11:11:43 | WARNING  | [648] No LaTeX text found for 2501.16203
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.16452: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16452
+2026-02-03 11:11:43 | WARNING  | [652] No LaTeX text found for 2501.16452
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.16317: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16317
+2026-02-03 11:11:43 | WARNING  | [666] No LaTeX text found for 2501.16317
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.09369: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.09369
+2026-02-03 11:11:43 | WARNING  | [671] No LaTeX text found for 2501.09369
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.09300: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.09300
+2026-02-03 11:11:43 | WARNING  | [673] No LaTeX text found for 2501.09300
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.03559: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03559
+2026-02-03 11:11:43 | WARNING  | [688] No LaTeX text found for 2501.03559
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.03214: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03214
+2026-02-03 11:11:43 | WARNING  | [726] No LaTeX text found for 2501.03214
+2026-02-03 11:11:43 | INFO     | 📦 Batch collection complete: 0/8 papers collected
+2026-02-03 11:11:43 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:11:43 | INFO     | 
+========================================
+2026-02-03 11:11:43 | INFO     | BATCH 5/1914
+2026-02-03 11:11:43 | INFO     | Indices: [731, 732, 739, 750, 761, 823, 856, 860]
+2026-02-03 11:11:43 | INFO     | ========================================
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.03117: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03117
+2026-02-03 11:11:43 | WARNING  | [731] No LaTeX text found for 2501.03117
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.03100: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03100
+2026-02-03 11:11:43 | WARNING  | [732] No LaTeX text found for 2501.03100
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.03436: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03436
+2026-02-03 11:11:43 | WARNING  | [739] No LaTeX text found for 2501.03436
+2026-02-03 11:11:43 | DEBUG    | Found 2 .tex files for 2501.03333
+2026-02-03 11:11:43 | INFO     | Combined 2 .tex files for 2501.03333 (111603 chars total)
+2026-02-03 11:11:43 | INFO     | ✅ [750] Collected 2501.03333: The properties of GSN 069 accretion disk from a jo... (0.00s)
+2026-02-03 11:11:43 | DEBUG    | Found 1 .tex files for 2501.04770
+2026-02-03 11:11:43 | INFO     | Combined 1 .tex files for 2501.04770 (79645 chars total)
+2026-02-03 11:11:43 | INFO     | ✅ [761] Collected 2501.04770: Lyman Alpha Forest - Halo Cross-Correlations in Ef... (0.00s)
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.04459: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.04459
+2026-02-03 11:11:43 | WARNING  | [823] No LaTeX text found for 2501.04459
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.01122: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.01122
+2026-02-03 11:11:43 | WARNING  | [856] No LaTeX text found for 2501.01122
+2026-02-03 11:11:43 | WARNING  | Folder not found for 2501.01035: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.01035
+2026-02-03 11:11:43 | WARNING  | [860] No LaTeX text found for 2501.01035
+2026-02-03 11:11:43 | INFO     | 📦 Batch collection complete: 2/8 papers collected
+2026-02-03 11:11:43 | INFO     | Sending batch of 2 papers to Gemini...
+2026-02-03 11:11:43 | INFO     | Processing batch of 2 papers:
+2026-02-03 11:11:43 | INFO     |   - 2501.03333: The properties of GSN 069 accretion disk from a jo...
+2026-02-03 11:11:43 | INFO     |   - 2501.04770: Lyman Alpha Forest - Halo Cross-Correlations in Ef...
+2026-02-03 11:11:47 | DEBUG    | Received raw response (3151 chars)
+2026-02-03 11:11:47 | INFO     | ✅ Successfully parsed 2 papers using Pydantic validate_json
+2026-02-03 11:11:47 | INFO     | [750] Saved result for 2501.03333
+2026-02-03 11:11:47 | INFO     | [761] Saved result for 2501.04770
+2026-02-03 11:11:47 | INFO     | Batch complete: 2/2 papers saved
+2026-02-03 11:11:47 | INFO     | 
+========================================
+2026-02-03 11:11:47 | INFO     | BATCH 6/1914
+2026-02-03 11:11:47 | INFO     | Indices: [862, 890, 893, 895, 896, 918, 926, 933]
+2026-02-03 11:11:47 | INFO     | ========================================
+2026-02-03 11:11:47 | WARNING  | Folder not found for 2501.01496: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.01496
+2026-02-03 11:11:47 | WARNING  | [862] No LaTeX text found for 2501.01496
+2026-02-03 11:11:47 | DEBUG    | Found 1 .tex files for 2501.00255
+2026-02-03 11:11:47 | INFO     | Combined 1 .tex files for 2501.00255 (94163 chars total)
+2026-02-03 11:11:47 | INFO     | ✅ [890] Collected 2501.00255: Dynamics and Energetics of Resistive, Thermally Co... (0.00s)
+2026-02-03 11:11:47 | WARNING  | Folder not found for 2501.00231: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.00231
+2026-02-03 11:11:47 | WARNING  | [893] No LaTeX text found for 2501.00231
+2026-02-03 11:11:47 | WARNING  | Folder not found for 2501.00181: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.00181
+2026-02-03 11:11:47 | WARNING  | [895] No LaTeX text found for 2501.00181
+2026-02-03 11:11:47 | WARNING  | Folder not found for 2501.00176: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.00176
+2026-02-03 11:11:47 | WARNING  | [896] No LaTeX text found for 2501.00176
+2026-02-03 11:11:47 | WARNING  | Folder not found for 2501.00676: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.00676
+2026-02-03 11:11:47 | WARNING  | [918] No LaTeX text found for 2501.00676
+2026-02-03 11:11:47 | WARNING  | Folder not found for 2501.02835: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.02835
+2026-02-03 11:11:47 | WARNING  | [926] No LaTeX text found for 2501.02835
+2026-02-03 11:11:47 | DEBUG    | Found 1 .tex files for 2501.02664
+2026-02-03 11:11:47 | INFO     | Combined 1 .tex files for 2501.02664 (70089 chars total)
+2026-02-03 11:11:47 | INFO     | ✅ [933] Collected 2501.02664: Testing disc reprocessing models for AGN optical v... (0.00s)
+2026-02-03 11:11:47 | INFO     | 📦 Batch collection complete: 2/8 papers collected
+2026-02-03 11:11:47 | INFO     | Sending batch of 2 papers to Gemini...
+2026-02-03 11:11:47 | INFO     | Processing batch of 2 papers:
+2026-02-03 11:11:47 | INFO     |   - 2501.00255: Dynamics and Energetics of Resistive, Thermally Co...
+2026-02-03 11:11:47 | INFO     |   - 2501.02664: Testing disc reprocessing models for AGN optical v...
+2026-02-03 11:11:53 | DEBUG    | Received raw response (5033 chars)
+2026-02-03 11:11:53 | INFO     | ✅ Successfully parsed 2 papers using Pydantic validate_json
+2026-02-03 11:11:53 | INFO     | [890] Saved result for 2501.00255
+2026-02-03 11:11:53 | INFO     | [933] Saved result for 2501.02664
+2026-02-03 11:11:53 | INFO     | Batch complete: 2/2 papers saved
+2026-02-03 11:11:53 | INFO     | 
+========================================
+2026-02-03 11:11:53 | INFO     | BATCH 7/1914
+2026-02-03 11:11:53 | INFO     | Indices: [937, 943, 982, 1012, 1013, 1016, 1027, 1048]
+2026-02-03 11:11:53 | INFO     | ========================================
+2026-02-03 11:11:53 | DEBUG    | Found 1 .tex files for 2501.02607
+2026-02-03 11:11:53 | INFO     | Combined 1 .tex files for 2501.02607 (38682 chars total)
+2026-02-03 11:11:53 | INFO     | ✅ [937] Collected 2501.02607: Variation of global and local flows in the solar c... (0.00s)
+2026-02-03 11:11:53 | DEBUG    | Found 1 .tex files for 2501.02852
+2026-02-03 11:11:53 | INFO     | Combined 1 .tex files for 2501.02852 (75460 chars total)
+2026-02-03 11:11:53 | INFO     | ✅ [943] Collected 2501.02852: Testing General Relativity using Large Scale Struc... (0.01s)
+2026-02-03 11:11:53 | WARNING  | No .tex files found in folder: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.01899
+2026-02-03 11:11:53 | WARNING  | [982] No LaTeX text found for 2501.01899
+2026-02-03 11:11:53 | DEBUG    | Found 1 .tex files for 2501.07980
+2026-02-03 11:11:53 | INFO     | Combined 1 .tex files for 2501.07980 (72405 chars total)
+2026-02-03 11:11:53 | INFO     | ✅ [1012] Collected 2501.07980: Mapping reionization bubbles in the JWST era II: i... (0.00s)
+2026-02-03 11:11:53 | DEBUG    | Found 1 .tex files for 2501.07976
+2026-02-03 11:11:53 | INFO     | Combined 1 .tex files for 2501.07976 (402837 chars total)
+2026-02-03 11:11:53 | INFO     | ✅ [1013] Collected 2501.07976: High-Contrast Imaging: Hide and Seek with Exoplane... (0.00s)
+2026-02-03 11:11:53 | DEBUG    | Found 3 .tex files for 2501.07869
+2026-02-03 11:11:53 | INFO     | Combined 3 .tex files for 2501.07869 (289019 chars total)
+2026-02-03 11:11:53 | INFO     | ✅ [1016] Collected 2501.07869: Planetary Nebulae... (0.00s)
+2026-02-03 11:11:53 | WARNING  | Folder not found for 2501.07669: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.07669
+2026-02-03 11:11:53 | WARNING  | [1027] No LaTeX text found for 2501.07669
+2026-02-03 11:11:53 | WARNING  | Folder not found for 2501.08029: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08029
+2026-02-03 11:11:53 | WARNING  | [1048] No LaTeX text found for 2501.08029
+2026-02-03 11:11:53 | INFO     | 📦 Batch collection complete: 5/8 papers collected
+2026-02-03 11:11:53 | INFO     | Sending batch of 5 papers to Gemini...
+2026-02-03 11:11:53 | INFO     | Processing batch of 5 papers:
+2026-02-03 11:11:53 | INFO     |   - 2501.02607: Variation of global and local flows in the solar c...
+2026-02-03 11:11:53 | INFO     |   - 2501.02852: Testing General Relativity using Large Scale Struc...
+2026-02-03 11:11:53 | INFO     |   - 2501.07980: Mapping reionization bubbles in the JWST era II: i...
+2026-02-03 11:11:53 | INFO     |   - 2501.07976: High-Contrast Imaging: Hide and Seek with Exoplane...
+2026-02-03 11:11:53 | INFO     |   - 2501.07869: Planetary Nebulae...
+2026-02-03 11:11:59 | DEBUG    | Received raw response (5681 chars)
+2026-02-03 11:11:59 | INFO     | ✅ Successfully parsed 5 papers using Pydantic validate_json
+2026-02-03 11:11:59 | INFO     | [937] Saved result for 2501.02607
+2026-02-03 11:11:59 | INFO     | [943] Saved result for 2501.02852
+2026-02-03 11:11:59 | INFO     | [1012] Saved result for 2501.07980
+2026-02-03 11:11:59 | INFO     | [1013] Saved result for 2501.07976
+2026-02-03 11:11:59 | INFO     | [1016] Saved result for 2501.07869
+2026-02-03 11:11:59 | INFO     | Batch complete: 5/5 papers saved
+2026-02-03 11:11:59 | INFO     | 
+========================================
+2026-02-03 11:11:59 | INFO     | BATCH 8/1914
+2026-02-03 11:11:59 | INFO     | Indices: [1081, 1093, 1094, 1110, 1114, 1142, 1143, 1165]
+2026-02-03 11:11:59 | INFO     | ========================================
+2026-02-03 11:11:59 | WARNING  | Folder not found for 2501.07622: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.07622
+2026-02-03 11:11:59 | WARNING  | [1081] No LaTeX text found for 2501.07622
+2026-02-03 11:11:59 | WARNING  | Folder not found for 2501.08311: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08311
+2026-02-03 11:11:59 | WARNING  | [1093] No LaTeX text found for 2501.08311
+2026-02-03 11:11:59 | WARNING  | Folder not found for 2501.08372: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08372
+2026-02-03 11:11:59 | WARNING  | [1094] No LaTeX text found for 2501.08372
+2026-02-03 11:11:59 | WARNING  | Folder not found for 2501.08890: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08890
+2026-02-03 11:11:59 | WARNING  | [1110] No LaTeX text found for 2501.08890
+2026-02-03 11:11:59 | WARNING  | Folder not found for 2501.09072: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.09072
+2026-02-03 11:11:59 | WARNING  | [1114] No LaTeX text found for 2501.09072
+2026-02-03 11:11:59 | DEBUG    | Found 1 .tex files for 2501.08445
+2026-02-03 11:11:59 | INFO     | Combined 1 .tex files for 2501.08445 (84211 chars total)
+2026-02-03 11:11:59 | INFO     | ✅ [1142] Collected 2501.08445: Deep high-resolution L band spectroscopy in the $\... (0.00s)
+2026-02-03 11:11:59 | WARNING  | Folder not found for 2501.08434: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08434
+2026-02-03 11:11:59 | WARNING  | [1143] No LaTeX text found for 2501.08434
+2026-02-03 11:11:59 | WARNING  | Folder not found for 2501.08685: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08685
+2026-02-03 11:11:59 | WARNING  | [1165] No LaTeX text found for 2501.08685
+2026-02-03 11:11:59 | INFO     | 📦 Batch collection complete: 1/8 papers collected
+2026-02-03 11:11:59 | INFO     | Sending batch of 1 papers to Gemini...
+2026-02-03 11:11:59 | INFO     | Processing batch of 1 papers:
+2026-02-03 11:11:59 | INFO     |   - 2501.08445: Deep high-resolution L band spectroscopy in the $\...
+2026-02-03 11:12:01 | DEBUG    | Received raw response (2160 chars)
+2026-02-03 11:12:01 | INFO     | ✅ Successfully parsed 1 papers using Pydantic validate_json
+2026-02-03 11:12:01 | INFO     | [1142] Saved result for 2501.08445
+2026-02-03 11:12:01 | INFO     | Batch complete: 1/1 papers saved
+2026-02-03 11:12:01 | DEBUG    | Rate limit: waiting 1.5s (with buffer and jitter to reduce API load)
+2026-02-03 11:12:02 | INFO     | 
+========================================
+2026-02-03 11:12:02 | INFO     | BATCH 9/1914
+2026-02-03 11:12:02 | INFO     | Indices: [1175, 1182, 1223, 1255, 1257, 1269, 1294, 1321]
+2026-02-03 11:12:02 | INFO     | ========================================
+2026-02-03 11:12:02 | DEBUG    | Found 5 .tex files for 2501.08524
+2026-02-03 11:12:02 | INFO     | Combined 5 .tex files for 2501.08524 (169221 chars total)
+2026-02-03 11:12:02 | INFO     | ✅ [1175] Collected 2501.08524: Deep inference of simulated strong lenses in groun... (0.00s)
+2026-02-03 11:12:02 | WARNING  | Folder not found for 2501.05691: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.05691
+2026-02-03 11:12:02 | WARNING  | [1182] No LaTeX text found for 2501.05691
+2026-02-03 11:12:02 | WARNING  | Folder not found for 2501.05214: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.05214
+2026-02-03 11:12:02 | WARNING  | [1223] No LaTeX text found for 2501.05214
+2026-02-03 11:12:02 | WARNING  | Folder not found for 2501.05354: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.05354
+2026-02-03 11:12:02 | WARNING  | [1255] No LaTeX text found for 2501.05354
+2026-02-03 11:12:02 | WARNING  | Folder not found for 2501.05337: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.05337
+2026-02-03 11:12:02 | WARNING  | [1257] No LaTeX text found for 2501.05337
+2026-02-03 11:12:02 | WARNING  | Folder not found for 2501.06950: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.06950
+2026-02-03 11:12:02 | WARNING  | [1269] No LaTeX text found for 2501.06950
+2026-02-03 11:12:02 | WARNING  | Folder not found for 2501.07142: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.07142
+2026-02-03 11:12:02 | WARNING  | [1294] No LaTeX text found for 2501.07142
+2026-02-03 11:12:02 | WARNING  | Folder not found for 2501.06290: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.06290
+2026-02-03 11:12:02 | WARNING  | [1321] No LaTeX text found for 2501.06290
+2026-02-03 11:12:02 | INFO     | 📦 Batch collection complete: 1/8 papers collected
+2026-02-03 11:12:02 | INFO     | Sending batch of 1 papers to Gemini...
+2026-02-03 11:12:02 | INFO     | Processing batch of 1 papers:
+2026-02-03 11:12:02 | INFO     |   - 2501.08524: Deep inference of simulated strong lenses in groun...
+2026-02-03 11:12:09 | DEBUG    | Received raw response (5850 chars)
+2026-02-03 11:12:09 | INFO     | ✅ Successfully parsed 1 papers using Pydantic validate_json
+2026-02-03 11:12:09 | INFO     | [1175] Saved result for 2501.08524
+2026-02-03 11:12:09 | INFO     | Batch complete: 1/1 papers saved
+2026-02-03 11:12:09 | INFO     | 
+========================================
+2026-02-03 11:12:09 | INFO     | BATCH 10/1914
+2026-02-03 11:12:09 | INFO     | Indices: [1324, 1337, 1339, 1340, 1350, 1357, 1359, 1360]
+2026-02-03 11:12:09 | INFO     | ========================================
+2026-02-03 11:12:09 | WARNING  | Folder not found for 2501.06343: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.06343
+2026-02-03 11:12:09 | WARNING  | [1324] No LaTeX text found for 2501.06343
+2026-02-03 11:12:09 | DEBUG    | Found 2 .tex files for 2501.06403
+2026-02-03 11:12:09 | INFO     | Combined 2 .tex files for 2501.06403 (103727 chars total)
+2026-02-03 11:12:09 | INFO     | ✅ [1337] Collected 2501.06403: Multi-episodes of remote brightenings driven by a ... (0.00s)
+2026-02-03 11:12:09 | WARNING  | Folder not found for 2501.06450: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.06450
+2026-02-03 11:12:09 | WARNING  | [1339] No LaTeX text found for 2501.06450
+2026-02-03 11:12:09 | DEBUG    | Found 1 .tex files for 2501.06379
+2026-02-03 11:12:09 | INFO     | Combined 1 .tex files for 2501.06379 (32796 chars total)
+2026-02-03 11:12:09 | INFO     | ✅ [1340] Collected 2501.06379: Macroscopic properties of the XTE J1814-338 as a d... (0.00s)
+2026-02-03 11:12:09 | WARNING  | Folder not found for 2502.15081: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.15081
+2026-02-03 11:12:09 | WARNING  | [1350] No LaTeX text found for 2502.15081
+2026-02-03 11:12:09 | DEBUG    | Found 1 .tex files for 2502.15066
+2026-02-03 11:12:09 | INFO     | Combined 1 .tex files for 2502.15066 (40894 chars total)
+2026-02-03 11:12:09 | INFO     | ✅ [1357] Collected 2502.15066: An Interpretable Machine Learning Approach to Unde... (0.00s)
+2026-02-03 11:12:09 | DEBUG    | Found 2 .tex files for 2502.15115
+2026-02-03 11:12:09 | INFO     | Combined 2 .tex files for 2502.15115 (66252 chars total)
+2026-02-03 11:12:09 | INFO     | ✅ [1359] Collected 2502.15115: A Critical Examination of the Nested Leaky Box Mod... (0.00s)
+2026-02-03 11:12:09 | DEBUG    | Found 1 .tex files for 2502.15295
+2026-02-03 11:12:09 | INFO     | Combined 1 .tex files for 2502.15295 (47922 chars total)
+2026-02-03 11:12:09 | INFO     | ✅ [1360] Collected 2502.15295: Peculiar velocities of galaxy clusters in a Illust... (0.00s)
+2026-02-03 11:12:09 | INFO     | 📦 Batch collection complete: 5/8 papers collected
+2026-02-03 11:12:09 | INFO     | Sending batch of 5 papers to Gemini...
+2026-02-03 11:12:09 | INFO     | Processing batch of 5 papers:
+2026-02-03 11:12:09 | INFO     |   - 2501.06403: Multi-episodes of remote brightenings driven by a ...
+2026-02-03 11:12:09 | INFO     |   - 2501.06379: Macroscopic properties of the XTE J1814-338 as a d...
+2026-02-03 11:12:09 | INFO     |   - 2502.15066: An Interpretable Machine Learning Approach to Unde...
+2026-02-03 11:12:09 | INFO     |   - 2502.15115: A Critical Examination of the Nested Leaky Box Mod...
+2026-02-03 11:12:09 | INFO     |   - 2502.15295: Peculiar velocities of galaxy clusters in a Illust...
+2026-02-03 11:12:16 | DEBUG    | Received raw response (9396 chars)
+2026-02-03 11:12:16 | INFO     | ✅ Successfully parsed 5 papers using Pydantic validate_json
+2026-02-03 11:12:16 | INFO     | [1337] Saved result for 2501.06403
+2026-02-03 11:12:16 | INFO     | [1340] Saved result for 2501.06379
+2026-02-03 11:12:17 | INFO     | [1357] Saved result for 2502.15066
+2026-02-03 11:12:17 | INFO     | [1359] Saved result for 2502.15115
+2026-02-03 11:12:17 | INFO     | [1360] Saved result for 2502.15295
+2026-02-03 11:12:17 | INFO     | Batch complete: 5/5 papers saved
+2026-02-03 11:12:17 | INFO     | 
+========================================
+2026-02-03 11:12:17 | INFO     | BATCH 11/1914
+2026-02-03 11:12:17 | INFO     | Indices: [1361, 1362, 1363, 1366, 1368, 1381, 1388, 1403]
+2026-02-03 11:12:17 | INFO     | ========================================
+2026-02-03 11:12:17 | DEBUG    | Found 1 .tex files for 2502.15329
+2026-02-03 11:12:17 | INFO     | Combined 1 .tex files for 2502.15329 (112162 chars total)
+2026-02-03 11:12:17 | INFO     | ✅ [1361] Collected 2502.15329: Activity of low mass stars in the light of spot si... (0.00s)
+2026-02-03 11:12:17 | DEBUG    | Found 1 .tex files for 2502.15299
+2026-02-03 11:12:17 | INFO     | Combined 1 .tex files for 2502.15299 (156531 chars total)
+2026-02-03 11:12:17 | INFO     | ✅ [1362] Collected 2502.15299: On type 1 active galactic nuclei with double-peake... (0.01s)
+2026-02-03 11:12:17 | DEBUG    | Found 2 .tex files for 2502.15581
+2026-02-03 11:12:17 | INFO     | Combined 2 .tex files for 2502.15581 (246853 chars total)
+2026-02-03 11:12:17 | INFO     | ✅ [1363] Collected 2502.15581: Euclid: Galaxy morphology and photometry from bulg... (0.00s)
+2026-02-03 11:12:17 | WARNING  | Folder not found for 2502.15053: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.15053
+2026-02-03 11:12:17 | WARNING  | [1366] No LaTeX text found for 2502.15053
+2026-02-03 11:12:17 | WARNING  | Folder not found for 2502.15555: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.15555
+2026-02-03 11:12:17 | WARNING  | [1368] No LaTeX text found for 2502.15555
+2026-02-03 11:12:17 | WARNING  | Folder not found for 2502.14825: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.14825
+2026-02-03 11:12:17 | WARNING  | [1381] No LaTeX text found for 2502.14825
+2026-02-03 11:12:17 | WARNING  | Folder not found for 2502.14665: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.14665
+2026-02-03 11:12:17 | WARNING  | [1388] No LaTeX text found for 2502.14665
+2026-02-03 11:12:17 | DEBUG    | Found 1 .tex files for 2502.14990
+2026-02-03 11:12:17 | INFO     | Combined 1 .tex files for 2502.14990 (154404 chars total)
+2026-02-03 11:12:17 | INFO     | ✅ [1403] Collected 2502.14990: The Dynamical State of the Didymos System Before a... (0.00s)
+2026-02-03 11:12:17 | INFO     | 📦 Batch collection complete: 4/8 papers collected
+2026-02-03 11:12:17 | INFO     | Sending batch of 4 papers to Gemini...
+2026-02-03 11:12:17 | INFO     | Processing batch of 4 papers:
+2026-02-03 11:12:17 | INFO     |   - 2502.15329: Activity of low mass stars in the light of spot si...
+2026-02-03 11:12:17 | INFO     |   - 2502.15299: On type 1 active galactic nuclei with double-peake...
+2026-02-03 11:12:17 | INFO     |   - 2502.15581: Euclid: Galaxy morphology and photometry from bulg...
+2026-02-03 11:12:17 | INFO     |   - 2502.14990: The Dynamical State of the Didymos System Before a...
+2026-02-03 11:12:18 | WARNING  | Service unavailable (503) - model overloaded. Waiting 30s before retry 1/5
+2026-02-03 11:12:18 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
+2026-02-03 11:12:48 | INFO     | Processing batch of 4 papers:
+2026-02-03 11:12:48 | INFO     |   - 2502.15329: Activity of low mass stars in the light of spot si...
+2026-02-03 11:12:48 | INFO     |   - 2502.15299: On type 1 active galactic nuclei with double-peake...
+2026-02-03 11:12:48 | INFO     |   - 2502.15581: Euclid: Galaxy morphology and photometry from bulg...
+2026-02-03 11:12:48 | INFO     |   - 2502.14990: The Dynamical State of the Didymos System Before a...
+2026-02-03 11:14:59 | DEBUG    | Received raw response (199266 chars)
+2026-02-03 11:14:59 | DEBUG    | First fix attempt failed: Unterminated string starting at: line 1964 column 13 (char 199242)
+2026-02-03 11:14:59 | DEBUG    | Pydantic validate_json failed: 1 validation error for BatchResponse
+  Invalid JSON: invalid escape at line 9 column 73 [type=json_invalid, input_value='{\n  "papers": [\n    {\...Dipartimento di Fisica,', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/json_invalid
+2026-02-03 11:14:59 | DEBUG    | Data fix attempt failed: Invalid \escape: line 9 column 72 (char 213)
+2026-02-03 11:14:59 | DEBUG    | Manual JSON + Pydantic validate failed (JSON error): Invalid \escape: line 9 column 72 (char 213)
+2026-02-03 11:14:59 | ERROR    | All parsing attempts failed. Response length: 200201
+2026-02-03 11:14:59 | DEBUG    | Cleaned response (first 2000 chars): {
+  "papers": [
+    {
+      "arxiv_id": "2502.15329",
+      "authors": [
+        {
+          "name": "L. Degott",
+          "affiliations": [
+            "Institut d'Astrophysique Spatiale (IAS), CNRS, Universit\\\'{e} Paris-Saclay, Orsay, 91400, France",
+            "LESIA, CNRS, Universit\\\'{e} Pierre et Marie Curie, Universit\\\'{e} Denis Diderot, Observatoire de Paris, 92195 Meudon Cedex, France"
+          ],
+          "countries": [
+            "France",
+            "France"
+          ]
+        },
+        {
+          "name": "F. Baudin",
+          "affiliations": [
+            "Institut d'Astrophysique Spatiale (IAS), CNRS, Universit\\\'{e} Paris-Saclay, Orsay, 91400, France"
+          ],
+          "countries": [
+            "France"
+          ]
+        },
+        {
+          "name": "R. Samadi",
+          "affiliations": [
+            "LESIA, CNRS, Universit\\\'{e} Pierre et Marie Curie, Universit\\\'{e} Denis Diderot, Observatoire de Paris, 92195 Meudon Cedex, France"
+          ],
+          "countries": [
+            "France"
+          ]
+        },
+        {
+          "name": "B. Perri",
+          "affiliations": [
+            "Universit\\\'{e} Paris-Saclay, Universit\\\'{e} Paris Cit\\\'{e}, CEA, CNRS, AIM, 91191, Gif-sur-Yvette, France"
+          ],
+          "countries": [
+            "France"
+          ]
+        },
+        {
+          "name": "C. Pin\noun",
+          "affiliations": [
+            "Institut d'Astrophysique Spatiale (IAS), CNRS, Universit\\\'{e} Paris-Saclay, Orsay, 91400, France"
+          ],
+          "countries": [
+            "France"
+          ]
+        }
+      ],
+      "first_author_countries": [
+        "France"
+      ]
+    },
+    {
+      "arxiv_id": "2502.15299",
+      "authors": [
+        {
+          "name": "Qi Zheng",
+          "affiliations": [
+            "School of Physics and Technology, Nanjing Normal University, No. 1, Wenyuan Road, Nanjing, 210023, P. R. China"
+          ],
+          "countries": [
+            "China"
+   
+2026-02-03 11:14:59 | DEBUG    | Cleaned response (last 500 chars):     "Dipartimento di Fisica, Universit\\\'{a} degli Studi di Milano-Bicocca, Piazza della Scienza 3, I-20126 Milano, Italy",
+            "INFN, Sezione di Milano-Bicocca, Piazza della Scienza 3, I-20126 Milano, Italy",
+            "Dipartimento di Fisica, Universit\\\'{a} degli Studi di Roma Tor Vergata, Via della Ricerca Scientifica 1, I-00133 Roma, Italy",
+            "INFN, Sezione di Roma Tor Vergata, Via della Ricerca Scientifica 1, I-00133 Roma, Italy",
+            "Dipartimento di Fisica,
+2026-02-03 11:14:59 | WARNING  | Saved failed response to failed_response_20260203_111459.json for debugging
+2026-02-03 11:14:59 | ERROR    | Failed to get response for batch
+2026-02-03 11:14:59 | INFO     | 
+========================================
+2026-02-03 11:14:59 | INFO     | BATCH 12/1914
+2026-02-03 11:14:59 | INFO     | Indices: [1404, 1409, 1410, 1411, 1412, 1423, 1438, 1442]
+2026-02-03 11:14:59 | INFO     | ========================================
+2026-02-03 11:14:59 | DEBUG    | Found 1 .tex files for 2502.14989
+2026-02-03 11:14:59 | INFO     | Combined 1 .tex files for 2502.14989 (70427 chars total)
+2026-02-03 11:14:59 | INFO     | ✅ [1404] Collected 2502.14989: Morphology and kinematics of the gas in M51: How i... (0.00s)
+2026-02-03 11:14:59 | DEBUG    | Found 1 .tex files for 2502.14961
+2026-02-03 11:14:59 | INFO     | Combined 1 .tex files for 2502.14961 (99779 chars total)
+2026-02-03 11:14:59 | INFO     | ✅ [1409] Collected 2502.14961: SOFIA/HAWC+ Far-Infrared Polarimetric Large Area C... (0.00s)
+2026-02-03 11:14:59 | DEBUG    | Found 1 .tex files for 2502.14959
+2026-02-03 11:14:59 | INFO     | Combined 1 .tex files for 2502.14959 (118436 chars total)
+2026-02-03 11:14:59 | INFO     | ✅ [1410] Collected 2502.14959: 3D Adiabatic Simulations of Binary Black Hole Form... (0.00s)
+2026-02-03 11:14:59 | DEBUG    | Found 1 .tex files for 2502.14957
+2026-02-03 11:14:59 | INFO     | Combined 1 .tex files for 2502.14957 (105733 chars total)
+2026-02-03 11:14:59 | INFO     | ✅ [1411] Collected 2502.14957: A new mass estimate method with hydrodynamical atm... (0.00s)
+2026-02-03 11:14:59 | DEBUG    | Found 1 .tex files for 2502.14956
+2026-02-03 11:14:59 | INFO     | Combined 1 .tex files for 2502.14956 (121202 chars total)
+2026-02-03 11:14:59 | INFO     | ✅ [1412] Collected 2502.14956: A Virgo Environmental Survey Tracing Ionised Gas E... (0.00s)
+2026-02-03 11:14:59 | DEBUG    | Found 1 .tex files for 2502.15656
+2026-02-03 11:14:59 | INFO     | Combined 1 .tex files for 2502.15656 (107832 chars total)
+2026-02-03 11:14:59 | INFO     | ✅ [1423] Collected 2502.15656: A Search for Dark Matter Annihilation in Stellar S... (0.00s)
+2026-02-03 11:14:59 | WARNING  | Folder not found for 2502.16629: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.16629
+2026-02-03 11:14:59 | WARNING  | [1438] No LaTeX text found for 2502.16629
+2026-02-03 11:14:59 | DEBUG    | Found 1 .tex files for 2502.16934
+2026-02-03 11:14:59 | INFO     | Combined 1 .tex files for 2502.16934 (37879 chars total)
+2026-02-03 11:14:59 | INFO     | ✅ [1442] Collected 2502.16934: Resolving spatial and temporal shock structures us... (0.00s)
+2026-02-03 11:14:59 | INFO     | 📦 Batch collection complete: 7/8 papers collected
+2026-02-03 11:14:59 | INFO     | Sending batch of 7 papers to Gemini...
+2026-02-03 11:14:59 | INFO     | Processing batch of 7 papers:
+2026-02-03 11:14:59 | INFO     |   - 2502.14989: Morphology and kinematics of the gas in M51: How i...
+2026-02-03 11:14:59 | INFO     |   - 2502.14961: SOFIA/HAWC+ Far-Infrared Polarimetric Large Area C...
+2026-02-03 11:14:59 | INFO     |   - 2502.14959: 3D Adiabatic Simulations of Binary Black Hole Form...
+2026-02-03 11:14:59 | INFO     |   - 2502.14957: A new mass estimate method with hydrodynamical atm...
+2026-02-03 11:14:59 | INFO     |   - 2502.14956: A Virgo Environmental Survey Tracing Ionised Gas E...
+2026-02-03 11:14:59 | INFO     |   - 2502.15656: A Search for Dark Matter Annihilation in Stellar S...
+2026-02-03 11:14:59 | INFO     |   - 2502.16934: Resolving spatial and temporal shock structures us...
+2026-02-03 11:15:16 | DEBUG    | Received raw response (19070 chars)
+2026-02-03 11:15:16 | INFO     | ✅ Successfully parsed 7 papers using Pydantic validate_json
+2026-02-03 11:15:16 | INFO     | [1404] Saved result for 2502.14989
+2026-02-03 11:15:16 | INFO     | [1409] Saved result for 2502.14961
+2026-02-03 11:15:16 | INFO     | [1410] Saved result for 2502.14959
+2026-02-03 11:15:16 | INFO     | [1411] Saved result for 2502.14957
+2026-02-03 11:15:16 | INFO     | [1412] Saved result for 2502.14956
+2026-02-03 11:15:16 | INFO     | [1423] Saved result for 2502.15656
+2026-02-03 11:15:16 | INFO     | [1442] Saved result for 2502.16934
+2026-02-03 11:15:16 | INFO     | Batch complete: 7/7 papers saved
+2026-02-03 11:15:16 | INFO     | 
+========================================
+2026-02-03 11:15:16 | INFO     | BATCH 13/1914
+2026-02-03 11:15:16 | INFO     | Indices: [1443, 1444, 1445, 1446, 1447, 1448, 1449, 1450]
+2026-02-03 11:15:16 | INFO     | ========================================
+2026-02-03 11:15:16 | DEBUG    | Found 1 .tex files for 2502.16946
+2026-02-03 11:15:16 | INFO     | Combined 1 .tex files for 2502.16946 (69038 chars total)
+2026-02-03 11:15:16 | INFO     | ✅ [1443] Collected 2502.16946: Overall Ultra-high Energy Neutrino Emission from G... (0.00s)
+2026-02-03 11:15:16 | DEBUG    | Found 1 .tex files for 2502.17319
+2026-02-03 11:15:16 | INFO     | Combined 1 .tex files for 2502.17319 (137320 chars total)
+2026-02-03 11:15:16 | INFO     | ✅ [1444] Collected 2502.17319: A Pristine-UNIONS view on the Galaxy: Kinematics o... (0.00s)
+2026-02-03 11:15:16 | DEBUG    | Found 1 .tex files for 2502.17299
+2026-02-03 11:15:16 | INFO     | Combined 1 .tex files for 2502.17299 (335506 chars total)
+2026-02-03 11:15:16 | INFO     | ✅ [1445] Collected 2502.17299: A Virgo Environmental Survey Tracing Ionised Gas E... (0.00s)
+2026-02-03 11:15:16 | DEBUG    | Found 1 .tex files for 2502.14512
+2026-02-03 11:15:16 | INFO     | Combined 1 .tex files for 2502.14512 (85063 chars total)
+2026-02-03 11:15:16 | INFO     | ✅ [1446] Collected 2502.14512: Analysis of the Effect of Bars on Environmental De... (0.00s)
+2026-02-03 11:15:16 | DEBUG    | Found 1 .tex files for 2502.17207
+2026-02-03 11:15:16 | INFO     | Combined 1 .tex files for 2502.17207 (22276 chars total)
+2026-02-03 11:15:16 | INFO     | ✅ [1447] Collected 2502.17207: A benchmark analysis of saliency-based explainable... (0.00s)
+2026-02-03 11:15:16 | DEBUG    | Found 1 .tex files for 2502.17177
+2026-02-03 11:15:16 | INFO     | Combined 1 .tex files for 2502.17177 (48051 chars total)
+2026-02-03 11:15:16 | INFO     | ✅ [1448] Collected 2502.17177: Joint multi-band deconvolution for $Euclid$ and $V... (0.00s)
+2026-02-03 11:15:16 | DEBUG    | Found 1 .tex files for 2502.17165
+2026-02-03 11:15:16 | INFO     | Combined 1 .tex files for 2502.17165 (58352 chars total)
+2026-02-03 11:15:16 | INFO     | ✅ [1449] Collected 2502.17165: Double progenitor origin of the S-star cluster... (0.00s)
+2026-02-03 11:15:16 | DEBUG    | Found 1 .tex files for 2502.17162
+2026-02-03 11:15:16 | INFO     | Combined 1 .tex files for 2502.17162 (42047 chars total)
+2026-02-03 11:15:16 | INFO     | ✅ [1450] Collected 2502.17162: Multiple stellar populations in MOCCA globular clu... (0.00s)
+2026-02-03 11:15:16 | INFO     | 📦 Batch collection complete: 8/8 papers collected
+2026-02-03 11:15:16 | INFO     | Sending batch of 8 papers to Gemini...
+2026-02-03 11:15:16 | INFO     | Processing batch of 8 papers:
+2026-02-03 11:15:16 | INFO     |   - 2502.16946: Overall Ultra-high Energy Neutrino Emission from G...
+2026-02-03 11:15:16 | INFO     |   - 2502.17319: A Pristine-UNIONS view on the Galaxy: Kinematics o...
+2026-02-03 11:15:16 | INFO     |   - 2502.17299: A Virgo Environmental Survey Tracing Ionised Gas E...
+2026-02-03 11:15:16 | INFO     |   - 2502.14512: Analysis of the Effect of Bars on Environmental De...
+2026-02-03 11:15:16 | INFO     |   - 2502.17207: A benchmark analysis of saliency-based explainable...
+2026-02-03 11:15:16 | INFO     |   - 2502.17177: Joint multi-band deconvolution for $Euclid$ and $V...
+2026-02-03 11:15:16 | INFO     |   - 2502.17165: Double progenitor origin of the S-star cluster...
+2026-02-03 11:15:16 | INFO     |   - 2502.17162: Multiple stellar populations in MOCCA globular clu...
+2026-02-03 11:15:36 | DEBUG    | Received raw response (18506 chars)
+2026-02-03 11:15:36 | INFO     | ✅ Successfully parsed 8 papers using Pydantic validate_json
+2026-02-03 11:15:36 | INFO     | [1443] Saved result for 2502.16946
+2026-02-03 11:15:36 | INFO     | [1444] Saved result for 2502.17319
+2026-02-03 11:15:36 | INFO     | [1445] Saved result for 2502.17299
+2026-02-03 11:15:36 | INFO     | [1445] Saved result for 2502.17299
+2026-02-03 11:15:36 | INFO     | [1447] Saved result for 2502.17207
+2026-02-03 11:15:36 | INFO     | [1448] Saved result for 2502.17177
+2026-02-03 11:15:36 | INFO     | [1449] Saved result for 2502.17165
+2026-02-03 11:15:36 | INFO     | [1450] Saved result for 2502.17162
+2026-02-03 11:15:36 | INFO     | Batch complete: 8/8 papers saved
+2026-02-03 11:15:36 | INFO     | 
+========================================
+2026-02-03 11:15:36 | INFO     | BATCH 14/1914
+2026-02-03 11:15:36 | INFO     | Indices: [1451, 1452, 1453, 1468, 1479, 1483, 1506, 1535]
+2026-02-03 11:15:36 | INFO     | ========================================
+2026-02-03 11:15:36 | DEBUG    | Found 1 .tex files for 2502.16945
+2026-02-03 11:15:36 | INFO     | Combined 1 .tex files for 2502.16945 (31648 chars total)
+2026-02-03 11:15:36 | INFO     | ✅ [1451] Collected 2502.16945: Intrinsic shape variation of quiescent galaxies fr... (0.00s)
+2026-02-03 11:15:36 | DEBUG    | Found 1 .tex files for 2502.17152
+2026-02-03 11:15:36 | INFO     | Combined 1 .tex files for 2502.17152 (88296 chars total)
+2026-02-03 11:15:36 | INFO     | ✅ [1452] Collected 2502.17152: The origin of the very-high-energy radiation along... (0.00s)
+2026-02-03 11:15:36 | DEBUG    | Found 1 .tex files for 2502.17135
+2026-02-03 11:15:36 | INFO     | Combined 1 .tex files for 2502.17135 (82273 chars total)
+2026-02-03 11:15:36 | INFO     | ✅ [1453] Collected 2502.17135: Unbiased estimates of the shapes of haloes using t... (0.00s)
+2026-02-03 11:15:36 | DEBUG    | Found 1 .tex files for 2502.15935
+2026-02-03 11:15:36 | INFO     | Combined 1 .tex files for 2502.15935 (50877 chars total)
+2026-02-03 11:15:36 | INFO     | ✅ [1468] Collected 2502.15935: The TRGB-SBF Project. III. Refining the HST Surfac... (0.00s)
+2026-02-03 11:15:36 | WARNING  | Folder not found for 2502.15661: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.15661
+2026-02-03 11:15:36 | WARNING  | [1479] No LaTeX text found for 2502.15661
+2026-02-03 11:15:36 | DEBUG    | Found 1 .tex files for 2502.16059
+2026-02-03 11:15:36 | INFO     | Combined 1 .tex files for 2502.16059 (69170 chars total)
+2026-02-03 11:15:36 | INFO     | ✅ [1483] Collected 2502.16059: Discovery and characterization of ZTF J0112+5827: ... (0.00s)
+2026-02-03 11:15:36 | WARNING  | Folder not found for 2502.12538: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.12538
+2026-02-03 11:15:36 | WARNING  | [1506] No LaTeX text found for 2502.12538
+2026-02-03 11:15:36 | WARNING  | Folder not found for 2502.12806: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.12806
+2026-02-03 11:15:36 | WARNING  | [1535] No LaTeX text found for 2502.12806
+2026-02-03 11:15:36 | INFO     | 📦 Batch collection complete: 5/8 papers collected
+2026-02-03 11:15:36 | INFO     | Sending batch of 5 papers to Gemini...
+2026-02-03 11:15:36 | INFO     | Processing batch of 5 papers:
+2026-02-03 11:15:36 | INFO     |   - 2502.16945: Intrinsic shape variation of quiescent galaxies fr...
+2026-02-03 11:15:36 | INFO     |   - 2502.17152: The origin of the very-high-energy radiation along...
+2026-02-03 11:15:36 | INFO     |   - 2502.17135: Unbiased estimates of the shapes of haloes using t...
+2026-02-03 11:15:36 | INFO     |   - 2502.15935: The TRGB-SBF Project. III. Refining the HST Surfac...
+2026-02-03 11:15:36 | INFO     |   - 2502.16059: Discovery and characterization of ZTF J0112+5827: ...
+2026-02-03 11:15:49 | DEBUG    | Received raw response (11025 chars)
+2026-02-03 11:15:49 | INFO     | ✅ Successfully parsed 5 papers using Pydantic validate_json
+2026-02-03 11:15:49 | INFO     | [1451] Saved result for 2502.16945
+2026-02-03 11:15:49 | INFO     | [1452] Saved result for 2502.17152
+2026-02-03 11:15:49 | INFO     | [1453] Saved result for 2502.17135
+2026-02-03 11:15:49 | INFO     | [1468] Saved result for 2502.15935
+2026-02-03 11:15:49 | INFO     | [1483] Saved result for 2502.16059
+2026-02-03 11:15:49 | INFO     | Batch complete: 5/5 papers saved
+2026-02-03 11:15:49 | INFO     | 
+========================================
+2026-02-03 11:15:49 | INFO     | BATCH 15/1914
+2026-02-03 11:15:49 | INFO     | Indices: [1538, 1554, 1557, 1590, 1608, 1612, 1616, 1688]
+2026-02-03 11:15:49 | INFO     | ========================================
+2026-02-03 11:15:50 | WARNING  | Folder not found for 2502.12780: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.12780
+2026-02-03 11:15:50 | WARNING  | [1538] No LaTeX text found for 2502.12780
+2026-02-03 11:15:50 | WARNING  | Folder not found for 2502.11648: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.11648
+2026-02-03 11:15:50 | WARNING  | [1554] No LaTeX text found for 2502.11648
+2026-02-03 11:15:50 | WARNING  | Folder not found for 2502.11608: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.11608
+2026-02-03 11:15:50 | WARNING  | [1557] No LaTeX text found for 2502.11608
+2026-02-03 11:15:50 | WARNING  | Folder not found for 2502.13940: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.13940
+2026-02-03 11:15:50 | WARNING  | [1590] No LaTeX text found for 2502.13940
+2026-02-03 11:15:50 | WARNING  | Folder not found for 2502.14417: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.14417
+2026-02-03 11:15:50 | WARNING  | [1608] No LaTeX text found for 2502.14417
+2026-02-03 11:15:50 | WARNING  | Folder not found for 2502.14038: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.14038
+2026-02-03 11:15:50 | WARNING  | [1612] No LaTeX text found for 2502.14038
+2026-02-03 11:15:50 | WARNING  | Folder not found for 2502.14232: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.14232
+2026-02-03 11:15:50 | WARNING  | [1616] No LaTeX text found for 2502.14232
+2026-02-03 11:15:50 | WARNING  | Folder not found for 2502.20722: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.20722
+2026-02-03 11:15:50 | WARNING  | [1688] No LaTeX text found for 2502.20722
+2026-02-03 11:15:50 | INFO     | 📦 Batch collection complete: 0/8 papers collected
+2026-02-03 11:15:50 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:15:50 | INFO     | 
+========================================
+2026-02-03 11:15:50 | INFO     | BATCH 16/1914
+2026-02-03 11:15:50 | INFO     | Indices: [1701, 1742, 1743, 1744, 1745, 1746, 1747, 1748]
+2026-02-03 11:15:50 | INFO     | ========================================
+2026-02-03 11:15:50 | WARNING  | No .tex files found in folder: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.20494
+2026-02-03 11:15:50 | WARNING  | [1701] No LaTeX text found for 2502.20494
+2026-02-03 11:15:50 | DEBUG    | Found 1 .tex files for 2502.19961
+2026-02-03 11:15:50 | INFO     | Combined 1 .tex files for 2502.19961 (93257 chars total)
+2026-02-03 11:15:50 | INFO     | ✅ [1742] Collected 2502.19961: High-contrast spectroscopy with the new VLT/ERIS i... (0.00s)
+2026-02-03 11:15:50 | DEBUG    | Found 1 .tex files for 2502.20804
+2026-02-03 11:15:50 | INFO     | Combined 1 .tex files for 2502.20804 (47709 chars total)
+2026-02-03 11:15:50 | INFO     | ✅ [1743] Collected 2502.20804: Photon-ALP beam propagation from Mrk 501... (0.00s)
+2026-02-03 11:15:50 | DEBUG    | Found 1 .tex files for 2502.20820
+2026-02-03 11:15:50 | INFO     | Combined 1 .tex files for 2502.20820 (109220 chars total)
+2026-02-03 11:15:50 | INFO     | ✅ [1744] Collected 2502.20820: The Chinese pulsar timing array data release I. Po... (0.00s)
+2026-02-03 11:15:50 | DEBUG    | Found 1 .tex files for 2502.20841
+2026-02-03 11:15:50 | INFO     | Combined 1 .tex files for 2502.20841 (61719 chars total)
+2026-02-03 11:15:50 | INFO     | ✅ [1745] Collected 2502.20841: Calibrating the Color-Magnitude Relation of M Gian... (0.00s)
+2026-02-03 11:15:50 | DEBUG    | Found 1 .tex files for 2502.04828
+2026-02-03 11:15:50 | INFO     | Combined 1 .tex files for 2502.04828 (46192 chars total)
+2026-02-03 11:15:50 | INFO     | ✅ [1746] Collected 2502.04828: Observational constraints on vector-like dark ener... (0.00s)
+2026-02-03 11:15:50 | DEBUG    | Found 1 .tex files for 2502.04823
+2026-02-03 11:15:50 | INFO     | Combined 1 .tex files for 2502.04823 (40798 chars total)
+2026-02-03 11:15:50 | INFO     | ✅ [1747] Collected 2502.04823: Radio emission from a massive node of the cosmic w... (0.00s)
+2026-02-03 11:15:50 | DEBUG    | Found 1 .tex files for 2502.04817
+2026-02-03 11:15:50 | INFO     | Combined 1 .tex files for 2502.04817 (52396 chars total)
+2026-02-03 11:15:50 | INFO     | ✅ [1748] Collected 2502.04817: Potential Nitrogen Enrichment via Direct-Collapse ... (0.00s)
+2026-02-03 11:15:50 | INFO     | 📦 Batch collection complete: 7/8 papers collected
+2026-02-03 11:15:50 | INFO     | Sending batch of 7 papers to Gemini...
+2026-02-03 11:15:50 | INFO     | Processing batch of 7 papers:
+2026-02-03 11:15:50 | INFO     |   - 2502.19961: High-contrast spectroscopy with the new VLT/ERIS i...
+2026-02-03 11:15:50 | INFO     |   - 2502.20804: Photon-ALP beam propagation from Mrk 501...
+2026-02-03 11:15:50 | INFO     |   - 2502.20820: The Chinese pulsar timing array data release I. Po...
+2026-02-03 11:15:50 | INFO     |   - 2502.20841: Calibrating the Color-Magnitude Relation of M Gian...
+2026-02-03 11:15:50 | INFO     |   - 2502.04828: Observational constraints on vector-like dark ener...
+2026-02-03 11:15:50 | INFO     |   - 2502.04823: Radio emission from a massive node of the cosmic w...
+2026-02-03 11:15:50 | INFO     |   - 2502.04817: Potential Nitrogen Enrichment via Direct-Collapse ...
+2026-02-03 11:16:28 | DEBUG    | Received raw response (38411 chars)
+2026-02-03 11:16:28 | INFO     | ✅ Successfully parsed 7 papers using Pydantic validate_json
+2026-02-03 11:16:28 | INFO     | [1742] Saved result for 2502.19961
+2026-02-03 11:16:28 | INFO     | [1743] Saved result for 2502.20804
+2026-02-03 11:16:28 | INFO     | [1744] Saved result for 2502.20820
+2026-02-03 11:16:28 | INFO     | [1745] Saved result for 2502.20841
+2026-02-03 11:16:28 | INFO     | [1746] Saved result for 2502.04828
+2026-02-03 11:16:28 | INFO     | [1747] Saved result for 2502.04823
+2026-02-03 11:16:28 | INFO     | [1748] Saved result for 2502.04817
+2026-02-03 11:16:28 | INFO     | Batch complete: 7/7 papers saved
+2026-02-03 11:16:28 | INFO     | 
+========================================
+2026-02-03 11:16:28 | INFO     | BATCH 17/1914
+2026-02-03 11:16:28 | INFO     | Indices: [1749, 1750, 1751, 1752, 1753, 1764, 1765, 1777]
+2026-02-03 11:16:28 | INFO     | ========================================
+2026-02-03 11:16:28 | DEBUG    | Found 3 .tex files for 2502.04816
+2026-02-03 11:16:28 | INFO     | Combined 3 .tex files for 2502.04816 (149690 chars total)
+2026-02-03 11:16:28 | INFO     | ✅ [1749] Collected 2502.04816: The XXL Survey LIV. X-ray Luminosity Function and ... (0.00s)
+2026-02-03 11:16:28 | DEBUG    | Found 1 .tex files for 2502.04787
+2026-02-03 11:16:28 | INFO     | Combined 1 .tex files for 2502.04787 (51449 chars total)
+2026-02-03 11:16:28 | INFO     | ✅ [1750] Collected 2502.04787: Impact-induced Vaporization During Accretion of Pl... (0.00s)
+2026-02-03 11:16:28 | DEBUG    | Found 1 .tex files for 2502.04769
+2026-02-03 11:16:28 | INFO     | Combined 1 .tex files for 2502.04769 (94732 chars total)
+2026-02-03 11:16:28 | INFO     | ✅ [1751] Collected 2502.04769: Solar flares as electron accelerators: toward a re... (0.00s)
+2026-02-03 11:16:28 | DEBUG    | Found 1 .tex files for 2502.04727
+2026-02-03 11:16:28 | INFO     | Combined 1 .tex files for 2502.04727 (37552 chars total)
+2026-02-03 11:16:28 | INFO     | ✅ [1752] Collected 2502.04727: Is there a chiral dark dynamo in the universe indu... (0.00s)
+2026-02-03 11:16:28 | DEBUG    | Found 1 .tex files for 2502.04833
+2026-02-03 11:16:28 | INFO     | Combined 1 .tex files for 2502.04833 (44222 chars total)
+2026-02-03 11:16:28 | INFO     | ✅ [1753] Collected 2502.04833: Puzzling Ultra-Diffuse Galaxy Evolution (PUDGE). I... (0.00s)
+2026-02-03 11:16:28 | DEBUG    | Found 1 .tex files for 2502.04838
+2026-02-03 11:16:28 | INFO     | Combined 1 .tex files for 2502.04838 (70876 chars total)
+2026-02-03 11:16:28 | INFO     | ✅ [1764] Collected 2502.04838: Dynamical Galactic Halo Reconstruction from Rotati... (0.00s)
+2026-02-03 11:16:28 | DEBUG    | Found 1 .tex files for 2502.04854
+2026-02-03 11:16:28 | INFO     | Combined 1 .tex files for 2502.04854 (28543 chars total)
+2026-02-03 11:16:28 | INFO     | ✅ [1765] Collected 2502.04854: The First In-depth Photometric Study of the Four D... (0.00s)
+2026-02-03 11:16:28 | DEBUG    | Found 1 .tex files for 2502.04943
+2026-02-03 11:16:28 | INFO     | Combined 1 .tex files for 2502.04943 (37780 chars total)
+2026-02-03 11:16:28 | INFO     | ✅ [1777] Collected 2502.04943: Insights Into Neutron Stars From Gravitational Red... (0.00s)
+2026-02-03 11:16:28 | INFO     | 📦 Batch collection complete: 8/8 papers collected
+2026-02-03 11:16:28 | INFO     | Sending batch of 8 papers to Gemini...
+2026-02-03 11:16:28 | INFO     | Processing batch of 8 papers:
+2026-02-03 11:16:28 | INFO     |   - 2502.04816: The XXL Survey LIV. X-ray Luminosity Function and ...
+2026-02-03 11:16:28 | INFO     |   - 2502.04787: Impact-induced Vaporization During Accretion of Pl...
+2026-02-03 11:16:28 | INFO     |   - 2502.04769: Solar flares as electron accelerators: toward a re...
+2026-02-03 11:16:28 | INFO     |   - 2502.04727: Is there a chiral dark dynamo in the universe indu...
+2026-02-03 11:16:28 | INFO     |   - 2502.04833: Puzzling Ultra-Diffuse Galaxy Evolution (PUDGE). I...
+2026-02-03 11:16:28 | INFO     |   - 2502.04838: Dynamical Galactic Halo Reconstruction from Rotati...
+2026-02-03 11:16:28 | INFO     |   - 2502.04854: The First In-depth Photometric Study of the Four D...
+2026-02-03 11:16:28 | INFO     |   - 2502.04943: Insights Into Neutron Stars From Gravitational Red...
+2026-02-03 11:16:40 | DEBUG    | Received raw response (11955 chars)
+2026-02-03 11:16:40 | INFO     | ✅ Successfully parsed 8 papers using Pydantic validate_json
+2026-02-03 11:16:40 | INFO     | [1749] Saved result for 2502.04816
+2026-02-03 11:16:40 | INFO     | [1750] Saved result for 2502.04787
+2026-02-03 11:16:40 | INFO     | [1751] Saved result for 2502.04769
+2026-02-03 11:16:40 | INFO     | [1752] Saved result for 2502.04727
+2026-02-03 11:16:40 | INFO     | [1753] Saved result for 2502.04833
+2026-02-03 11:16:40 | INFO     | [1764] Saved result for 2502.04838
+2026-02-03 11:16:40 | INFO     | [1765] Saved result for 2502.04854
+2026-02-03 11:16:40 | INFO     | [1777] Saved result for 2502.04943
+2026-02-03 11:16:40 | INFO     | Batch complete: 8/8 papers saved
+2026-02-03 11:16:40 | INFO     | 
+========================================
+2026-02-03 11:16:40 | INFO     | BATCH 18/1914
+2026-02-03 11:16:40 | INFO     | Indices: [1790, 1808, 1825, 1826, 1833, 1858, 1869, 1907]
+2026-02-03 11:16:40 | INFO     | ========================================
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.21005: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.21005
+2026-02-03 11:16:40 | WARNING  | [1790] No LaTeX text found for 2502.21005
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.04461: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.04461
+2026-02-03 11:16:40 | WARNING  | [1808] No LaTeX text found for 2502.04461
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.19492: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.19492
+2026-02-03 11:16:40 | WARNING  | [1825] No LaTeX text found for 2502.19492
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.19484: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.19484
+2026-02-03 11:16:40 | WARNING  | [1826] No LaTeX text found for 2502.19484
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.17952: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.17952
+2026-02-03 11:16:40 | WARNING  | [1833] No LaTeX text found for 2502.17952
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.18243: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.18243
+2026-02-03 11:16:40 | WARNING  | [1858] No LaTeX text found for 2502.18243
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.17568: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.17568
+2026-02-03 11:16:40 | WARNING  | [1869] No LaTeX text found for 2502.17568
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.19235: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.19235
+2026-02-03 11:16:40 | WARNING  | [1907] No LaTeX text found for 2502.19235
+2026-02-03 11:16:40 | INFO     | 📦 Batch collection complete: 0/8 papers collected
+2026-02-03 11:16:40 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:16:40 | INFO     | 
+========================================
+2026-02-03 11:16:40 | INFO     | BATCH 19/1914
+2026-02-03 11:16:40 | INFO     | Indices: [1924, 1956, 1993, 2013, 2057, 2061, 2076, 2077]
+2026-02-03 11:16:40 | INFO     | ========================================
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.18900: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.18900
+2026-02-03 11:16:40 | WARNING  | [1924] No LaTeX text found for 2502.18900
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.18561: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.18561
+2026-02-03 11:16:40 | WARNING  | [1956] No LaTeX text found for 2502.18561
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.03179: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.03179
+2026-02-03 11:16:40 | WARNING  | [1993] No LaTeX text found for 2502.03179
+2026-02-03 11:16:40 | DEBUG    | Found 1 .tex files for 2502.03530
+2026-02-03 11:16:40 | INFO     | Combined 1 .tex files for 2502.03530 (139658 chars total)
+2026-02-03 11:16:40 | INFO     | ✅ [2013] Collected 2502.03530: Elliptical multipoles for gravitational lenses... (0.00s)
+2026-02-03 11:16:40 | WARNING  | No .tex files found in folder: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.02796
+2026-02-03 11:16:40 | WARNING  | [2057] No LaTeX text found for 2502.02796
+2026-02-03 11:16:40 | WARNING  | Folder not found for 2502.02738: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.02738
+2026-02-03 11:16:40 | WARNING  | [2061] No LaTeX text found for 2502.02738
+2026-02-03 11:16:40 | DEBUG    | Found 1 .tex files for 2502.05258
+2026-02-03 11:16:40 | INFO     | Combined 1 .tex files for 2502.05258 (169158 chars total)
+2026-02-03 11:16:40 | INFO     | ✅ [2076] Collected 2502.05258: Searching for Inflationary Physics with the CMB Tr... (0.00s)
+2026-02-03 11:16:40 | DEBUG    | Found 3 .tex files for 2502.05200
+2026-02-03 11:16:40 | INFO     | Combined 3 .tex files for 2502.05200 (144248 chars total)
+2026-02-03 11:16:40 | INFO     | ✅ [2077] Collected 2502.05200: Accretion-disk reflection in the Seyfert 1 galaxy ... (0.00s)
+2026-02-03 11:16:40 | INFO     | 📦 Batch collection complete: 3/8 papers collected
+2026-02-03 11:16:40 | INFO     | Sending batch of 3 papers to Gemini...
+2026-02-03 11:16:40 | INFO     | Processing batch of 3 papers:
+2026-02-03 11:16:40 | INFO     |   - 2502.03530: Elliptical multipoles for gravitational lenses...
+2026-02-03 11:16:40 | INFO     |   - 2502.05258: Searching for Inflationary Physics with the CMB Tr...
+2026-02-03 11:16:40 | INFO     |   - 2502.05200: Accretion-disk reflection in the Seyfert 1 galaxy ...
+2026-02-03 11:16:45 | DEBUG    | Received raw response (2172 chars)
+2026-02-03 11:16:45 | INFO     | ✅ Successfully parsed 3 papers using Pydantic validate_json
+2026-02-03 11:16:45 | INFO     | [2013] Saved result for 2502.03530
+2026-02-03 11:16:45 | INFO     | [2076] Saved result for 2502.05258
+2026-02-03 11:16:45 | INFO     | [2077] Saved result for 2502.05200
+2026-02-03 11:16:45 | INFO     | Batch complete: 3/3 papers saved
+2026-02-03 11:16:45 | INFO     | 
+========================================
+2026-02-03 11:16:45 | INFO     | BATCH 20/1914
+2026-02-03 11:16:45 | INFO     | Indices: [2090, 2091, 2094, 2095, 2109, 2110, 2117, 2121]
+2026-02-03 11:16:45 | INFO     | ========================================
+2026-02-03 11:16:45 | WARNING  | Folder not found for 2502.05513: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.05513
+2026-02-03 11:16:45 | WARNING  | [2090] No LaTeX text found for 2502.05513
+2026-02-03 11:16:45 | DEBUG    | Found 1 .tex files for 2502.05502
+2026-02-03 11:16:45 | INFO     | Combined 1 .tex files for 2502.05502 (156463 chars total)
+2026-02-03 11:16:45 | INFO     | ✅ [2091] Collected 2502.05502: A ZTF Search for Circumstellar Debris Transits in ... (0.00s)
+2026-02-03 11:16:45 | DEBUG    | Found 1 .tex files for 2502.05418
+2026-02-03 11:16:45 | INFO     | Combined 1 .tex files for 2502.05418 (58654 chars total)
+2026-02-03 11:16:45 | INFO     | ✅ [2094] Collected 2502.05418: Characterization of Residual Charge Images in LSST... (0.00s)
+2026-02-03 11:16:45 | DEBUG    | Found 12 .tex files for 2502.05304
+2026-02-03 11:16:45 | INFO     | Combined 12 .tex files for 2502.05304 (98762 chars total)
+2026-02-03 11:16:45 | INFO     | ✅ [2095] Collected 2502.05304: Redefining $Q$ for multi-component discs of stars ... (0.01s)
+2026-02-03 11:16:45 | WARNING  | Folder not found for 2502.03782: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.03782
+2026-02-03 11:16:45 | WARNING  | [2109] No LaTeX text found for 2502.03782
+2026-02-03 11:16:45 | WARNING  | Folder not found for 2502.03778: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.03778
+2026-02-03 11:16:45 | WARNING  | [2110] No LaTeX text found for 2502.03778
+2026-02-03 11:16:45 | WARNING  | Folder not found for 2502.03704: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.03704
+2026-02-03 11:16:45 | WARNING  | [2117] No LaTeX text found for 2502.03704
+2026-02-03 11:16:45 | WARNING  | Folder not found for 2502.03651: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.03651
+2026-02-03 11:16:45 | WARNING  | [2121] No LaTeX text found for 2502.03651
+2026-02-03 11:16:45 | INFO     | 📦 Batch collection complete: 3/8 papers collected
+2026-02-03 11:16:45 | INFO     | Sending batch of 3 papers to Gemini...
+2026-02-03 11:16:45 | INFO     | Processing batch of 3 papers:
+2026-02-03 11:16:45 | INFO     |   - 2502.05502: A ZTF Search for Circumstellar Debris Transits in ...
+2026-02-03 11:16:45 | INFO     |   - 2502.05418: Characterization of Residual Charge Images in LSST...
+2026-02-03 11:16:45 | INFO     |   - 2502.05304: Redefining $Q$ for multi-component discs of stars ...
+2026-02-03 11:16:51 | DEBUG    | Received raw response (6263 chars)
+2026-02-03 11:16:51 | INFO     | ✅ Successfully parsed 3 papers using Pydantic validate_json
+2026-02-03 11:16:51 | INFO     | [2091] Saved result for 2502.05502
+2026-02-03 11:16:51 | INFO     | [2094] Saved result for 2502.05418
+2026-02-03 11:16:51 | INFO     | [2095] Saved result for 2502.05304
+2026-02-03 11:16:51 | INFO     | Batch complete: 3/3 papers saved
+2026-02-03 11:16:51 | INFO     | 
+========================================
+2026-02-03 11:16:51 | INFO     | BATCH 21/1914
+2026-02-03 11:16:51 | INFO     | Indices: [2126, 2164, 2165, 2168, 2196, 2211, 2219, 2220]
+2026-02-03 11:16:51 | INFO     | ========================================
+2026-02-03 11:16:51 | WARNING  | Folder not found for 2502.03834: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.03834
+2026-02-03 11:16:51 | WARNING  | [2126] No LaTeX text found for 2502.03834
+2026-02-03 11:16:51 | WARNING  | Folder not found for 2502.00165: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.00165
+2026-02-03 11:16:51 | WARNING  | [2164] No LaTeX text found for 2502.00165
+2026-02-03 11:16:51 | WARNING  | Folder not found for 2502.00110: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.00110
+2026-02-03 11:16:51 | WARNING  | [2165] No LaTeX text found for 2502.00110
+2026-02-03 11:16:51 | DEBUG    | Found 1 .tex files for 2502.01135
+2026-02-03 11:16:51 | INFO     | Combined 1 .tex files for 2502.01135 (65524 chars total)
+2026-02-03 11:16:51 | INFO     | ✅ [2168] Collected 2502.01135: A Pristine View of Galactic Globular Clusters and ... (0.00s)
+2026-02-03 11:16:51 | WARNING  | Folder not found for 2502.00736: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.00736
+2026-02-03 11:16:51 | WARNING  | [2196] No LaTeX text found for 2502.00736
+2026-02-03 11:16:51 | WARNING  | Folder not found for 2502.00257: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.00257
+2026-02-03 11:16:51 | WARNING  | [2211] No LaTeX text found for 2502.00257
+2026-02-03 11:16:51 | DEBUG    | Found 1 .tex files for 2502.00531
+2026-02-03 11:16:51 | INFO     | Combined 1 .tex files for 2502.00531 (131085 chars total)
+2026-02-03 11:16:51 | INFO     | ✅ [2219] Collected 2502.00531: Radial Gradients and Intrinsic Scatter in MaNGA Ga... (0.00s)
+2026-02-03 11:16:51 | DEBUG    | Found 1 .tex files for 2502.00538
+2026-02-03 11:16:51 | INFO     | Combined 1 .tex files for 2502.00538 (77795 chars total)
+2026-02-03 11:16:51 | INFO     | ✅ [2220] Collected 2502.00538: Correlation between formaldehyde and methanol in p... (0.00s)
+2026-02-03 11:16:51 | INFO     | 📦 Batch collection complete: 3/8 papers collected
+2026-02-03 11:16:51 | INFO     | Sending batch of 3 papers to Gemini...
+2026-02-03 11:16:51 | INFO     | Processing batch of 3 papers:
+2026-02-03 11:16:51 | INFO     |   - 2502.01135: A Pristine View of Galactic Globular Clusters and ...
+2026-02-03 11:16:51 | INFO     |   - 2502.00531: Radial Gradients and Intrinsic Scatter in MaNGA Ga...
+2026-02-03 11:16:51 | INFO     |   - 2502.00538: Correlation between formaldehyde and methanol in p...
+2026-02-03 11:16:57 | DEBUG    | Received raw response (3380 chars)
+2026-02-03 11:16:57 | INFO     | ✅ Successfully parsed 3 papers using Pydantic validate_json
+2026-02-03 11:16:57 | INFO     | [2168] Saved result for 2502.01135
+2026-02-03 11:16:57 | INFO     | [2219] Saved result for 2502.00531
+2026-02-03 11:16:57 | INFO     | [2220] Saved result for 2502.00538
+2026-02-03 11:16:57 | INFO     | Batch complete: 3/3 papers saved
+2026-02-03 11:16:57 | INFO     | 
+========================================
+2026-02-03 11:16:57 | INFO     | BATCH 22/1914
+2026-02-03 11:16:57 | INFO     | Indices: [2221, 2222, 2223, 2224, 2225, 2226, 2227, 2228]
+2026-02-03 11:16:57 | INFO     | ========================================
+2026-02-03 11:16:57 | DEBUG    | Found 2 .tex files for 2502.00553
+2026-02-03 11:16:57 | INFO     | Combined 2 .tex files for 2502.00553 (49335 chars total)
+2026-02-03 11:16:57 | INFO     | ✅ [2221] Collected 2502.00553: The Influence of Stellar Chromospheres and Coronae... (0.00s)
+2026-02-03 11:16:57 | DEBUG    | Found 8 .tex files for 2502.00556
+2026-02-03 11:16:57 | INFO     | Combined 8 .tex files for 2502.00556 (92596 chars total)
+2026-02-03 11:16:57 | INFO     | ✅ [2222] Collected 2502.00556: PyLMT: A transient detection pipeline for the 4-m ... (0.00s)
+2026-02-03 11:16:57 | DEBUG    | Found 1 .tex files for 2502.00564
+2026-02-03 11:16:57 | INFO     | Combined 1 .tex files for 2502.00564 (64012 chars total)
+2026-02-03 11:16:57 | INFO     | ✅ [2223] Collected 2502.00564: The 4m International Liquid Mirror Telescope: Cons... (0.00s)
+2026-02-03 11:16:57 | DEBUG    | Found 1 .tex files for 2502.00574
+2026-02-03 11:16:57 | INFO     | Combined 1 .tex files for 2502.00574 (73621 chars total)
+2026-02-03 11:16:57 | INFO     | ✅ [2224] Collected 2502.00574: Predicting the number density of heavy seed massiv... (0.00s)
+2026-02-03 11:16:57 | DEBUG    | Found 8 .tex files for 2502.00576
+2026-02-03 11:16:57 | INFO     | Combined 8 .tex files for 2502.00576 (77514 chars total)
+2026-02-03 11:16:57 | INFO     | ✅ [2225] Collected 2502.00576: A 16 Myr super-Neptune in Upper-Centaurus Lupus an... (0.01s)
+2026-02-03 11:16:57 | DEBUG    | Found 1 .tex files for 2502.01479
+2026-02-03 11:16:57 | INFO     | Combined 1 .tex files for 2502.01479 (32475 chars total)
+2026-02-03 11:16:57 | INFO     | ✅ [2226] Collected 2502.01479: Can the dynamo of spiral-arm galaxies be explained... (0.00s)
+2026-02-03 11:16:57 | DEBUG    | Found 4 .tex files for 2502.05587
+2026-02-03 11:16:57 | INFO     | Combined 4 .tex files for 2502.05587 (90531 chars total)
+2026-02-03 11:16:57 | INFO     | ✅ [2227] Collected 2502.05587: The Host Galaxy of the Hyperactive Repeating FRB 2... (0.00s)
+2026-02-03 11:16:57 | DEBUG    | Found 1 .tex files for 2502.01485
+2026-02-03 11:16:57 | INFO     | Combined 1 .tex files for 2502.01485 (73405 chars total)
+2026-02-03 11:16:57 | INFO     | ✅ [2228] Collected 2502.01485: The effect of thermal misbalance on magnetohydrody... (0.00s)
+2026-02-03 11:16:57 | INFO     | 📦 Batch collection complete: 8/8 papers collected
+2026-02-03 11:16:57 | INFO     | Sending batch of 8 papers to Gemini...
+2026-02-03 11:16:57 | INFO     | Processing batch of 8 papers:
+2026-02-03 11:16:57 | INFO     |   - 2502.00553: The Influence of Stellar Chromospheres and Coronae...
+2026-02-03 11:16:57 | INFO     |   - 2502.00556: PyLMT: A transient detection pipeline for the 4-m ...
+2026-02-03 11:16:57 | INFO     |   - 2502.00564: The 4m International Liquid Mirror Telescope: Cons...
+2026-02-03 11:16:57 | INFO     |   - 2502.00574: Predicting the number density of heavy seed massiv...
+2026-02-03 11:16:57 | INFO     |   - 2502.00576: A 16 Myr super-Neptune in Upper-Centaurus Lupus an...
+2026-02-03 11:16:57 | INFO     |   - 2502.01479: Can the dynamo of spiral-arm galaxies be explained...
+2026-02-03 11:16:57 | INFO     |   - 2502.05587: The Host Galaxy of the Hyperactive Repeating FRB 2...
+2026-02-03 11:16:57 | INFO     |   - 2502.01485: The effect of thermal misbalance on magnetohydrody...
+2026-02-03 11:17:14 | DEBUG    | Received raw response (26591 chars)
+2026-02-03 11:17:14 | INFO     | ✅ Successfully parsed 8 papers using Pydantic validate_json
+2026-02-03 11:17:14 | INFO     | [2221] Saved result for 2502.00553
+2026-02-03 11:17:14 | INFO     | [2222] Saved result for 2502.00556
+2026-02-03 11:17:14 | INFO     | [2223] Saved result for 2502.00564
+2026-02-03 11:17:14 | INFO     | [2224] Saved result for 2502.00574
+2026-02-03 11:17:14 | INFO     | [2225] Saved result for 2502.00576
+2026-02-03 11:17:14 | INFO     | [2226] Saved result for 2502.01479
+2026-02-03 11:17:14 | INFO     | [2227] Saved result for 2502.05587
+2026-02-03 11:17:14 | INFO     | [2228] Saved result for 2502.01485
+2026-02-03 11:17:14 | INFO     | Batch complete: 8/8 papers saved
+2026-02-03 11:17:14 | INFO     | 
+========================================
+2026-02-03 11:17:14 | INFO     | BATCH 23/1914
+2026-02-03 11:17:14 | INFO     | Indices: [2229, 2230, 2231, 2232, 2233, 2234, 2235, 2236]
+2026-02-03 11:17:14 | INFO     | ========================================
+2026-02-03 11:17:14 | DEBUG    | Found 1 .tex files for 2502.01500
+2026-02-03 11:17:14 | INFO     | Combined 1 .tex files for 2502.01500 (32490 chars total)
+2026-02-03 11:17:14 | INFO     | ✅ [2229] Collected 2502.01500: Gamma/hadron separation in the TAIGA experiment wi... (0.00s)
+2026-02-03 11:17:14 | DEBUG    | Found 1 .tex files for 2502.02176
+2026-02-03 11:17:14 | INFO     | Combined 1 .tex files for 2502.02176 (59280 chars total)
+2026-02-03 11:17:14 | INFO     | ✅ [2230] Collected 2502.02176: MAISTEP -- a new grid-based machine learning tool ... (0.00s)
+2026-02-03 11:17:14 | DEBUG    | Found 1 .tex files for 2502.02158
+2026-02-03 11:17:14 | INFO     | Combined 1 .tex files for 2502.02158 (90249 chars total)
+2026-02-03 11:17:14 | INFO     | ✅ [2231] Collected 2502.02158: Spatial distribution and clustering properties of ... (0.00s)
+2026-02-03 11:17:14 | DEBUG    | Found 1 .tex files for 2502.02134
+2026-02-03 11:17:14 | INFO     | Combined 1 .tex files for 2502.02134 (70587 chars total)
+2026-02-03 11:17:14 | INFO     | ✅ [2232] Collected 2502.02134: Dust supply to slose binary systems... (0.00s)
+2026-02-03 11:17:14 | DEBUG    | Found 1 .tex files for 2502.02130
+2026-02-03 11:17:14 | INFO     | Combined 1 .tex files for 2502.02130 (45525 chars total)
+2026-02-03 11:17:14 | INFO     | ✅ [2233] Collected 2502.02130: Discovery of an RRAT-like pulsar via its single pu... (0.00s)
+2026-02-03 11:17:14 | DEBUG    | Found 1 .tex files for 2502.02124
+2026-02-03 11:17:14 | INFO     | Combined 1 .tex files for 2502.02124 (80425 chars total)
+2026-02-03 11:17:14 | INFO     | ✅ [2234] Collected 2502.02124: From Streaming Instability to the Onset of Pebble ... (0.00s)
+2026-02-03 11:17:14 | DEBUG    | Found 1 .tex files for 2502.02080
+2026-02-03 11:17:14 | INFO     | Combined 1 .tex files for 2502.02080 (100095 chars total)
+2026-02-03 11:17:14 | INFO     | ✅ [2235] Collected 2502.02080: Insight into the physical processes that shape the... (0.00s)
+2026-02-03 11:17:14 | DEBUG    | Found 1 .tex files for 2502.02078
+2026-02-03 11:17:14 | INFO     | Combined 1 .tex files for 2502.02078 (46795 chars total)
+2026-02-03 11:17:14 | INFO     | ✅ [2236] Collected 2502.02078: First spectro-polarimetric study of the neutron st... (0.00s)
+2026-02-03 11:17:14 | INFO     | 📦 Batch collection complete: 8/8 papers collected
+2026-02-03 11:17:14 | INFO     | Sending batch of 8 papers to Gemini...
+2026-02-03 11:17:14 | INFO     | Processing batch of 8 papers:
+2026-02-03 11:17:14 | INFO     |   - 2502.01500: Gamma/hadron separation in the TAIGA experiment wi...
+2026-02-03 11:17:14 | INFO     |   - 2502.02176: MAISTEP -- a new grid-based machine learning tool ...
+2026-02-03 11:17:14 | INFO     |   - 2502.02158: Spatial distribution and clustering properties of ...
+2026-02-03 11:17:14 | INFO     |   - 2502.02134: Dust supply to slose binary systems...
+2026-02-03 11:17:14 | INFO     |   - 2502.02130: Discovery of an RRAT-like pulsar via its single pu...
+2026-02-03 11:17:14 | INFO     |   - 2502.02124: From Streaming Instability to the Onset of Pebble ...
+2026-02-03 11:17:14 | INFO     |   - 2502.02080: Insight into the physical processes that shape the...
+2026-02-03 11:17:14 | INFO     |   - 2502.02078: First spectro-polarimetric study of the neutron st...
+2026-02-03 11:17:15 | WARNING  | Service unavailable (503) - model overloaded. Waiting 30s before retry 1/5
+2026-02-03 11:17:15 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
+2026-02-03 11:17:45 | INFO     | Processing batch of 8 papers:
+2026-02-03 11:17:45 | INFO     |   - 2502.01500: Gamma/hadron separation in the TAIGA experiment wi...
+2026-02-03 11:17:45 | INFO     |   - 2502.02176: MAISTEP -- a new grid-based machine learning tool ...
+2026-02-03 11:17:45 | INFO     |   - 2502.02158: Spatial distribution and clustering properties of ...
+2026-02-03 11:17:45 | INFO     |   - 2502.02134: Dust supply to slose binary systems...
+2026-02-03 11:17:45 | INFO     |   - 2502.02130: Discovery of an RRAT-like pulsar via its single pu...
+2026-02-03 11:17:45 | INFO     |   - 2502.02124: From Streaming Instability to the Onset of Pebble ...
+2026-02-03 11:17:45 | INFO     |   - 2502.02080: Insight into the physical processes that shape the...
+2026-02-03 11:17:45 | INFO     |   - 2502.02078: First spectro-polarimetric study of the neutron st...
+2026-02-03 11:18:00 | DEBUG    | Received raw response (15948 chars)
+2026-02-03 11:18:00 | INFO     | ✅ Successfully parsed 8 papers using Pydantic validate_json
+2026-02-03 11:18:00 | INFO     | [2229] Saved result for 2502.01500
+2026-02-03 11:18:00 | INFO     | [2230] Saved result for 2502.02176
+2026-02-03 11:18:00 | INFO     | [2231] Saved result for 2502.02158
+2026-02-03 11:18:00 | INFO     | [2232] Saved result for 2502.02134
+2026-02-03 11:18:00 | INFO     | [2233] Saved result for 2502.02130
+2026-02-03 11:18:00 | INFO     | [2235] Saved result for 2502.02080
+2026-02-03 11:18:00 | INFO     | [2236] Saved result for 2502.02078
+2026-02-03 11:18:00 | INFO     | [2234] Saved result for 2502.02124
+2026-02-03 11:18:00 | INFO     | Batch complete: 8/8 papers saved
+2026-02-03 11:18:00 | INFO     | 
+========================================
+2026-02-03 11:18:00 | INFO     | BATCH 24/1914
+2026-02-03 11:18:00 | INFO     | Indices: [2237, 2238, 2239, 2240, 2241, 2242, 2243, 2244]
+2026-02-03 11:18:00 | INFO     | ========================================
+2026-02-03 11:18:00 | DEBUG    | Found 1 .tex files for 2502.02178
+2026-02-03 11:18:00 | INFO     | Combined 1 .tex files for 2502.02178 (86327 chars total)
+2026-02-03 11:18:00 | INFO     | ✅ [2237] Collected 2502.02178: The structure of $\kappa$ Cygnid and August Dracon... (0.00s)
+2026-02-03 11:18:00 | DEBUG    | Found 1 .tex files for 2502.02077
+2026-02-03 11:18:00 | INFO     | Combined 1 .tex files for 2502.02077 (100802 chars total)
+2026-02-03 11:18:00 | INFO     | ✅ [2238] Collected 2502.02077: Self-consistent scenario for jet and stellar explo... (0.00s)
+2026-02-03 11:18:00 | DEBUG    | Found 1 .tex files for 2502.02042
+2026-02-03 11:18:00 | INFO     | Combined 1 .tex files for 2502.02042 (56058 chars total)
+2026-02-03 11:18:00 | INFO     | ✅ [2239] Collected 2502.02042: Thirty-five years of timing of M53A with Arecibo a... (0.00s)
+2026-02-03 11:18:00 | DEBUG    | Found 1 .tex files for 2502.01978
+2026-02-03 11:18:00 | INFO     | Combined 1 .tex files for 2502.01978 (115327 chars total)
+2026-02-03 11:18:00 | INFO     | ✅ [2240] Collected 2502.01978: Resolved Stellar Mass Estimation of Nearby Late-ty... (0.00s)
+2026-02-03 11:18:00 | DEBUG    | Found 2 .tex files for 2502.01963
+2026-02-03 11:18:00 | INFO     | Combined 2 .tex files for 2502.01963 (115471 chars total)
+2026-02-03 11:18:00 | INFO     | ✅ [2241] Collected 2502.01963: A search for extremely-high-energy neutrinos and f... (0.00s)
+2026-02-03 11:18:00 | DEBUG    | Found 15 .tex files for 2502.01948
+2026-02-03 11:18:00 | INFO     | Combined 15 .tex files for 2502.01948 (45491 chars total)
+2026-02-03 11:18:00 | INFO     | ✅ [2242] Collected 2502.01948: Collisionless shocks having relativistic velocitie... (0.01s)
+2026-02-03 11:18:00 | DEBUG    | Found 2 .tex files for 2502.01929
+2026-02-03 11:18:00 | INFO     | Combined 2 .tex files for 2502.01929 (56108 chars total)
+2026-02-03 11:18:00 | INFO     | ✅ [2243] Collected 2502.01929: Exploring blazars through sonification. Visual and... (0.00s)
+2026-02-03 11:18:00 | DEBUG    | Found 1 .tex files for 2502.01921
+2026-02-03 11:18:00 | INFO     | Combined 1 .tex files for 2502.01921 (63374 chars total)
+2026-02-03 11:18:00 | INFO     | ✅ [2244] Collected 2502.01921: A Dual Active Black Hole Candidate with Mass Ratio... (0.00s)
+2026-02-03 11:18:00 | INFO     | 📦 Batch collection complete: 8/8 papers collected
+2026-02-03 11:18:00 | INFO     | Sending batch of 8 papers to Gemini...
+2026-02-03 11:18:00 | INFO     | Processing batch of 8 papers:
+2026-02-03 11:18:00 | INFO     |   - 2502.02178: The structure of $\kappa$ Cygnid and August Dracon...
+2026-02-03 11:18:00 | INFO     |   - 2502.02077: Self-consistent scenario for jet and stellar explo...
+2026-02-03 11:18:00 | INFO     |   - 2502.02042: Thirty-five years of timing of M53A with Arecibo a...
+2026-02-03 11:18:00 | INFO     |   - 2502.01978: Resolved Stellar Mass Estimation of Nearby Late-ty...
+2026-02-03 11:18:00 | INFO     |   - 2502.01963: A search for extremely-high-energy neutrinos and f...
+2026-02-03 11:18:00 | INFO     |   - 2502.01948: Collisionless shocks having relativistic velocitie...
+2026-02-03 11:18:00 | INFO     |   - 2502.01929: Exploring blazars through sonification. Visual and...
+2026-02-03 11:18:00 | INFO     |   - 2502.01921: A Dual Active Black Hole Candidate with Mass Ratio...
+2026-02-03 11:18:51 | DEBUG    | Received raw response (54255 chars)
+2026-02-03 11:18:51 | INFO     | ✅ Successfully parsed 8 papers using Pydantic validate_json
+2026-02-03 11:18:51 | INFO     | [2237] Saved result for 2502.02178
+2026-02-03 11:18:51 | INFO     | [2238] Saved result for 2502.02077
+2026-02-03 11:18:51 | INFO     | [2239] Saved result for 2502.02042
+2026-02-03 11:18:51 | INFO     | [2240] Saved result for 2502.01978
+2026-02-03 11:18:51 | INFO     | [2241] Saved result for 2502.01963
+2026-02-03 11:18:51 | INFO     | [2242] Saved result for 2502.01948
+2026-02-03 11:18:51 | INFO     | [2243] Saved result for 2502.01929
+2026-02-03 11:18:51 | INFO     | [2244] Saved result for 2502.01921
+2026-02-03 11:18:51 | INFO     | Batch complete: 8/8 papers saved
+2026-02-03 11:18:51 | INFO     | 
+========================================
+2026-02-03 11:18:51 | INFO     | BATCH 25/1914
+2026-02-03 11:18:51 | INFO     | Indices: [2245, 2246, 2247, 2248, 2249, 2250, 2251, 2252]
+2026-02-03 11:18:51 | INFO     | ========================================
+2026-02-03 11:18:51 | DEBUG    | Found 2 .tex files for 2502.01910
+2026-02-03 11:18:51 | INFO     | Combined 2 .tex files for 2502.01910 (97188 chars total)
+2026-02-03 11:18:51 | INFO     | ✅ [2245] Collected 2502.01910: Half a Million M Dwarf Stars Characterized Using D... (0.00s)
+2026-02-03 11:18:51 | DEBUG    | Found 1 .tex files for 2502.02045
+2026-02-03 11:18:51 | INFO     | Combined 1 .tex files for 2502.02045 (72884 chars total)
+2026-02-03 11:18:51 | INFO     | ✅ [2246] Collected 2502.02045: Development and Quality Control of PMT Modules for... (0.00s)
+2026-02-03 11:18:51 | DEBUG    | Found 1 .tex files for 2502.01903
+2026-02-03 11:18:51 | INFO     | Combined 1 .tex files for 2502.01903 (49196 chars total)
+2026-02-03 11:18:51 | INFO     | ✅ [2247] Collected 2502.01903: Amplifying Resonant Repulsion with Inflated Young ... (0.00s)
+2026-02-03 11:18:51 | DEBUG    | Found 1 .tex files for 2502.02239
+2026-02-03 11:18:51 | INFO     | Combined 1 .tex files for 2502.02239 (139042 chars total)
+2026-02-03 11:18:51 | INFO     | ✅ [2248] Collected 2502.02239: The SRG/eROSITA all-sky survey: The morphologies o... (0.00s)
+2026-02-03 11:18:51 | DEBUG    | Found 1 .tex files for 2502.02246
+2026-02-03 11:18:51 | INFO     | Combined 1 .tex files for 2502.02246 (87497 chars total)
+2026-02-03 11:18:51 | INFO     | ✅ [2249] Collected 2502.02246: Cosmic Shear Nulling as a geometrical cosmological... (0.00s)
+2026-02-03 11:18:51 | DEBUG    | Found 1 .tex files for 2502.02426
+2026-02-03 11:18:51 | INFO     | Combined 1 .tex files for 2502.02426 (64375 chars total)
+2026-02-03 11:18:51 | INFO     | ✅ [2250] Collected 2502.02426: Testing the Equivalence Principle on Cosmological ... (0.00s)
+2026-02-03 11:18:51 | DEBUG    | Found 1 .tex files for 2502.00062
+2026-02-03 11:18:51 | INFO     | Combined 1 .tex files for 2502.00062 (49610 chars total)
+2026-02-03 11:18:51 | INFO     | ✅ [2251] Collected 2502.00062: Occultation constraints on solar system formation ... (0.00s)
+2026-02-03 11:18:51 | DEBUG    | Found 1 .tex files for 2502.02425
+2026-02-03 11:18:51 | INFO     | Combined 1 .tex files for 2502.02425 (43616 chars total)
+2026-02-03 11:18:51 | INFO     | ✅ [2252] Collected 2502.02425: Carpet-3 detection of a photon-like air shower wit... (0.00s)
+2026-02-03 11:18:51 | INFO     | 📦 Batch collection complete: 8/8 papers collected
+2026-02-03 11:18:51 | INFO     | Sending batch of 8 papers to Gemini...
+2026-02-03 11:18:51 | INFO     | Processing batch of 8 papers:
+2026-02-03 11:18:51 | INFO     |   - 2502.01910: Half a Million M Dwarf Stars Characterized Using D...
+2026-02-03 11:18:51 | INFO     |   - 2502.02045: Development and Quality Control of PMT Modules for...
+2026-02-03 11:18:51 | INFO     |   - 2502.01903: Amplifying Resonant Repulsion with Inflated Young ...
+2026-02-03 11:18:51 | INFO     |   - 2502.02239: The SRG/eROSITA all-sky survey: The morphologies o...
+2026-02-03 11:18:51 | INFO     |   - 2502.02246: Cosmic Shear Nulling as a geometrical cosmological...
+2026-02-03 11:18:51 | INFO     |   - 2502.02426: Testing the Equivalence Principle on Cosmological ...
+2026-02-03 11:18:51 | INFO     |   - 2502.00062: Occultation constraints on solar system formation ...
+2026-02-03 11:18:51 | INFO     |   - 2502.02425: Carpet-3 detection of a photon-like air shower wit...
+2026-02-03 11:19:29 | DEBUG    | Received raw response (35831 chars)
+2026-02-03 11:19:29 | INFO     | ✅ Successfully parsed 8 papers using Pydantic validate_json
+2026-02-03 11:19:29 | INFO     | [2245] Saved result for 2502.01910
+2026-02-03 11:19:29 | INFO     | [2246] Saved result for 2502.02045
+2026-02-03 11:19:29 | INFO     | [2247] Saved result for 2502.01903
+2026-02-03 11:19:29 | INFO     | [2248] Saved result for 2502.02239
+2026-02-03 11:19:29 | INFO     | [2249] Saved result for 2502.02246
+2026-02-03 11:19:29 | INFO     | [2250] Saved result for 2502.02426
+2026-02-03 11:19:29 | INFO     | [2251] Saved result for 2502.00062
+2026-02-03 11:19:29 | INFO     | [2252] Saved result for 2502.02425
+2026-02-03 11:19:29 | INFO     | Batch complete: 8/8 papers saved
+2026-02-03 11:19:29 | INFO     | 
+========================================
+2026-02-03 11:19:29 | INFO     | BATCH 26/1914
+2026-02-03 11:19:29 | INFO     | Indices: [2253, 2254, 2255, 2256, 2257, 2258, 2259, 2260]
+2026-02-03 11:19:29 | INFO     | ========================================
+2026-02-03 11:19:29 | DEBUG    | Found 1 .tex files for 2502.02423
+2026-02-03 11:19:29 | INFO     | Combined 1 .tex files for 2502.02423 (16320 chars total)
+2026-02-03 11:19:29 | INFO     | ✅ [2253] Collected 2502.02423: Competition between Increasing and Decreasing Effe... (0.00s)
+2026-02-03 11:19:29 | DEBUG    | Found 1 .tex files for 2502.02422
+2026-02-03 11:19:29 | INFO     | Combined 1 .tex files for 2502.02422 (34548 chars total)
+2026-02-03 11:19:29 | INFO     | ✅ [2254] Collected 2502.02422: Modulation of X-ray flux by obscuration of neutron... (0.00s)
+2026-02-03 11:19:29 | DEBUG    | Found 1 .tex files for 2502.02420
+2026-02-03 11:19:29 | INFO     | Combined 1 .tex files for 2502.02420 (29725 chars total)
+2026-02-03 11:19:29 | INFO     | ✅ [2255] Collected 2502.02420: Constraints on minimally and conformally coupled u... (0.00s)
+2026-02-03 11:19:29 | DEBUG    | Found 1 .tex files for 2502.02411
+2026-02-03 11:19:29 | INFO     | Combined 1 .tex files for 2502.02411 (49775 chars total)
+2026-02-03 11:19:29 | INFO     | ✅ [2256] Collected 2502.02411: Mixing neutron star material into the jets in the ... (0.00s)
+2026-02-03 11:19:29 | DEBUG    | Found 1 .tex files for 2502.02243
+2026-02-03 11:19:29 | INFO     | Combined 1 .tex files for 2502.02243 (31526 chars total)
+2026-02-03 11:19:29 | INFO     | ✅ [2257] Collected 2502.02243: Novel geometrical test of cosmological expansion f... (0.00s)
+2026-02-03 11:19:29 | WARNING  | No .tex files found in folder: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.02399
+2026-02-03 11:19:29 | WARNING  | [2258] No LaTeX text found for 2502.02399
+2026-02-03 11:19:29 | DEBUG    | Found 1 .tex files for 2502.02376
+2026-02-03 11:19:29 | INFO     | Combined 1 .tex files for 2502.02376 (66476 chars total)
+2026-02-03 11:19:29 | INFO     | ✅ [2259] Collected 2502.02376: Modelling a Transiting Circumbinary Disc in the HD... (0.00s)
+2026-02-03 11:19:29 | DEBUG    | Found 1 .tex files for 2502.02373
+2026-02-03 11:19:29 | INFO     | Combined 1 .tex files for 2502.02373 (34813 chars total)
+2026-02-03 11:19:29 | INFO     | ✅ [2260] Collected 2502.02373: Consistent crust-core interpolation and its effect... (0.00s)
+2026-02-03 11:19:29 | INFO     | 📦 Batch collection complete: 7/8 papers collected
+2026-02-03 11:19:29 | INFO     | Sending batch of 7 papers to Gemini...
+2026-02-03 11:19:29 | INFO     | Processing batch of 7 papers:
+2026-02-03 11:19:29 | INFO     |   - 2502.02423: Competition between Increasing and Decreasing Effe...
+2026-02-03 11:19:29 | INFO     |   - 2502.02422: Modulation of X-ray flux by obscuration of neutron...
+2026-02-03 11:19:29 | INFO     |   - 2502.02420: Constraints on minimally and conformally coupled u...
+2026-02-03 11:19:29 | INFO     |   - 2502.02411: Mixing neutron star material into the jets in the ...
+2026-02-03 11:19:29 | INFO     |   - 2502.02243: Novel geometrical test of cosmological expansion f...
+2026-02-03 11:19:29 | INFO     |   - 2502.02376: Modelling a Transiting Circumbinary Disc in the HD...
+2026-02-03 11:19:29 | INFO     |   - 2502.02373: Consistent crust-core interpolation and its effect...
+2026-02-03 11:19:30 | WARNING  | Service unavailable (503) - model overloaded. Waiting 30s before retry 1/5
+2026-02-03 11:19:30 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
+2026-02-03 11:20:00 | INFO     | Processing batch of 7 papers:
+2026-02-03 11:20:00 | INFO     |   - 2502.02423: Competition between Increasing and Decreasing Effe...
+2026-02-03 11:20:00 | INFO     |   - 2502.02422: Modulation of X-ray flux by obscuration of neutron...
+2026-02-03 11:20:00 | INFO     |   - 2502.02420: Constraints on minimally and conformally coupled u...
+2026-02-03 11:20:00 | INFO     |   - 2502.02411: Mixing neutron star material into the jets in the ...
+2026-02-03 11:20:00 | INFO     |   - 2502.02243: Novel geometrical test of cosmological expansion f...
+2026-02-03 11:20:00 | INFO     |   - 2502.02376: Modelling a Transiting Circumbinary Disc in the HD...
+2026-02-03 11:20:00 | INFO     |   - 2502.02373: Consistent crust-core interpolation and its effect...
+2026-02-03 11:20:15 | WARNING  | Service unavailable (503) - model overloaded. Waiting 60s before retry 2/5
+2026-02-03 11:20:15 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
+2026-02-03 11:21:15 | INFO     | Processing batch of 7 papers:
+2026-02-03 11:21:15 | INFO     |   - 2502.02423: Competition between Increasing and Decreasing Effe...
+2026-02-03 11:21:15 | INFO     |   - 2502.02422: Modulation of X-ray flux by obscuration of neutron...
+2026-02-03 11:21:15 | INFO     |   - 2502.02420: Constraints on minimally and conformally coupled u...
+2026-02-03 11:21:15 | INFO     |   - 2502.02411: Mixing neutron star material into the jets in the ...
+2026-02-03 11:21:15 | INFO     |   - 2502.02243: Novel geometrical test of cosmological expansion f...
+2026-02-03 11:21:15 | INFO     |   - 2502.02376: Modelling a Transiting Circumbinary Disc in the HD...
+2026-02-03 11:21:15 | INFO     |   - 2502.02373: Consistent crust-core interpolation and its effect...
+2026-02-03 11:21:16 | WARNING  | Service unavailable (503) - model overloaded. Waiting 120s before retry 3/5
+2026-02-03 11:21:16 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
+2026-02-03 11:23:16 | INFO     | Processing batch of 7 papers:
+2026-02-03 11:23:16 | INFO     |   - 2502.02423: Competition between Increasing and Decreasing Effe...
+2026-02-03 11:23:16 | INFO     |   - 2502.02422: Modulation of X-ray flux by obscuration of neutron...
+2026-02-03 11:23:16 | INFO     |   - 2502.02420: Constraints on minimally and conformally coupled u...
+2026-02-03 11:23:16 | INFO     |   - 2502.02411: Mixing neutron star material into the jets in the ...
+2026-02-03 11:23:16 | INFO     |   - 2502.02243: Novel geometrical test of cosmological expansion f...
+2026-02-03 11:23:16 | INFO     |   - 2502.02376: Modelling a Transiting Circumbinary Disc in the HD...
+2026-02-03 11:23:16 | INFO     |   - 2502.02373: Consistent crust-core interpolation and its effect...
+2026-02-03 11:23:32 | DEBUG    | Received raw response (15089 chars)
+2026-02-03 11:23:32 | INFO     | ✅ Successfully parsed 7 papers using Pydantic validate_json
+2026-02-03 11:23:32 | INFO     | [2253] Saved result for 2502.02423
+2026-02-03 11:23:32 | INFO     | [2254] Saved result for 2502.02422
+2026-02-03 11:23:32 | INFO     | [2255] Saved result for 2502.02420
+2026-02-03 11:23:32 | INFO     | [2256] Saved result for 2502.02411
+2026-02-03 11:23:32 | INFO     | [2257] Saved result for 2502.02243
+2026-02-03 11:23:32 | INFO     | [2259] Saved result for 2502.02376
+2026-02-03 11:23:32 | INFO     | [2259] Saved result for 2502.02376
+2026-02-03 11:23:32 | INFO     | Batch complete: 7/7 papers saved
+2026-02-03 11:23:32 | INFO     | 
+========================================
+2026-02-03 11:23:32 | INFO     | BATCH 27/1914
+2026-02-03 11:23:32 | INFO     | Indices: [2261, 2262, 2263, 2352, 2357, 2359, 2429, 2445]
+2026-02-03 11:23:32 | INFO     | ========================================
+2026-02-03 11:23:32 | WARNING  | Folder not found for 2502.02350: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.02350
+2026-02-03 11:23:32 | WARNING  | [2261] No LaTeX text found for 2502.02350
+2026-02-03 11:23:32 | DEBUG    | Found 1 .tex files for 2502.02294
+2026-02-03 11:23:32 | INFO     | Combined 1 .tex files for 2502.02294 (67310 chars total)
+2026-02-03 11:23:32 | INFO     | ✅ [2262] Collected 2502.02294: Differentiable Cosmological Hydrodynamics for Fiel... (0.00s)
+2026-02-03 11:23:32 | DEBUG    | Found 1 .tex files for 2502.02291
+2026-02-03 11:23:32 | INFO     | Combined 1 .tex files for 2502.02291 (47582 chars total)
+2026-02-03 11:23:32 | INFO     | ✅ [2263] Collected 2502.02291: Primordial Black Hole Formation via Inverted Bubbl... (0.00s)
+2026-02-03 11:23:32 | WARNING  | Folder not found for 2502.08842: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.08842
+2026-02-03 11:23:32 | WARNING  | [2352] No LaTeX text found for 2502.08842
+2026-02-03 11:23:32 | WARNING  | Folder not found for 2502.08761: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.08761
+2026-02-03 11:23:32 | WARNING  | [2357] No LaTeX text found for 2502.08761
+2026-02-03 11:23:32 | WARNING  | Folder not found for 2502.08752: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.08752
+2026-02-03 11:23:32 | WARNING  | [2359] No LaTeX text found for 2502.08752
+2026-02-03 11:23:32 | WARNING  | Folder not found for 2502.10575: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.10575
+2026-02-03 11:23:32 | WARNING  | [2429] No LaTeX text found for 2502.10575
+2026-02-03 11:23:32 | WARNING  | No .tex files found in folder: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.09734
+2026-02-03 11:23:32 | WARNING  | [2445] No LaTeX text found for 2502.09734
+2026-02-03 11:23:32 | INFO     | 📦 Batch collection complete: 2/8 papers collected
+2026-02-03 11:23:32 | INFO     | Sending batch of 2 papers to Gemini...
+2026-02-03 11:23:32 | INFO     | Processing batch of 2 papers:
+2026-02-03 11:23:32 | INFO     |   - 2502.02294: Differentiable Cosmological Hydrodynamics for Fiel...
+2026-02-03 11:23:32 | INFO     |   - 2502.02291: Primordial Black Hole Formation via Inverted Bubbl...
+2026-02-03 11:23:32 | WARNING  | Service unavailable (503) - model overloaded. Waiting 30s before retry 1/5
+2026-02-03 11:23:32 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
+2026-02-03 11:24:02 | INFO     | Processing batch of 2 papers:
+2026-02-03 11:24:02 | INFO     |   - 2502.02294: Differentiable Cosmological Hydrodynamics for Fiel...
+2026-02-03 11:24:02 | INFO     |   - 2502.02291: Primordial Black Hole Formation via Inverted Bubbl...
+2026-02-03 11:24:03 | WARNING  | Service unavailable (503) - model overloaded. Waiting 60s before retry 2/5
+2026-02-03 11:24:03 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
+2026-02-03 11:25:03 | INFO     | Processing batch of 2 papers:
+2026-02-03 11:25:03 | INFO     |   - 2502.02294: Differentiable Cosmological Hydrodynamics for Fiel...
+2026-02-03 11:25:03 | INFO     |   - 2502.02291: Primordial Black Hole Formation via Inverted Bubbl...
+2026-02-03 11:25:04 | WARNING  | Service unavailable (503) - model overloaded. Waiting 120s before retry 3/5
+2026-02-03 11:25:04 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
+2026-02-03 11:27:04 | INFO     | Processing batch of 2 papers:
+2026-02-03 11:27:04 | INFO     |   - 2502.02294: Differentiable Cosmological Hydrodynamics for Fiel...
+2026-02-03 11:27:04 | INFO     |   - 2502.02291: Primordial Black Hole Formation via Inverted Bubbl...
+2026-02-03 11:27:05 | WARNING  | Service unavailable (503) - model overloaded. Waiting 240s before retry 4/5
+2026-02-03 11:27:05 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...

@@ -6,6 +6,7 @@ Uses Gemini for batch processing of papers with structured JSON output.
 import json
 import logging
 import os
+import random
 import re
 import shutil
 import tarfile
@@ -26,9 +27,14 @@ from tqdm import tqdm
 # =======================
 class Author(BaseModel):
     """Model for a single author with affiliations."""
-    name: str = Field(description="Full name of the author.")
+    name: Optional[str] = Field(default="", description="Full name of the author.")
     affiliations: List[str] = Field(default_factory=list, description="List of affiliations for this author.")
     countries: List[str] = Field(default_factory=list, description="List of countries associated with the affiliations.")
+    
+    class Config:
+        # Allow extra fields and be lenient with validation
+        extra = "ignore"
+        validate_assignment = False
 
 
 class Paper(BaseModel):
@@ -36,6 +42,11 @@ class Paper(BaseModel):
     arxiv_id: str = Field(description="The arXiv ID of the paper.")
     authors: List[Author] = Field(default_factory=list, description="List of authors with their affiliations.")
     first_author_countries: List[str] = Field(default_factory=list, description="Countries of the first author.")
+    
+    class Config:
+        # Allow extra fields and be lenient with validation
+        extra = "ignore"
+        validate_assignment = False
 
 
 class BatchResponse(BaseModel):
@@ -45,21 +56,37 @@ class BatchResponse(BaseModel):
 # =======================
 # CONFIGURATION
 # =======================
-MODEL_ID = "gemini-2.5-flash-lite"
+# Model recommendations (based on available models):
+# - "gemini-2.5-flash": Best balance - fast, accurate, excellent JSON compliance (RECOMMENDED)
+# - "gemini-2.5-pro": Most accurate but slower, best for complex extractions
+# - "gemini-3-flash-preview": Newest model, may have best JSON compliance (preview)
+# - "gemini-3-pro-preview": Most powerful, best accuracy (preview, slower)
+# - "gemini-2.5-flash-lite": Fastest but less accurate
+# - "gemini-2.0-flash": Stable, reliable, good JSON output
+MODEL_ID = "gemini-3-pro-preview"  # Recommended: best balance of speed and JSON compliance
 CSV_PATH = "2025_Data.csv"
 OUTPUT_CSV_PATH = "gemini_affil_output.csv"
 
-ARXIV_DIR = "arxiv_papers"
+# Local directory containing arXiv LaTeX folders
+ARXIV_LATEX_DIR = r"C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver"
 OUTPUT_JSON = "gemini_output.json"
 
 # Batch configuration
-BATCH_SIZE = 20  # Number of papers per batch
-MAX_LATEX_CHARS = 15000  # Max chars of LaTeX per paper
+BATCH_SIZE = 15 # Number of papers per batch
+MAX_LATEX_CHARS = 25000  # Max chars of LaTeX per paper
 
 # Rate limiting for free tier: 15 requests per minute
-RATE_LIMIT_SECONDS = 60.0 / 15  # ~4 seconds between requests
-MAX_RETRIES = 3
+RATE_LIMIT_SECONDS = 5  # ~4 seconds between requests
+MAX_RETRIES = 5  # Increased retries for 503 errors
 RETRY_DELAY = 60  # seconds to wait on quota error
+SERVICE_UNAVAILABLE_BASE_DELAY = 30  # Base delay for 503 errors (exponential backoff)
+MAX_SERVICE_UNAVAILABLE_DELAY = 300  # Max 5 minutes wait for 503 errors
+
+# NOTE: 503 errors ("model is overloaded") are SERVER-SIDE issues, not context memory issues.
+# The Gemini API service itself is overloaded. Each API call using generate_content() is 
+# stateless - there's no conversation history or model context memory maintained between 
+# requests. Each call is completely independent. The solution is to retry with exponential
+# backoff and increase wait times between requests to reduce load on the API.
 
 # =======================
 # LOGGING SETUP
@@ -109,10 +136,11 @@ client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 # UTILITY FUNCTIONS
 # =======================
 def setup_directories():
-    """Create necessary directories."""
-    if not os.path.exists(ARXIV_DIR):
-        os.makedirs(ARXIV_DIR)
-        logger.info(f"Created directory: {ARXIV_DIR}")
+    """Verify the local LaTeX directory exists."""
+    if not os.path.exists(ARXIV_LATEX_DIR):
+        logger.error(f"LaTeX directory not found: {ARXIV_LATEX_DIR}")
+        raise FileNotFoundError(f"LaTeX directory not found: {ARXIV_LATEX_DIR}")
+    logger.info(f"Using LaTeX directory: {ARXIV_LATEX_DIR}")
 
 
 
@@ -131,92 +159,68 @@ def get_eprint_url(pdf_link):
     return None, None
 
 
-def download_source(url, arxiv_id):
-    """Downloads the source file from arXiv."""
-    logger.debug(f"Downloading source for {arxiv_id} from {url}")
-    try:
-        response = requests.get(url, stream=True)
-        if response.status_code == 200:
-            file_path = os.path.join(ARXIV_DIR, f"{arxiv_id}.tar.gz")
-            with open(file_path, "wb") as f:
-                f.write(response.content)
-            return file_path
-        else:
-            logger.warning(f"Failed to download {url}: Status {response.status_code}")
-            return None
-    except Exception as e:
-        logger.error(f"Error downloading {url}: {e}")
+# Note: download_source function removed - now reading from local folders instead
+
+def read_latex_from_folder(arxiv_id):
+    """
+    Reads all .tex files from a local folder and combines them.
+    The folder name should match the arxiv_id.
+    Returns combined LaTeX content or None if folder not found.
+    """
+    folder_path = os.path.join(ARXIV_LATEX_DIR, arxiv_id)
+    
+    if not os.path.exists(folder_path):
+        logger.warning(f"Folder not found for {arxiv_id}: {folder_path}")
         return None
-
-
-def extract_and_read_latex(file_path, arxiv_id):
-    """Extracts tar.gz and reads LaTeX files."""
-    extract_dir = os.path.join(ARXIV_DIR, arxiv_id)
-    if not os.path.exists(extract_dir):
-        os.makedirs(extract_dir)
-
-    try:
-        is_tar = tarfile.is_tarfile(file_path)
-    except:
-        is_tar = False
-
-    try:
-        if is_tar:
-            with tarfile.open(file_path, "r:gz") as tar:
-                tar.extractall(path=extract_dir)
-        else:
-            single_tex = os.path.join(extract_dir, f"{arxiv_id}.tex")
-            shutil.copy(file_path, single_tex)
-
-        # Find .tex files
-        tex_files = []
-        for root, dirs, files in os.walk(extract_dir):
-            for file in files:
-                if file.endswith(".tex") or file.endswith(".ltx"):
-                    tex_files.append(os.path.join(root, file))
-
-        # Sort by size to find main file
-        tex_files.sort(key=lambda x: os.path.getsize(x), reverse=True)
-
-        # Look for explicit author content
-        for tex_file in tex_files:
-            try:
-                with open(tex_file, "r", errors="replace") as f:
-                    content = f.read()
-                    if (
-                        "\\author" in content
-                        or "\\address" in content
-                        or "\\affiliation" in content
-                        or "\\documentclass" in content
-                    ):
-                        logger.debug(f"Found LaTeX in {os.path.basename(tex_file)} ({len(content)} chars)")
-                        return content
-            except:
-                continue
-
-        # Fallback to largest
-        if tex_files:
-            with open(tex_files[0], "r", errors="replace") as f:
-                return f.read()
-
-    except Exception as e:
-        logger.error(f"Error extracting/reading {file_path}: {e}")
-
+    
+    if not os.path.isdir(folder_path):
+        logger.warning(f"Path exists but is not a directory: {folder_path}")
+        return None
+    
+    # Find all .tex files in the folder (including subdirectories)
+    tex_files = []
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if file.endswith(".tex") or file.endswith(".ltx"):
+                tex_files.append(os.path.join(root, file))
+    
+    if not tex_files:
+        logger.warning(f"No .tex files found in folder: {folder_path}")
+        return None
+    
+    # Sort by size (largest first) to prioritize main files
+    tex_files.sort(key=lambda x: os.path.getsize(x), reverse=True)
+    
+    logger.debug(f"Found {len(tex_files)} .tex files for {arxiv_id}")
+    
+    # Combine all .tex files into one content string
+    combined_content = []
+    total_chars = 0
+    
+    for tex_file in tex_files:
+        try:
+            with open(tex_file, "r", encoding='utf-8', errors="replace") as f:
+                content = f.read()
+                # Add a separator comment to distinguish files
+                rel_path = os.path.relpath(tex_file, folder_path)
+                combined_content.append(f"\n% ===== File: {rel_path} =====\n")
+                combined_content.append(content)
+                total_chars += len(content)
+        except Exception as e:
+            logger.warning(f"Error reading {tex_file}: {e}")
+            continue
+    
+    if combined_content:
+        full_content = "\n".join(combined_content)
+        logger.info(f"Combined {len(tex_files)} .tex files for {arxiv_id} ({total_chars} chars total)")
+        return full_content
+    
     return None
 
 
 def cleanup(arxiv_id):
-    """Deletes downloaded files."""
-    try:
-        file_path = os.path.join(ARXIV_DIR, f"{arxiv_id}.tar.gz")
-        extract_dir = os.path.join(ARXIV_DIR, arxiv_id)
-
-        if os.path.exists(file_path):
-            os.remove(file_path)
-        if os.path.exists(extract_dir):
-            shutil.rmtree(extract_dir)
-    except Exception as e:
-        logger.error(f"Error cleaning up {arxiv_id}: {e}")
+    """No cleanup needed when reading from local folders."""
+    pass
 
 
 # =======================
@@ -234,8 +238,15 @@ For each paper provided:
 2. For each author, extract their affiliations (some authors have multiple)
 3. For each affiliation, identify the country
 4. Identify the first author's country/countries
+5. If you cannot find the information, use empty strings "" for names and empty arrays [] for lists.
 
-IMPORTANT: Return ONLY valid JSON matching the exact schema provided. Do not include any LaTeX commands or special characters in your output - convert them to plain text.
+CRITICAL JSON REQUIREMENTS:
+- Return ONLY valid JSON - no markdown code blocks, no explanations
+- Escape all backslashes properly: use \\\\ for literal backslashes in text
+- Use double quotes for all strings
+- Convert LaTeX commands to plain text (remove \\ commands, convert to readable text)
+- Ensure all special characters are properly escaped
+- If a field is missing, use empty string "" or empty array [] as appropriate
 """
 
     # Build the papers section
@@ -259,7 +270,7 @@ Extract author and affiliation information from these papers:
 
 {papers_section}
 
-Return a JSON object with this exact structure:
+Return ONLY a valid JSON object (no markdown, no explanations) with this exact structure:
 {{
   "papers": [
     {{
@@ -275,6 +286,12 @@ Return a JSON object with this exact structure:
     }}
   ]
 }}
+
+IMPORTANT: 
+- Escape all backslashes in text (use \\\\ for literal backslash)
+- Use empty string "" if name is missing
+- Use empty array [] if list is missing
+- Convert LaTeX to plain text (remove \\ commands)
 """
     
     return system_prompt, user_prompt
@@ -284,87 +301,132 @@ def clean_json_response(response_text: str) -> str:
     """
     Clean up JSON response to fix common escape character issues.
     LaTeX content often contains backslashes that break JSON parsing.
+    Uses multiple strategies to fix invalid escape sequences.
     """
     if not response_text:
         return response_text
     
     # Remove markdown code blocks if present
-    if response_text.startswith("```json"):
-        response_text = response_text[7:]
-    if response_text.startswith("```"):
-        response_text = response_text[3:]
-    if response_text.endswith("```"):
-        response_text = response_text[:-3]
-    
     response_text = response_text.strip()
+    if response_text.startswith("```json"):
+        response_text = response_text[7:].strip()
+    elif response_text.startswith("```"):
+        response_text = response_text[3:].strip()
+    if response_text.endswith("```"):
+        response_text = response_text[:-3].strip()
     
-    # Fix common LaTeX escape issues in JSON strings
-    # These patterns appear inside JSON string values and break parsing
-    
-    # Replace problematic backslash sequences that aren't valid JSON escapes
-    # Valid JSON escapes: \", \\, \/, \b, \f, \n, \r, \t, \uXXXX
-    
-    # First, let's try to parse as-is
+    # First, try parsing as-is
     try:
         json.loads(response_text)
         return response_text  # It's already valid
     except json.JSONDecodeError:
         pass
     
-    # Try fixing common issues
-    # Replace single backslashes (not followed by valid escape char) with double backslashes
-    import re as regex_module
-    
-    # This regex finds backslashes not followed by valid JSON escape characters
-    # and not already doubled
-    fixed_text = response_text
-    
-    # Common LaTeX commands that cause issues - escape the backslash
-    latex_commands = [
-        r'\\textsuperscript', r'\\textsubscript', r'\\emph', r'\\textit', r'\\textbf',
-        r'\\LaTeX', r'\\TeX', r'\\cite', r'\\ref', r'\\label',
-        r'\\alpha', r'\\beta', r'\\gamma', r'\\delta', r'\\epsilon',
-        r'\\times', r'\\cdot', r'\\pm', r'\\sim', r'\\approx',
-        r'\\&', r'\\%', r'\\$', r'\\#', r'\\_',
-    ]
-    
-    for cmd in latex_commands:
-        # Replace \command with \\command in the JSON
-        pattern = cmd.replace(r'\\', r'\\')
-        replacement = cmd
-        fixed_text = fixed_text.replace(pattern.replace(r'\\', '\\'), replacement)
-    
-    # More aggressive: replace any backslash followed by a letter with escaped version
-    # But only inside string values
-    def fix_backslashes_in_strings(text):
-        """Fix backslashes inside JSON string values."""
+    # Strategy 1: Fix invalid escape sequences in string values
+    # This is the most common issue - backslashes in LaTeX commands
+    def fix_escapes_in_strings(text):
+        """Fix invalid escape sequences inside JSON string values."""
         result = []
         in_string = False
+        escape_next = False
         i = 0
+        
         while i < len(text):
             char = text[i]
             
-            if char == '"' and (i == 0 or text[i-1] != '\\'):
+            # Track string boundaries (handle escaped quotes)
+            if char == '"' and not escape_next:
                 in_string = not in_string
                 result.append(char)
+                escape_next = False
             elif char == '\\' and in_string:
-                # Check if this is already a valid JSON escape
+                # We're inside a string and found a backslash
                 if i + 1 < len(text):
                     next_char = text[i + 1]
-                    if next_char in '"\\bfnrtu/':
-                        # Valid JSON escape, keep as-is
+                    # Valid JSON escape sequences
+                    valid_escapes = {'"', '\\', '/', 'b', 'f', 'n', 'r', 't', 'u'}
+                    
+                    if next_char in valid_escapes:
+                        # Valid escape, keep as-is
+                        result.append(char)
+                        result.append(next_char)
+                        i += 1  # Skip next char as we've already added it
+                    elif next_char == 'u' and i + 5 < len(text):
+                        # Unicode escape \uXXXX
+                        result.append(char)
+                        result.append(next_char)
+                        i += 1
+                    else:
+                        # Invalid escape - double the backslash
+                        result.append('\\\\')
+                        # Don't skip next char, it might be part of the content
+                else:
+                    # Backslash at end of string - escape it
+                    result.append('\\\\')
+                escape_next = False
+            else:
+                result.append(char)
+                escape_next = (char == '\\' and not in_string)
+            
+            i += 1
+        
+        return ''.join(result)
+    
+    # Apply fix
+    fixed_text = fix_escapes_in_strings(response_text)
+    
+    # Try parsing again
+    try:
+        json.loads(fixed_text)
+        return fixed_text
+    except json.JSONDecodeError as e:
+        logger.debug(f"First fix attempt failed: {e}")
+    
+    # Strategy 2: More aggressive - replace all single backslashes in strings
+    # (except valid escapes we already handled)
+    def aggressive_fix(text):
+        """More aggressive fix for stubborn escape issues."""
+        result = []
+        in_string = False
+        i = 0
+        
+        while i < len(text):
+            char = text[i]
+            
+            if char == '"' and (i == 0 or text[i-1] != '\\' or (i > 1 and text[i-2] == '\\')):
+                # Check if quote is escaped by counting backslashes
+                backslash_count = 0
+                j = i - 1
+                while j >= 0 and text[j] == '\\':
+                    backslash_count += 1
+                    j -= 1
+                
+                if backslash_count % 2 == 0:
+                    in_string = not in_string
+                result.append(char)
+            elif char == '\\' and in_string:
+                if i + 1 < len(text):
+                    next_char = text[i + 1]
+                    if next_char in '"\\/bfnrt' or (next_char == 'u' and i + 5 < len(text)):
+                        # Valid escape
                         result.append(char)
                     else:
-                        # Invalid escape, double the backslash
+                        # Invalid - double it
                         result.append('\\\\')
                 else:
                     result.append('\\\\')
             else:
                 result.append(char)
             i += 1
+        
         return ''.join(result)
     
-    fixed_text = fix_backslashes_in_strings(fixed_text)
+    fixed_text = aggressive_fix(fixed_text)
+    
+    # Strategy 3: Remove control characters that might break JSON
+    # Replace problematic control chars (except newlines/tabs in strings)
+    # Remove null bytes and other problematic control chars outside of valid escapes
+    fixed_text = re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F]', '', fixed_text)
     
     return fixed_text
 
@@ -387,9 +449,12 @@ def query_gemini_batch(papers_data: list, retry_count: int = 0) -> Optional[Batc
     system_prompt, user_prompt = build_batch_prompt(papers_data)
     
     try:
+        # Each API call is stateless - no conversation history or context memory.
+        # The 'contents' parameter is just the current prompt, not a chat history.
+        # This ensures complete isolation between batches.
         response = client.models.generate_content(
             model=MODEL_ID,
-            contents=user_prompt,
+            contents=user_prompt,  # Single prompt, no history
             config={
                 "system_instruction": system_prompt,
                 "temperature": 0,
@@ -404,39 +469,133 @@ def query_gemini_batch(papers_data: list, retry_count: int = 0) -> Optional[Batc
         # Clean the response to fix escape character issues
         cleaned_response = clean_json_response(response_text)
         
-        # Try parsing with Pydantic
-        try:
-            batch_response = BatchResponse.model_validate_json(cleaned_response)
-            logger.info(f"✅ Successfully parsed {len(batch_response.papers)} papers from response")
-            return batch_response
-        except Exception as parse_error:
-            logger.warning(f"Pydantic parse failed: {parse_error}")
-            
-            # Fallback: try manual JSON parsing and construct BatchResponse
+        # Try parsing with Pydantic - multiple strategies
+        parse_attempts = [
+            ("Pydantic validate_json", lambda: BatchResponse.model_validate_json(cleaned_response)),
+            ("Manual JSON + Pydantic validate", lambda: BatchResponse.model_validate(json.loads(cleaned_response))),
+        ]
+        
+        for attempt_name, parse_func in parse_attempts:
             try:
-                data = json.loads(cleaned_response)
-                batch_response = BatchResponse.model_validate(data)
-                logger.info(f"✅ Successfully parsed {len(batch_response.papers)} papers (fallback method)")
+                batch_response = parse_func()
+                logger.info(f"✅ Successfully parsed {len(batch_response.papers)} papers using {attempt_name}")
                 return batch_response
-            except Exception as fallback_error:
-                logger.error(f"Fallback parse also failed: {fallback_error}")
-                logger.debug(f"Cleaned response (first 1000 chars): {cleaned_response[:1000]}")
-                return None
+            except json.JSONDecodeError as json_err:
+                logger.debug(f"{attempt_name} failed (JSON error): {json_err}")
+                # Try to extract JSON from the response if it's wrapped
+                try:
+                    # Look for JSON object boundaries
+                    start_idx = cleaned_response.find('{')
+                    end_idx = cleaned_response.rfind('}')
+                    if start_idx >= 0 and end_idx > start_idx:
+                        extracted_json = cleaned_response[start_idx:end_idx+1]
+                        batch_response = BatchResponse.model_validate(json.loads(extracted_json))
+                        logger.info(f"✅ Successfully parsed {len(batch_response.papers)} papers (extracted JSON)")
+                        return batch_response
+                except:
+                    pass
+            except Exception as parse_error:
+                logger.debug(f"{attempt_name} failed: {parse_error}")
+                # Try to fix common Pydantic validation errors
+                try:
+                    # Parse JSON manually first
+                    data = json.loads(cleaned_response)
+                    # Fix common issues in the data structure
+                    if "papers" in data:
+                        for paper in data["papers"]:
+                            # Ensure required fields exist
+                            if "arxiv_id" not in paper:
+                                paper["arxiv_id"] = ""
+                            if "authors" not in paper:
+                                paper["authors"] = []
+                            if "first_author_countries" not in paper:
+                                paper["first_author_countries"] = []
+                            # Fix authors
+                            for author in paper.get("authors", []):
+                                if "name" not in author or author["name"] is None:
+                                    author["name"] = ""
+                                if "affiliations" not in author:
+                                    author["affiliations"] = []
+                                if "countries" not in author:
+                                    author["countries"] = []
+                                # Ensure lists are actually lists
+                                if not isinstance(author.get("affiliations"), list):
+                                    author["affiliations"] = []
+                                if not isinstance(author.get("countries"), list):
+                                    author["countries"] = []
+                        
+                        batch_response = BatchResponse.model_validate(data)
+                        logger.info(f"✅ Successfully parsed {len(batch_response.papers)} papers (with data fixes)")
+                        return batch_response
+                except Exception as fix_error:
+                    logger.debug(f"Data fix attempt failed: {fix_error}")
+        
+        # All parsing attempts failed
+        logger.error(f"All parsing attempts failed. Response length: {len(cleaned_response)}")
+        logger.debug(f"Cleaned response (first 2000 chars): {cleaned_response[:2000]}")
+        logger.debug(f"Cleaned response (last 500 chars): {cleaned_response[-500:]}")
+        
+        # Try to save problematic response for debugging
+        try:
+            debug_file = f"failed_response_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            with open(debug_file, "w", encoding='utf-8') as f:
+                f.write(cleaned_response)
+            logger.warning(f"Saved failed response to {debug_file} for debugging")
+        except:
+            pass
+        
+        return None
         
     except Exception as e:
         error_msg = str(e).lower()
+        error_code = None
         
-        if "quota" in error_msg or "rate" in error_msg or "429" in error_msg:
+        # Extract error code if available
+        if hasattr(e, 'status_code'):
+            error_code = e.status_code
+        elif hasattr(e, 'response') and hasattr(e.response, 'status_code'):
+            error_code = e.response.status_code
+        
+        # Handle rate limit errors (429)
+        if "quota" in error_msg or "rate" in error_msg or "429" in str(error_code) or error_code == 429:
             if retry_count < MAX_RETRIES:
-                logger.warning(f"Rate limit hit. Waiting {RETRY_DELAY}s before retry {retry_count + 1}/{MAX_RETRIES}")
+                logger.warning(f"Rate limit hit (429). Waiting {RETRY_DELAY}s before retry {retry_count + 1}/{MAX_RETRIES}")
                 logger.debug(f"Error details: {e}")
                 time.sleep(RETRY_DELAY)
                 return query_gemini_batch(papers_data, retry_count + 1)
             else:
-                logger.error(f"Max retries exceeded for batch")
+                logger.error(f"Max retries exceeded for rate limit")
                 return None
+        
+        # Handle service unavailable errors (503) with exponential backoff
+        elif "503" in str(error_code) or error_code == 503 or "unavailable" in error_msg or "overloaded" in error_msg:
+            if retry_count < MAX_RETRIES:
+                # Exponential backoff: 30s, 60s, 120s, 240s, capped at 300s
+                delay = min(SERVICE_UNAVAILABLE_BASE_DELAY * (2 ** retry_count), MAX_SERVICE_UNAVAILABLE_DELAY)
+                logger.warning(f"Service unavailable (503) - model overloaded. Waiting {delay}s before retry {retry_count + 1}/{MAX_RETRIES}")
+                logger.info(f"This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...")
+                time.sleep(delay)
+                return query_gemini_batch(papers_data, retry_count + 1)
+            else:
+                logger.error(f"Max retries exceeded for service unavailable error. The API may be experiencing high load.")
+                logger.info(f"Consider reducing BATCH_SIZE or increasing wait times between requests.")
+                return None
+        
+        # Handle other server errors (500, 502, 504) with exponential backoff
+        elif error_code in [500, 502, 504]:
+            if retry_count < MAX_RETRIES:
+                delay = min(SERVICE_UNAVAILABLE_BASE_DELAY * (2 ** retry_count), MAX_SERVICE_UNAVAILABLE_DELAY)
+                logger.warning(f"Server error ({error_code}). Waiting {delay}s before retry {retry_count + 1}/{MAX_RETRIES}")
+                time.sleep(delay)
+                return query_gemini_batch(papers_data, retry_count + 1)
+            else:
+                logger.error(f"Max retries exceeded for server error {error_code}")
+                return None
+        
+        # Other errors - log and fail
         else:
             logger.error(f"Gemini API Error: {e}")
+            logger.debug(f"Error code: {error_code}, Error message: {error_msg}")
             import traceback
             logger.debug(traceback.format_exc())
             return None
@@ -478,49 +637,31 @@ def format_paper_for_csv(paper: Paper) -> tuple:
 # =======================
 # BATCH PROCESSING
 # =======================
-DOWNLOAD_DELAY_SECONDS = 3  # Delay between downloads (arXiv rate limit)
 
 
 def collect_batch(df, indices, link_col):
     """
-    Collect papers for a batch, downloading and extracting LaTeX.
+    Collect papers for a batch by reading LaTeX from local folders.
     Returns list of paper data dicts.
     """
     batch_data = []
-    last_download_time = None
     
     for i, index in enumerate(indices):
         row = df.loc[index]
         pdf_link = row[link_col]
         title = row.get('title', 'Unknown')
         
-        eprint_url, arxiv_id = get_eprint_url(pdf_link)
+        # Extract arxiv_id from PDF link
+        _, arxiv_id = get_eprint_url(pdf_link)
         
-        if not eprint_url:
-            logger.warning(f"[{index}] No valid e-print URL for {arxiv_id or 'unknown'}")
-            continue
-
-        # Timing check: ensure we wait at least DOWNLOAD_DELAY_SECONDS between downloads
-        if last_download_time is not None:
-            elapsed_since_last = time.time() - last_download_time
-            if elapsed_since_last < DOWNLOAD_DELAY_SECONDS:
-                wait_needed = DOWNLOAD_DELAY_SECONDS - elapsed_since_last
-                logger.debug(f"⏱️  Waiting {wait_needed:.2f}s to respect {DOWNLOAD_DELAY_SECONDS}s delay...")
-                time.sleep(wait_needed)
-        
-        download_start = time.time()
-        file_path = download_source(eprint_url, arxiv_id)
-        download_end = time.time()
-        
-        if not file_path:
-            logger.warning(f"[{index}] Download failed for {arxiv_id}")
-            last_download_time = time.time()
-            time.sleep(1)
+        if not arxiv_id:
+            logger.warning(f"[{index}] No valid arXiv ID extracted from {pdf_link}")
             continue
         
-        logger.info(f"⏱️  [{index}] Download took {download_end - download_start:.2f}s for {arxiv_id}")
-        
-        latex_text = extract_and_read_latex(file_path, arxiv_id)
+        # Read LaTeX from local folder
+        read_start = time.time()
+        latex_text = read_latex_from_folder(arxiv_id)
+        read_end = time.time()
         
         if latex_text:
             batch_data.append({
@@ -529,22 +670,9 @@ def collect_batch(df, indices, link_col):
                 'title': title,
                 'latex_text': latex_text
             })
-            logger.info(f"✅ [{index}] Collected: {title[:50]}...")
+            logger.info(f"✅ [{index}] Collected {arxiv_id}: {title[:50]}... ({read_end - read_start:.2f}s)")
         else:
-            logger.warning(f"[{index}] No LaTeX text for {arxiv_id}")
-        
-        # Cleanup after extracting
-        cleanup(arxiv_id)
-        
-        # Record time for next iteration's delay check
-        last_download_time = time.time()
-        
-        # Log timing info
-        if i < len(indices) - 1:  # Don't sleep after the last one
-            logger.debug(f"⏱️  Starting {DOWNLOAD_DELAY_SECONDS}s delay before next download...")
-            time.sleep(DOWNLOAD_DELAY_SECONDS)
-            actual_delay = time.time() - last_download_time
-            logger.info(f"⏱️  Actual delay: {actual_delay:.2f}s (target: {DOWNLOAD_DELAY_SECONDS}s) ✓" if actual_delay >= DOWNLOAD_DELAY_SECONDS - 0.1 else f"⚠️  Delay was {actual_delay:.2f}s, under target!")
+            logger.warning(f"[{index}] No LaTeX text found for {arxiv_id}")
     
     logger.info(f"📦 Batch collection complete: {len(batch_data)}/{len(indices)} papers collected")
     return batch_data
@@ -698,7 +826,7 @@ def main():
             print(f"   [{idx}] {title}...")
         print("=" * 50 + "\n")
         
-        # Collect batch data (download and extract LaTeX)
+        # Collect batch data (read LaTeX from local folders)
         start_time = time.time()
         batch_data = collect_batch(df, batch_indices, link_col)
         
@@ -718,11 +846,15 @@ def main():
         else:
             logger.error("Failed to get response for batch")
         
-        # Rate limiting
+        # Rate limiting - increased wait time to reduce load on API
         elapsed = time.time() - start_time
-        wait_time = max(0, RATE_LIMIT_SECONDS - elapsed)
+        # Add extra buffer time to reduce chance of 503 errors
+        # Add small random jitter (0-2 seconds) to avoid synchronized requests
+        base_wait = RATE_LIMIT_SECONDS * 1.5  # 50% extra buffer
+        jitter = random.uniform(0, 2)  # Random 0-2 seconds
+        wait_time = max(0, base_wait + jitter - elapsed)
         if wait_time > 0:
-            logger.debug(f"Rate limit: waiting {wait_time:.1f}s")
+            logger.debug(f"Rate limit: waiting {wait_time:.1f}s (with buffer and jitter to reduce API load)")
             time.sleep(wait_time)
     
     logger.info("=" * 60)

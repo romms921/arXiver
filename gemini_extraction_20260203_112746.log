@@ -1,0 +1,218 @@
+2026-02-03 11:27:46 | INFO     | ============================================================
+2026-02-03 11:27:46 | INFO     | GEMINI AUTHOR AFFILIATION EXTRACTOR
+2026-02-03 11:27:46 | INFO     | Model: gemini-2.5-flash-lite
+2026-02-03 11:27:46 | INFO     | Batch Size: 15
+2026-02-03 11:27:46 | INFO     | Max LaTeX chars per paper: 25000
+2026-02-03 11:27:46 | INFO     | ============================================================
+2026-02-03 11:27:46 | INFO     | Using LaTeX directory: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver
+2026-02-03 11:27:46 | INFO     | Reading dataset: 2025_Data.csv
+2026-02-03 11:27:48 | INFO     | Total papers in dataset: 18660
+2026-02-03 11:27:48 | INFO     | Using link column: pdf_link
+2026-02-03 11:27:48 | INFO     | Found 3445 already processed entries
+2026-02-03 11:27:48 | INFO     | Papers to process: 15215
+2026-02-03 11:27:48 | INFO     | 
+========================================
+2026-02-03 11:27:48 | INFO     | BATCH 1/1015
+2026-02-03 11:27:48 | INFO     | Indices: [2, 12, 33, 37, 95, 96, 104, 115, 197, 260, 286, 302, 303, 312, 321]
+2026-02-03 11:27:48 | INFO     | ========================================
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.12781: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12781
+2026-02-03 11:27:48 | WARNING  | [2] No LaTeX text found for 2501.12781
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.12694: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12694
+2026-02-03 11:27:48 | WARNING  | [12] No LaTeX text found for 2501.12694
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.12970: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12970
+2026-02-03 11:27:48 | WARNING  | [33] No LaTeX text found for 2501.12970
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.12922: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.12922
+2026-02-03 11:27:48 | WARNING  | [37] No LaTeX text found for 2501.12922
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.13861: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.13861
+2026-02-03 11:27:48 | WARNING  | [95] No LaTeX text found for 2501.13861
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.13847: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.13847
+2026-02-03 11:27:48 | WARNING  | [96] No LaTeX text found for 2501.13847
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.14026: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14026
+2026-02-03 11:27:48 | WARNING  | [104] No LaTeX text found for 2501.14026
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.14085: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14085
+2026-02-03 11:27:48 | WARNING  | [115] No LaTeX text found for 2501.14085
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.10512: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10512
+2026-02-03 11:27:48 | WARNING  | [197] No LaTeX text found for 2501.10512
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.11667: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.11667
+2026-02-03 11:27:48 | WARNING  | [260] No LaTeX text found for 2501.11667
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.11762: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.11762
+2026-02-03 11:27:48 | WARNING  | [286] No LaTeX text found for 2501.11762
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.10754: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10754
+2026-02-03 11:27:48 | WARNING  | [302] No LaTeX text found for 2501.10754
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.10749: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10749
+2026-02-03 11:27:48 | WARNING  | [303] No LaTeX text found for 2501.10749
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.10903: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.10903
+2026-02-03 11:27:48 | WARNING  | [312] No LaTeX text found for 2501.10903
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.11298: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.11298
+2026-02-03 11:27:48 | WARNING  | [321] No LaTeX text found for 2501.11298
+2026-02-03 11:27:48 | INFO     | 📦 Batch collection complete: 0/15 papers collected
+2026-02-03 11:27:48 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:27:48 | INFO     | 
+========================================
+2026-02-03 11:27:48 | INFO     | BATCH 2/1015
+2026-02-03 11:27:48 | INFO     | Indices: [431, 510, 523, 551, 574, 583, 589, 594, 609, 646, 648, 652, 666, 671, 673]
+2026-02-03 11:27:48 | INFO     | ========================================
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.18730: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.18730
+2026-02-03 11:27:48 | WARNING  | [431] No LaTeX text found for 2501.18730
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.15254: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.15254
+2026-02-03 11:27:48 | WARNING  | [510] No LaTeX text found for 2501.15254
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.15004: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.15004
+2026-02-03 11:27:48 | WARNING  | [523] No LaTeX text found for 2501.15004
+2026-02-03 11:27:48 | WARNING  | No .tex files found in folder: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14509
+2026-02-03 11:27:48 | WARNING  | [551] No LaTeX text found for 2501.14509
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.14871: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14871
+2026-02-03 11:27:48 | WARNING  | [574] No LaTeX text found for 2501.14871
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.14650: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.14650
+2026-02-03 11:27:48 | WARNING  | [583] No LaTeX text found for 2501.14650
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.16755: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16755
+2026-02-03 11:27:48 | WARNING  | [589] No LaTeX text found for 2501.16755
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.16682: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16682
+2026-02-03 11:27:48 | WARNING  | [594] No LaTeX text found for 2501.16682
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.16818: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16818
+2026-02-03 11:27:48 | WARNING  | [609] No LaTeX text found for 2501.16818
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.16047: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16047
+2026-02-03 11:27:48 | WARNING  | [646] No LaTeX text found for 2501.16047
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.16203: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16203
+2026-02-03 11:27:48 | WARNING  | [648] No LaTeX text found for 2501.16203
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.16452: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16452
+2026-02-03 11:27:48 | WARNING  | [652] No LaTeX text found for 2501.16452
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.16317: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.16317
+2026-02-03 11:27:48 | WARNING  | [666] No LaTeX text found for 2501.16317
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.09369: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.09369
+2026-02-03 11:27:48 | WARNING  | [671] No LaTeX text found for 2501.09369
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.09300: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.09300
+2026-02-03 11:27:48 | WARNING  | [673] No LaTeX text found for 2501.09300
+2026-02-03 11:27:48 | INFO     | 📦 Batch collection complete: 0/15 papers collected
+2026-02-03 11:27:48 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:27:48 | INFO     | 
+========================================
+2026-02-03 11:27:48 | INFO     | BATCH 3/1015
+2026-02-03 11:27:48 | INFO     | Indices: [688, 726, 731, 732, 739, 823, 856, 860, 862, 893, 895, 896, 918, 926, 982]
+2026-02-03 11:27:48 | INFO     | ========================================
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.03559: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03559
+2026-02-03 11:27:48 | WARNING  | [688] No LaTeX text found for 2501.03559
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.03214: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03214
+2026-02-03 11:27:48 | WARNING  | [726] No LaTeX text found for 2501.03214
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.03117: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03117
+2026-02-03 11:27:48 | WARNING  | [731] No LaTeX text found for 2501.03117
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.03100: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03100
+2026-02-03 11:27:48 | WARNING  | [732] No LaTeX text found for 2501.03100
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.03436: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.03436
+2026-02-03 11:27:48 | WARNING  | [739] No LaTeX text found for 2501.03436
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.04459: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.04459
+2026-02-03 11:27:48 | WARNING  | [823] No LaTeX text found for 2501.04459
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.01122: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.01122
+2026-02-03 11:27:48 | WARNING  | [856] No LaTeX text found for 2501.01122
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.01035: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.01035
+2026-02-03 11:27:48 | WARNING  | [860] No LaTeX text found for 2501.01035
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.01496: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.01496
+2026-02-03 11:27:48 | WARNING  | [862] No LaTeX text found for 2501.01496
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.00231: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.00231
+2026-02-03 11:27:48 | WARNING  | [893] No LaTeX text found for 2501.00231
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.00181: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.00181
+2026-02-03 11:27:48 | WARNING  | [895] No LaTeX text found for 2501.00181
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.00176: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.00176
+2026-02-03 11:27:48 | WARNING  | [896] No LaTeX text found for 2501.00176
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.00676: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.00676
+2026-02-03 11:27:48 | WARNING  | [918] No LaTeX text found for 2501.00676
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.02835: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.02835
+2026-02-03 11:27:48 | WARNING  | [926] No LaTeX text found for 2501.02835
+2026-02-03 11:27:48 | WARNING  | No .tex files found in folder: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.01899
+2026-02-03 11:27:48 | WARNING  | [982] No LaTeX text found for 2501.01899
+2026-02-03 11:27:48 | INFO     | 📦 Batch collection complete: 0/15 papers collected
+2026-02-03 11:27:48 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:27:48 | INFO     | 
+========================================
+2026-02-03 11:27:48 | INFO     | BATCH 4/1015
+2026-02-03 11:27:48 | INFO     | Indices: [1027, 1048, 1081, 1093, 1094, 1110, 1114, 1143, 1165, 1182, 1223, 1255, 1257, 1269, 1294]
+2026-02-03 11:27:48 | INFO     | ========================================
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.07669: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.07669
+2026-02-03 11:27:48 | WARNING  | [1027] No LaTeX text found for 2501.07669
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.08029: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08029
+2026-02-03 11:27:48 | WARNING  | [1048] No LaTeX text found for 2501.08029
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.07622: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.07622
+2026-02-03 11:27:48 | WARNING  | [1081] No LaTeX text found for 2501.07622
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.08311: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08311
+2026-02-03 11:27:48 | WARNING  | [1093] No LaTeX text found for 2501.08311
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.08372: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08372
+2026-02-03 11:27:48 | WARNING  | [1094] No LaTeX text found for 2501.08372
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.08890: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08890
+2026-02-03 11:27:48 | WARNING  | [1110] No LaTeX text found for 2501.08890
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.09072: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.09072
+2026-02-03 11:27:48 | WARNING  | [1114] No LaTeX text found for 2501.09072
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.08434: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08434
+2026-02-03 11:27:48 | WARNING  | [1143] No LaTeX text found for 2501.08434
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.08685: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.08685
+2026-02-03 11:27:48 | WARNING  | [1165] No LaTeX text found for 2501.08685
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.05691: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.05691
+2026-02-03 11:27:48 | WARNING  | [1182] No LaTeX text found for 2501.05691
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.05214: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.05214
+2026-02-03 11:27:48 | WARNING  | [1223] No LaTeX text found for 2501.05214
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.05354: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.05354
+2026-02-03 11:27:48 | WARNING  | [1255] No LaTeX text found for 2501.05354
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.05337: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.05337
+2026-02-03 11:27:48 | WARNING  | [1257] No LaTeX text found for 2501.05337
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.06950: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.06950
+2026-02-03 11:27:48 | WARNING  | [1269] No LaTeX text found for 2501.06950
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.07142: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.07142
+2026-02-03 11:27:48 | WARNING  | [1294] No LaTeX text found for 2501.07142
+2026-02-03 11:27:48 | INFO     | 📦 Batch collection complete: 0/15 papers collected
+2026-02-03 11:27:48 | WARNING  | No valid papers in this batch, skipping...
+2026-02-03 11:27:48 | INFO     | 
+========================================
+2026-02-03 11:27:48 | INFO     | BATCH 5/1015
+2026-02-03 11:27:48 | INFO     | Indices: [1321, 1324, 1339, 1350, 1361, 1362, 1363, 1366, 1368, 1381, 1388, 1403, 1438, 1446, 1479]
+2026-02-03 11:27:48 | INFO     | ========================================
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.06290: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.06290
+2026-02-03 11:27:48 | WARNING  | [1321] No LaTeX text found for 2501.06290
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.06343: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.06343
+2026-02-03 11:27:48 | WARNING  | [1324] No LaTeX text found for 2501.06343
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2501.06450: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2501.06450
+2026-02-03 11:27:48 | WARNING  | [1339] No LaTeX text found for 2501.06450
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2502.15081: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.15081
+2026-02-03 11:27:48 | WARNING  | [1350] No LaTeX text found for 2502.15081
+2026-02-03 11:27:48 | DEBUG    | Found 1 .tex files for 2502.15329
+2026-02-03 11:27:48 | INFO     | Combined 1 .tex files for 2502.15329 (112162 chars total)
+2026-02-03 11:27:48 | INFO     | ✅ [1361] Collected 2502.15329: Activity of low mass stars in the light of spot si... (0.00s)
+2026-02-03 11:27:48 | DEBUG    | Found 1 .tex files for 2502.15299
+2026-02-03 11:27:48 | INFO     | Combined 1 .tex files for 2502.15299 (156531 chars total)
+2026-02-03 11:27:48 | INFO     | ✅ [1362] Collected 2502.15299: On type 1 active galactic nuclei with double-peake... (0.00s)
+2026-02-03 11:27:48 | DEBUG    | Found 2 .tex files for 2502.15581
+2026-02-03 11:27:48 | INFO     | Combined 2 .tex files for 2502.15581 (246853 chars total)
+2026-02-03 11:27:48 | INFO     | ✅ [1363] Collected 2502.15581: Euclid: Galaxy morphology and photometry from bulg... (0.01s)
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2502.15053: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.15053
+2026-02-03 11:27:48 | WARNING  | [1366] No LaTeX text found for 2502.15053
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2502.15555: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.15555
+2026-02-03 11:27:48 | WARNING  | [1368] No LaTeX text found for 2502.15555
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2502.14825: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.14825
+2026-02-03 11:27:48 | WARNING  | [1381] No LaTeX text found for 2502.14825
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2502.14665: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.14665
+2026-02-03 11:27:48 | WARNING  | [1388] No LaTeX text found for 2502.14665
+2026-02-03 11:27:48 | DEBUG    | Found 1 .tex files for 2502.14990
+2026-02-03 11:27:48 | INFO     | Combined 1 .tex files for 2502.14990 (154404 chars total)
+2026-02-03 11:27:48 | INFO     | ✅ [1403] Collected 2502.14990: The Dynamical State of the Didymos System Before a... (0.00s)
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2502.16629: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.16629
+2026-02-03 11:27:48 | WARNING  | [1438] No LaTeX text found for 2502.16629
+2026-02-03 11:27:48 | DEBUG    | Found 1 .tex files for 2502.14512
+2026-02-03 11:27:48 | INFO     | Combined 1 .tex files for 2502.14512 (85063 chars total)
+2026-02-03 11:27:48 | INFO     | ✅ [1446] Collected 2502.14512: Analysis of the Effect of Bars on Environmental De... (0.00s)
+2026-02-03 11:27:48 | WARNING  | Folder not found for 2502.15661: C:\Users\hetan\Desktop\DesktopStuff\arxiv_latex\arXiver\2502.15661
+2026-02-03 11:27:48 | WARNING  | [1479] No LaTeX text found for 2502.15661
+2026-02-03 11:27:48 | INFO     | 📦 Batch collection complete: 5/15 papers collected
+2026-02-03 11:27:48 | INFO     | Sending batch of 5 papers to Gemini...
+2026-02-03 11:27:48 | INFO     | Processing batch of 5 papers:
+2026-02-03 11:27:48 | INFO     |   - 2502.15329: Activity of low mass stars in the light of spot si...
+2026-02-03 11:27:48 | INFO     |   - 2502.15299: On type 1 active galactic nuclei with double-peake...
+2026-02-03 11:27:48 | INFO     |   - 2502.15581: Euclid: Galaxy morphology and photometry from bulg...
+2026-02-03 11:27:48 | INFO     |   - 2502.14990: The Dynamical State of the Didymos System Before a...
+2026-02-03 11:27:48 | INFO     |   - 2502.14512: Analysis of the Effect of Bars on Environmental De...
+2026-02-03 11:27:51 | WARNING  | Service unavailable (503) - model overloaded. Waiting 30s before retry 1/5
+2026-02-03 11:27:51 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
+2026-02-03 11:28:21 | INFO     | Processing batch of 5 papers:
+2026-02-03 11:28:21 | INFO     |   - 2502.15329: Activity of low mass stars in the light of spot si...
+2026-02-03 11:28:21 | INFO     |   - 2502.15299: On type 1 active galactic nuclei with double-peake...
+2026-02-03 11:28:21 | INFO     |   - 2502.15581: Euclid: Galaxy morphology and photometry from bulg...
+2026-02-03 11:28:21 | INFO     |   - 2502.14990: The Dynamical State of the Didymos System Before a...
+2026-02-03 11:28:21 | INFO     |   - 2502.14512: Analysis of the Effect of Bars on Environmental De...
+2026-02-03 11:28:26 | WARNING  | Service unavailable (503) - model overloaded. Waiting 60s before retry 2/5
+2026-02-03 11:28:26 | INFO     | This is a server-side issue - the Gemini API is temporarily overloaded. Retrying with exponential backoff...
